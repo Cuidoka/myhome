@@ -4,13 +4,13 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** R-011/F-08 implementada e validada localmente: auditoria da referência, pesquisa de portfólios e movimento leve. Check de 34 arquivos sem erros/avisos/hints; build de sete páginas e 110 destinos; 91 testes Chromium passaram (14 de produção e 77 de prévia). Largura total, dez tamanhos de janela e menu aprovado preservados. Envio/CI desta etapa em conferência; conteúdo real e hospedagem continuam pendentes.
+**Fase atual:** R-011/F-08 implementada e enviada em main no commit ddfdcb9, com CI aprovado: auditoria da referência, pesquisa de portfólios e movimento leve. Check de 34 arquivos sem erros/avisos/hints; build de sete páginas e 110 destinos; 91 testes Chromium passaram (14 de produção e 77 de prévia). Largura total, dez tamanhos de janela e menu aprovado preservados. Conteúdo real e hospedagem continuam pendentes.
 
 **Revisão do autor:** menu lateral aprovado em R-010. Preservar esse componente e sua adaptação para celular. A revisão final das demais composições, conteúdo e mídia continua pendente.
 
 **Prévia para análise do autor:** servidor de desenvolvimento mantido em `http://127.0.0.1:4321/`. A suíte de prévia exercitou as composições e os novos movimentos nesse servidor; continuar disponível para a revisão do autor.
 
-**Próximo passo:** conferir envio/CI de R-011 e colher a revisão visual do autor na prévia com animações. Retomar P-02/C-03 com apresentação, contatos e trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Depois definir a estreia em P-01, concluir revisão e preparação de publicação conforme o guia.
+**Próximo passo:** colher a revisão visual do autor na prévia com animações. Retomar P-02/C-03 com apresentação, contatos e trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Depois definir a estreia em P-01, concluir revisão e preparação de publicação conforme o guia.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -98,7 +98,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
 - **Ambiente:** instalação já validada; Astro check/build e 91 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações. Nenhuma dependência adicionada para movimento.
-- **Git:** revisão responsiva validada em 4c70688; envio e CI da etapa de movimento em conferência. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
+- **Git:** etapa de movimento enviada em main e confirmada no remoto, com CI aprovado em ddfdcb9. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -185,7 +185,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Pesquisa:** fontes dos próprios autores Josh W. Comeau, Brittany Chiang e Emil Kowalski, com documentação MDN. O código v4 de Brittany é identificado como histórico; HTML atual também consultado. Inventário, fontes e decisões reunidos em movimento.md. Nenhuma biblioteca externa ou dependência acrescentada.
 - **Implementação:** camada CSS compartilhada; hover e foco equivalentes; livros/objetos e fotos com deslocamentos pequenos, botões com resposta de pressão, setas/caderno/baús discretos. Entradas únicas por IntersectionObserver e APIs nativas, sem esconder conteúdo. Respostas de filtros e sorteio sem atrasar estados/anúncios. Preferência de movimento reduzido cancela animações em andamento e preserva funções. Hovers com deslocamento limitados a ponteiro fino; toque testado sem estado de hover persistente.
 - **Verificação local:** check de 34 arquivos, zero erros/avisos/hints; build de sete páginas; verify com 110 destinos locais. Passaram 14 testes de produção e 77 de desenvolvimento: os 84 anteriores e sete novos, além do reforço da redução de movimento. Cobertura inclui conteúdo/navegação sem JS, entrada única, cancelamento dinâmico, mouse/teclado, filtros, sorteio e toque emulado. Capturas representativas da Entrada, Galeria mobile e Sótão desktop revisadas; demais composições seguem na matriz automatizada.
-- **Limites e continuidade:** confirmar envio/CI e colher revisão visual dos efeitos. Outros motores e dispositivos físicos não testados. Apresentação, trabalhos, mídias/áudio reais, sitemap/feed/endereço e publicação permanecem pendentes. Reference segue local e ignorada; a aplicação não lê a pasta.
+- **Integração concluída:** commit [ddfdcb9](https://github.com/Cuidoka/myhome/commit/ddfdcb98ccb067d9ecd3c880f1818df367c2448f) enviado em main e confirmado no remoto. A [execução CI 41379953708](https://github.com/Cuidoka/myhome/actions/runs/41379953708) passou, incluindo ambas as suítes. Documentação conferida: dez arquivos, 30 tarefas e 34 decisões. Índice e histórico Git sem reference; regra de exclusão conferida. Prévia com HTTP 200 e inclusão do módulo de movimento confirmados. Fechamento apenas documental usa `[skip ci]`.
+- **Limites e continuidade:** colher revisão visual dos efeitos. Outros motores e dispositivos físicos não testados. Apresentação, trabalhos, mídias/áudio reais, sitemap/feed/endereço e publicação permanecem pendentes. Reference segue local e ignorada; a aplicação não lê a pasta. Servidor 4321 mantido para análise do autor.
 
 ## Modelo de registro futuro
 

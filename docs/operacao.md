@@ -74,7 +74,9 @@ A [execução inicial](https://github.com/Cuidoka/myhome/actions/runs/4137182121
 
 A [execução da estruturação visual](https://github.com/Cuidoka/myhome/actions/runs/41375494516) também passou, para b2b4060. Ela inclui ambas as suítes, de produção e desenvolvimento, além de check/build/verify. O servidor local 4321 permanece ativo para a revisão do autor; o servidor 4322 dos testes é temporário e encerrado pelo runner.
 
-A [execução da revisão responsiva](https://github.com/Cuidoka/myhome/actions/runs/41377380717) passou para 4c70688, incluindo 13 testes de produção e 71 de desenvolvimento. É a revisão de código atual validada; o fechamento posterior apenas documental usa `[skip ci]` após a conferência dos documentos.
+A [execução da revisão responsiva](https://github.com/Cuidoka/myhome/actions/runs/41377380717) passou para 4c70688, incluindo 13 testes de produção e 71 de desenvolvimento. Essa etapa validou a largura total; seu fechamento apenas documental usou `[skip ci]` após a conferência dos documentos.
+
+A revisão de código atual validada é ddfdcb9: a [execução da etapa de movimento](https://github.com/Cuidoka/myhome/actions/runs/41379953708) passou com 14 testes de produção e 77 de desenvolvimento, além das conferências documentais e de build. Fontes e regras de manutenção estão em [movimento.md](movimento.md). Fechamentos posteriores apenas documentais não representam nova execução da aplicação.
 
 O modelo privado é excluído dos dois ambientes. Registros previewOnly só aparecem em desenvolvimento, com aviso no início e rodapé; também são excluídos do build. Os filtros, sumário, relações, sorteador e páginas individuais foram exercitados com amostras. A reprodução de áudio real permanece pendente porque nenhum arquivo foi fornecido; não há play fictício.
 
