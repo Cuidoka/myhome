@@ -1,0 +1,41 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/shantell-sans';
+import '@fontsource/kalam/400.css';
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Icon from '../components/Icon.astro';
+import { site, type RoomSlug } from '../data/site';
+interface Props { title?: string; description?: string; current?: RoomSlug; home?: boolean; noindex?: boolean; }
+const { title, description = site.description, current = 'entrada', home = false, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} — uma casa na internet`;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3e7d6" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    {canonical && <><link rel="canonical" href={canonical} /><meta property="og:url" content={canonical} /></>}
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div class:list={['house', { 'house-home': home }]}>
+      <Navigation current={current} />
+      <main id="conteudo" tabindex="-1"><slot /></main>
+      <footer class="site-footer">
+        <div><p class="farewell">Obrigado pela visita.<br class="mobile-break" /> A porta fica sempre encostada.</p><span class="footer-note handwriting">uma casa feita aos poucos.</span></div>
+        <nav aria-label="Rodapé"><a href="/#sobre">Quem mora aqui</a><a href={site.github} target="_blank" rel="noreferrer">Me encontre no GitHub <Icon name="arrow" size={15} /></a></nav>
+      </footer>
+    </div>
+  </body>
+</html>

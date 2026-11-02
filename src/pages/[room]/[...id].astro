@@ -1,0 +1,29 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getRoom } from '../../data/site';
+import { getPublishedWorks, workHref } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await getPublishedWorks()).map((work) => ({ params: { room: work.data.room, id: work.id }, props: { work } }));
+}
+const { work } = Astro.props;
+const room = getRoom(work.data.room)!;
+const { Content, headings } = await render(work);
+const related = (await getPublishedWorks()).filter((item) => work.data.related.includes(item.id));
+const formatDate = (date: Date) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' }).format(date);
+---
+<BaseLayout title={work.data.title} description={work.data.summary} current={work.data.room}>
+  <div class="room-content article-room">
+    <header class="room-heading"><a class="back-link handwriting" href={room.href}>← voltar para {room.name.toLowerCase()}</a><p class="painted room-title article-room-label">{room.name.toLocaleLowerCase('pt-BR')}</p></header>
+    <article class="article-paper paper">
+      <header class="article-heading"><span class="eyebrow handwriting">{work.data.maturity ?? work.data.status ?? room.detail}</span><h1>{work.data.title}</h1><p class="article-summary">{work.data.summary}</p><div class="article-metadata">{work.data.publishedAt && <time datetime={work.data.publishedAt.toISOString()}>Publicado em {formatDate(work.data.publishedAt)}</time>}{work.data.updatedAt && <span>Revisto em {formatDate(work.data.updatedAt)}</span>}{work.data.technologies.length > 0 && <span>{work.data.technologies.join(' · ')}</span>}</div></header>
+      {work.data.image && <figure class="article-image"><img src={work.data.image} alt={work.data.imageAlt} width="1000" height="700" /><figcaption class="handwriting">{work.data.imageAlt}</figcaption></figure>}
+      {work.data.audio && <div class="audio-player"><label for="track-audio" class="handwriting">Ouvir {work.data.title}</label><audio id="track-audio" controls preload="metadata" src={work.data.audio}>Seu navegador não oferece reprodução de áudio. <a href={work.data.audio}>Baixar a faixa</a></audio></div>}
+      {headings.filter((heading) => heading.depth === 2).length > 1 && <nav class="article-toc" aria-label="Neste trabalho"><span class="handwriting">nesta página</span><ul>{headings.filter((heading) => heading.depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
+      <div class="prose"><Content /></div>
+      {(work.data.source || work.data.demo) && <nav class="project-links" aria-label="Links do projeto">{work.data.source && <a class="text-link" href={work.data.source} target="_blank" rel="noreferrer">Ver código-fonte ↗</a>}{work.data.demo && <a class="text-link" href={work.data.demo} target="_blank" rel="noreferrer">Experimentar o projeto ↗</a>}</nav>}
+    </article>
+    {related.length > 0 && <aside class="related-works" aria-labelledby="related-title"><h2 id="related-title" class="handwriting">os cômodos conversam</h2><ul>{related.map((item) => <li><a href={workHref(item)}>{item.data.title} ↗</a></li>)}</ul></aside>}
+    <a class="back-link handwriting article-back" href={room.href}>← todos os trabalhos de {room.name.toLowerCase()}</a>
+  </div>
+</BaseLayout>

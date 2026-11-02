@@ -1,0 +1,39 @@
+name: Verificar a casa
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Instalar dependências
+        run: npm ci
+      - run: npm run docs:check
+      - run: npm run check
+      - run: npm run build
+      - run: npm run verify
+      - name: Instalar navegador de teste
+        run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - name: Guardar build, lockfile e revisão visual
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verificacao-da-casa
+          path: |
+            dist/
+            package-lock.json
+            playwright-report/
+            test-results/
+          retention-days: 7

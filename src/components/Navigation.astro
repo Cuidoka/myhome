@@ -1,0 +1,17 @@
+---
+import { rooms, type RoomSlug } from '../data/site';
+import Icon from './Icon.astro';
+interface Props { current?: RoomSlug; }
+const { current = 'entrada' } = Astro.props;
+---
+<nav class="room-navigation" aria-label="Cômodos da casa">
+  <span class="navigation-caption handwriting">cômodos da casa</span>
+  <ul class="room-tabs">
+    {rooms.map((room) => <li>
+      <a href={room.href} class:list={['room-tab', `tab-${room.color}`]} aria-current={current === room.slug ? 'page' : undefined}>
+        <Icon name={room.icon} />
+        <span class="tab-label">{room.name}<small>{room.detail}</small></span>
+      </a>
+    </li>)}
+  </ul>
+</nav>

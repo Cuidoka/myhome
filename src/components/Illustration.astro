@@ -1,0 +1,46 @@
+---
+interface Props { kind: 'window' | 'coffee' | 'sunset' | 'cassette' | 'map' | 'portrait' | 'plant'; }
+const { kind } = Astro.props;
+---
+<svg class:list={['illustration', `illustration-${kind}`]} viewBox={kind === 'plant' ? '0 0 150 200' : '0 0 300 210'} fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {kind === 'window' && <>
+    <path fill="#c9cdb6" stroke="none" d="M0 0h300v210H0z" /><path fill="#a5ad91" stroke="none" d="M0 150q70-50 150-12t150-12v84H0Z" />
+    <path fill="#f8e9cf" d="M48 9h204v201H48z" /><path fill="#a6b7ad" d="M61 23h177v152H61z" /><path fill="#d6dcc4" stroke="none" d="M62 132q50-40 90-7t86-9v58H62Z" />
+    <path d="M151 23v152M61 99h177M42 180h217v10H42z" fill="#c19c78" /><path d="M81 180v-21m-1 0c-25-31-30 8 0 0Zm0 0c20-28 30 4 0 0Z" fill="#899073" /><path d="M68 178h26l-4 24H72Z" fill="#b9633c" />
+  </>}
+  {kind === 'coffee' && <>
+    <path fill="#ead6be" stroke="none" d="M0 0h300v210H0z" /><path d="m0 160 300-18M0 178l300-17" stroke="#c9a37f" />
+    <ellipse cx="151" cy="154" rx="80" ry="15" fill="#c9a37f" stroke="none" /><ellipse cx="147" cy="146" rx="76" ry="21" fill="#f9f0df" />
+    <path d="M198 86c61-15 51 64-4 51m8-35c34-9 30 29-6 24" fill="#fff8ed" /><path d="M89 78h117l-10 64q-45 29-96 0L89 78Z" fill="#fff8ed" />
+    <ellipse cx="148" cy="79" rx="59" ry="14" fill="#7b6557" /><ellipse cx="148" cy="79" rx="50" ry="9" fill="#49382b" stroke="none" /><path d="M125 51c-21-18 19-22 0-40m26 40c-17-14 15-21 5-37m20 41c-9-13 12-16 5-28" stroke="#9a8170" />
+  </>}
+  {kind === 'sunset' && <>
+    <path fill="#e8c5a5" stroke="none" d="M0 0h300v210H0z" /><circle cx="203" cy="71" r="35" fill="#bd7651" stroke="none" />
+    <path d="M0 139q64-45 126-18t174-6v95H0Z" fill="#93977e" stroke="none" /><path d="M0 172q76-40 149-17t151-9v64H0Z" fill="#626d59" stroke="none" />
+    <path d="M49 210V45m-21 91 21-34 26 26m-36-40 10-23 15 17" stroke="#554b3e" stroke-width="4" /><path d="M235 159h47v51h-47zM226 164l31-29 33 29" fill="#b18c6e" />
+  </>}
+  {kind === 'cassette' && <>
+    <path d="M21 23q128-6 260 1l4 162q-131 8-264 0Z" fill="#49392e" stroke-width="3" />
+    <path d="m31 35 240 1-1 89-239 1Z" fill="#f2d2b4" /><path d="M39 43h223M40 56h168M40 64h138" stroke="#b9633c" stroke-width="1.5" />
+    <rect x="51" y="82" width="202" height="61" rx="29" fill="#c49b74" /><circle cx="88" cy="112" r="21" fill="#fff8ed" /><circle cx="217" cy="112" r="21" fill="#fff8ed" />
+    <circle cx="88" cy="112" r="9" fill="#49392e" /><circle cx="217" cy="112" r="9" fill="#49392e" /><path d="M113 105h78v17h-78z" fill="#5e6650" />
+    <path d="m80 188 14-32h116l14 32" fill="#7b6557" /><circle cx="41" cy="170" r="3" fill="#f2d2b4" /><circle cx="266" cy="170" r="3" fill="#f2d2b4" />
+  </>}
+  {kind === 'map' && <>
+    <path d="m11 13 86-7 100 12 89-9 6 190-93 3-102-11-85 9Z" fill="#e2cfaa" stroke="#9a8170" />
+    <path d="m97 6 1 185M197 18l2 184" stroke="#bea582" stroke-dasharray="4 6" />
+    <path d="M52 64q-30 44 5 69t64-9q28-22 7-49T52 64Zm125 54q-41 33 1 58t61-18q19-37-20-47t-42 7Z" fill="#b7bfa1" stroke="#899073" />
+    <path d="m60 85 13-20 11 19 12-13 17 27m62 41 17-20 14 14 9-13 13 27" stroke="#737c62" /><path d="M85 113q57-64 124 30" stroke="#b9633c" stroke-dasharray="3 7" />
+    <circle cx="85" cy="113" r="4" fill="#b9633c" /><path d="m205 139 9 9m0-9-9 9M258 26v40m-13-20h26m-13-20-4 13 4-3 4 3Z" stroke="#9a4a26" /><path d="m42 161 7-3 9 2m77-121 8-3 7 3m99 131 8-3 7 2" stroke="#899073" />
+  </>}
+  {kind === 'portrait' && <>
+    <path d="M20 5h260v200H20z" fill="#fff8ed" stroke="none" />
+    <path d="M89 190q-12-60 24-76m78 76q10-64-24-78" stroke="#7b6557" /><path d="M105 78q-15-38 28-42 51-10 48 41l-5 32q-23 38-49 9Z" stroke="#7b6557" />
+    <path d="M105 78q19-7 29-29 16 24 48 28m-56 14h4m28 0h4m-17 3-3 13h8m-17 6q10 7 20-2" stroke="#7b6557" /><path d="M91 67q-6-45 52-46 53 4 52 59" stroke="#b9633c" stroke-width="1" /><path d="m61 163 11-3m-16 12 13-3m137-89 14 4m-14 4 12 5" stroke="#c9a37f" />
+  </>}
+  {kind === 'plant' && <>
+    <path d="M76 119Q54 72 43 25m34 94Q84 64 111 37m-36 81L76 13" stroke="#5e6650" />
+    <path d="M74 108Q27 112 17 80q33-5 57 28Zm3-15q7-37 48-33-10 29-48 33Zm-4-25Q40 69 34 43q28-1 39 25Zm5-18q-5-24 11-38 14 22-11 38Z" fill="#899073" />
+    <path d="M44 123h66l-11 63q-25 10-46 0Z" fill="#b9633c" /><path d="M38 115h78v16H38z" fill="#c8744a" /><path d="M49 150q12-10 24 0t29 0" stroke="#f0cdb1" stroke-width="4" /><path d="M57 174h1m17 1h1m14-1h1" stroke="#f0cdb1" stroke-width="4" /><path d="M49 23h-12m6-6v12M111 29v14m-7-7h14M76 6v14m-7-7h14" stroke="#c8744a" stroke-width="5" />
+  </>}
+</svg>

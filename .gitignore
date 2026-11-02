@@ -1,0 +1,19 @@
+# Referências locais de design: não versionar nem enviar ao GitHub.
+/reference/
+
+# Dependências, builds e arquivos locais.
+/node_modules/
+/.astro/
+/dist/
+/.vercel/
+/.pnpm-store/
+/.cache/
+/.qa/
+.env
+.env.*
+!.env.example
+*.log
+/playwright-report/
+/test-results/
+.DS_Store
+Thumbs.db
