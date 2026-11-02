@@ -8,6 +8,7 @@ const { preview = false } = Astro.props;
   {preview && <p class="generator-caption handwriting">demonstração interativa da referência</p>}
 </div>
 <script>
+  import { animateFeedback } from '../lib/motion';
   const animals = ['Corvo', 'Javali', 'Gato', 'Lobo', 'Texugo'];
   const adjectives = ['Desconfiado', 'Sonolento', 'Torto', 'Viajante', 'Dourado'];
   const names = animals.flatMap((animal) => adjectives.map((adjective) => `O ${animal} ${adjective}`));
@@ -16,7 +17,10 @@ const { preview = false } = Astro.props;
     const result = generator.querySelector<HTMLElement>('[data-tavern-result]');
     button?.addEventListener('click', () => {
       const options = names.filter((name) => name !== result?.textContent);
-      if (result) result.textContent = options[Math.floor(Math.random() * options.length)]!;
+      if (result) {
+        result.textContent = options[Math.floor(Math.random() * options.length)]!;
+        animateFeedback(result, 3);
+      }
     });
   });
 </script>

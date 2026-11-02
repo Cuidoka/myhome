@@ -1,0 +1,37 @@
+<script>
+  import { animateMotion, motionPreference } from '../lib/motion';
+
+  // Conteúdo sempre visível: o observador acrescenta movimento, sem controlar acesso.
+  const targets = [...document.querySelectorAll<HTMLElement>([
+    '.house-sign', '.photo-line', '.wall > *', '.shelf-area',
+    '.about-heading', '.about-copy', '.featured-section',
+    '.scene-heading > *', '.empty-room > *',
+    '[data-room-scene] > section', '[data-room-scene] > .scene-columns > *',
+    '.detail-object', '.detail-layout > *',
+  ].join(','))];
+  const seen = new WeakSet<Element>();
+  let observer: IntersectionObserver | undefined;
+
+  function observeEntrances() {
+    observer?.disconnect();
+    if (motionPreference.matches || !('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver((entries) => {
+      let order = 0;
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || seen.has(entry.target)) return;
+        seen.add(entry.target);
+        observer?.unobserve(entry.target);
+        // Não animar destinos de âncoras nem elementos já alcançados pelo teclado.
+        if (location.hash || entry.target.contains(document.activeElement)) return;
+        animateMotion(entry.target, [
+          { opacity: .7, translate: '0 10px' },
+          { opacity: 1, translate: '0 0' },
+        ], { duration: 420, delay: Math.min(order++, 2) * 40 });
+      });
+    }, { threshold: .08 });
+    targets.forEach((target) => { if (!seen.has(target)) observer!.observe(target); });
+  }
+
+  observeEntrances();
+  motionPreference.addEventListener('change', observeEntrances);
+</script>

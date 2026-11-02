@@ -35,6 +35,7 @@ Não foi introduzido framework de interface adicional, banco de dados ou serviç
 | src/components/rooms/ | Composição específica de cada um dos cinco cômodos |
 | src/styles/global.css | Tokens, regras gerais e estrutura da entrada |
 | src/styles/rooms.css | Tratamento dos traços, composição dos cômodos e anatomia dos detalhes |
+| src/styles/motion.css, src/lib/motion.ts e src/components/Motion.astro | Estados de interação, respostas pontuais, entradas únicas e preferência de movimento |
 | src/content.config.ts | Schema de trabalhos e metadados opcionais de cada tipo |
 | src/lib/content.ts | Política de publicação/prévia, relações, ordenação e formatação de dados |
 | src/pages/[room]/index.astro | Seleção do cômodo, dados e estado vazio honesto |
@@ -63,9 +64,9 @@ Os efeitos foram adaptados dos parâmetros encontrados nos HTMLs locais:
 - **Traço pequeno:** deslocamento 1,6 nos ícones e detalhes pequenos, evitando distorção excessiva.
 - **Tinta:** contorno levemente irregular e falhas na pintura do título, com sementes fixas.
 
-Papéis e fitas têm pequenas rotações; sombras são discretas e duras. A composição não usa cartões modernos genéricos para representar todos os tipos de trabalho. O movimento continua restrito à interação e respeita redução de movimento.
+Papéis e fitas têm pequenas rotações; sombras são discretas e duras. A composição não usa cartões modernos genéricos para representar todos os tipos de trabalho. R-011 acrescenta entradas únicas e respostas leves a ações, com redução de movimento; pesquisa e implementação estão em [movimento.md](movimento.md).
 
-As camadas CSS seguem a ordem reset, base, components, pages, rooms e responsive. Essa ordem é importante: as adaptações de celular precisam prevalecer sobre as composições de desktop.
+As camadas CSS seguem a ordem reset, base, components, pages, rooms, responsive e motion. A camada final centraliza estados animados e possui suas próprias condições de largura, tipo de ponteiro e preferência de movimento, preservando as adaptações de celular.
 
 ## Largura total e adaptação das telas
 

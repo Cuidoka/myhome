@@ -128,3 +128,86 @@ test('tabela da oficina permite alcançar todas as colunas com teclado', async (
   await expect.poll(() => table.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
   await expectFluidLayout(page);
 });
+
+test('objetos e livros respondem ao hover e ao foco de teclado', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const object = page.locator('.music-object');
+  const resting = await object.evaluate((element) => getComputedStyle(element).transform);
+  await object.hover();
+  await expect.poll(() => object.evaluate((element) => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(-4);
+  const hovering = await object.evaluate((element) => getComputedStyle(element).transform);
+  expect(hovering).not.toBe(resting);
+  await page.mouse.move(0, 0);
+  await page.keyboard.press('Tab');
+  await object.focus();
+  await expect(object).toBeFocused();
+  await expect(object).toHaveCSS('transform', hovering);
+  const book = page.locator('a.book').first();
+  await book.focus();
+  await expect.poll(() => book.evaluate((element) => new DOMMatrix(getComputedStyle(element).transform).m42)).toBe(-8);
+  await expectFluidLayout(page);
+});
+
+test('entrada ao rolar termina e não se repete ao voltar à seção', async ({ page }) => {
+  await page.goto('/');
+  const copy = page.locator('.about-copy');
+  await copy.scrollIntoViewIfNeeded();
+  await expect.poll(() => copy.evaluate((element) => element.getAnimations().length)).toBeGreaterThan(0);
+  await copy.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+  await expect(copy).toHaveCSS('opacity', '1');
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await copy.scrollIntoViewIfNeeded();
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  expect(await copy.evaluate((element) => element.getAnimations().length)).toBe(0);
+});
+
+test('ativar movimento reduzido cancela a entrada em curso', async ({ page }) => {
+  await page.goto('/');
+  const copy = page.locator('.about-copy');
+  await copy.scrollIntoViewIfNeeded();
+  await expect.poll(() => copy.evaluate((element) => element.getAnimations().length)).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect.poll(() => page.evaluate(() => document.getAnimations().length)).toBe(0);
+  await expect(copy).toHaveCSS('opacity', '1');
+  await expect(copy).toHaveCSS('translate', 'none');
+});
+
+test('sorteio tem resposta breve e funciona sem movimento', async ({ page }) => {
+  await page.goto('/oficina/');
+  const result = page.locator('[data-tavern-result]');
+  const button = page.getByRole('button', { name: 'Sortear outro nome' });
+  await button.click();
+  expect(await result.evaluate((element) => element.getAnimations().length)).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const previous = await result.textContent();
+  await button.click();
+  await expect(result).not.toHaveText(previous!);
+  expect(await result.evaluate((element) => element.getAnimations().length)).toBe(0);
+});
+
+test('restaurar categorias anima os resultados e mantém o foco no filtro', async ({ page }) => {
+  await page.goto('/galeria/');
+  await page.getByRole('button', { name: /^Fotografias/ }).click();
+  const all = page.getByRole('button', { name: 'Tudo', exact: true });
+  await all.focus();
+  await page.keyboard.press('Enter');
+  await expect(all).toBeFocused();
+  await expect(page.locator('[data-work]:visible')).toHaveCount(10);
+  expect(await page.locator('.framed-work').first().evaluate((element) => element.getAnimations().length)).toBeGreaterThan(0);
+});
+
+test('toque filtra fitas sem manter deslocamento de hover', async ({ browser }) => {
+  const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.goto('/estudio/');
+  expect(await page.evaluate(() => matchMedia('(hover: hover) and (pointer: fine)').matches)).toBe(false);
+  const tape = page.getByRole('button', { name: /A Maré de Vidro/ });
+  const resting = await tape.evaluate((element) => getComputedStyle(element).transform);
+  await tape.tap();
+  await expect(tape).toHaveAttribute('aria-pressed', 'true');
+  await expect(tape).toHaveCSS('transform', resting);
+  await expect(page.locator('.track-list [data-work]:visible')).toHaveCount(3);
+  await expectFluidLayout(page);
+  await context.close();
+});

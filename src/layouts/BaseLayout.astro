@@ -7,6 +7,8 @@ import Navigation from '../components/Navigation.astro';
 import Icon from '../components/Icon.astro';
 import DesignEffects from '../components/DesignEffects.astro';
 import '../styles/rooms.css';
+import '../styles/motion.css';
+import Motion from '../components/Motion.astro';
 import { site, type RoomSlug } from '../data/site';
 interface Props { title?: string; description?: string; current?: RoomSlug; home?: boolean; noindex?: boolean; }
 const { title, description = site.description, current = 'entrada', home = false, noindex = false } = Astro.props;
@@ -42,5 +44,6 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
         <nav aria-label="Rodapé"><a href="/#sobre">Quem mora aqui</a><a href={site.github} target="_blank" rel="noreferrer">Me encontre no GitHub <Icon name="arrow" size={15} /></a></nav>
       </footer>
     </div>
+    <Motion />
   </body>
 </html>

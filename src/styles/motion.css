@@ -1,0 +1,66 @@
+@layer motion {
+  :root {
+    --motion-fast: 160ms;
+    --motion-object: 280ms;
+    --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .room-tab, .wall-object, a.book, .framed-work, .album-tape {
+    transition: transform var(--motion-object) var(--motion-ease), color var(--motion-fast) ease;
+  }
+  .photo-line .polaroid, .photograph-line .polaroid > img,
+  .worlds-list a > img, .study-book > img, .text-link svg, .site-footer a svg {
+    transition: transform var(--motion-object) var(--motion-ease);
+  }
+  .sketch-button, .tag-button, .text-button {
+    transition: background-color var(--motion-fast) ease, border-color var(--motion-fast) ease,
+      color var(--motion-fast) ease, box-shadow var(--motion-fast) ease, scale var(--motion-fast) var(--motion-ease);
+  }
+  .text-link, .back-link, .site-footer a { transition: color var(--motion-fast) ease; }
+  .tag-button:focus-visible, .sketch-button:focus-visible { background-color: #f1dbc3; }
+  .album-tape[aria-pressed='true'] .album-name { color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* A área de ponteiro acompanha o pequeno deslocamento, evitando oscilar na borda. */
+  .wall-object { position: relative; }
+  .wall-object::before, .framed-work::before, .album-tape::before { content: ''; position: absolute; inset: -8px; }
+  a.book > i { position: absolute; inset: 0 0 -12px; }
+  .wooden-shelf { pointer-events: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wall-object:focus-visible, .framed-work:focus-visible, .album-tape:focus-visible { transform: rotate(0) translateY(-4px); }
+    a.book:focus-visible { transform: translateY(-8px); }
+    .room-tab:focus-visible { transform: translateX(-7px); }
+    .room-tab[aria-current='page']:focus-visible { transform: translateX(-15px); }
+    .photo-line:focus-visible .polaroid { transform: rotate(0) translateY(-3px); }
+    .photograph-line .polaroid:focus-visible > img { transform: scale(1.025); }
+    .worlds-list a:focus-visible > img, .study-book:focus-visible > img { transform: translateY(-3px); }
+    .text-link:focus-visible svg, .site-footer a:focus-visible svg { transform: translateX(3px); }
+    .sketch-button:active, .tag-button:active, .text-button:active { scale: .98; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .wall-object:hover, .framed-work:hover, .album-tape:hover { transform: rotate(0) translateY(-4px); }
+      a.book:hover { transform: translateY(-8px); }
+      .room-tab:hover { transform: translateX(-7px); }
+      .room-tab[aria-current='page']:hover { transform: translateX(-15px); }
+      .photo-line:hover .polaroid { transform: rotate(0) translateY(-3px); }
+      .photograph-line .polaroid:hover > img { transform: scale(1.025); }
+      .worlds-list a:hover > img, .study-book:hover > img { transform: translateY(-3px); }
+      .text-link:hover svg, .site-footer a:hover svg { transform: translateX(3px); }
+    }
+    @media (max-width: 760px) {
+      .room-tab:focus-visible, .room-tab[aria-current='page']:focus-visible { transform: translateY(-3px); }
+      @media (hover: hover) and (pointer: fine) {
+        .room-tab:hover, .room-tab[aria-current='page']:hover { transform: translateY(-3px); }
+      }
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .sketch-button:hover, .tag-button:hover { background-color: #f1dbc3; border-color: var(--wood); }
+    .sketch-button:hover { box-shadow: 1px 3px 0 rgb(56 42 34 / 12%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .room-tab, .wall-object, a.book, .framed-work, .album-tape,
+    .sketch-button, .tag-button, .text-button { transition: none; }
+  }
+}

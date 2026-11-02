@@ -60,4 +60,19 @@ test('preferência por movimento reduzido é respeitada', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   expect(await page.locator('.wall-object').first().evaluate((element) => getComputedStyle(element).transitionDuration)).toBe('0s');
+  await page.locator('.about-copy').scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+  await expect(page.locator('.about-copy')).toHaveCSS('opacity', '1');
+});
+
+test('conteúdo e navegação ficam disponíveis sem JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1366, height: 768 } });
+  const page = await context.newPage();
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Oi! Pode entrar.' })).toBeVisible();
+  await expect(page.locator('.about-copy')).toHaveCSS('opacity', '1');
+  await page.getByRole('navigation', { name: 'Cômodos da casa' }).getByRole('link', { name: /Oficina/ }).click();
+  await expect(page.getByRole('heading', { name: 'Tudo tem seu começo.' })).toBeVisible();
+  await expectFluidLayout(page);
+  await context.close();
 });

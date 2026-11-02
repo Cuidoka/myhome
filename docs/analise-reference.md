@@ -45,6 +45,8 @@ As páginas desktop usam largura fixa de 1440 px, muitos posicionamentos absolut
 
 Na revisão posterior R-009, o autor pediu remover as margens externas e atender diferentes computadores e proporções. O canvas de 1440 px permanece uma referência estética; a aplicação usa largura total e composições fluidas, conforme [arquitetura-visual.md](arquitetura-visual.md).
 
+Na etapa R-011 foram auditados os estilos e scripts dos 24 HTMLs e os metadados do canvas para identificar movimentos. Predominam transições de 200–250 ms em objetos, livros, abas, fitas e notas; não foram encontrados keyframes ou lógica de animação JavaScript no material fornecido. Inventário, limites do arquivo support.js ausente e pesquisa externa estão em [movimento.md](movimento.md).
+
 As imagens e obras mostradas são ilustrações em SVG embutidas no HTML. Os PNGs são capturas de página, não os arquivos finais de obras para publicar. Textos, títulos, personagens, datas, contagens e projetos são demonstrativos, conforme o LEIA-ME.
 
 Na implementação, usar componentes compartilhados, tokens e layouts fluidos. Reservar posicionamento absoluto para detalhes decorativos dentro de objetos. Garantir leitura, foco de teclado e ordem de navegação coerentes; os objetos clicáveis precisam de nomes claros. Avaliar o custo dos filtros SVG no celular e manter texturas discretas para não prejudicar a leitura.

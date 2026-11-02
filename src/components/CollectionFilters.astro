@@ -1,4 +1,5 @@
 <script>
+  import { animateFeedback } from '../lib/motion';
   document.querySelectorAll<HTMLElement>('[data-filter-scope]').forEach((scope) => {
     const active: Record<string, string> = {};
     const buttons = scope.querySelectorAll<HTMLButtonElement>('[data-filter]');
@@ -10,9 +11,11 @@
       buttons.forEach((candidate) => candidate.setAttribute('aria-pressed', String((active[candidate.dataset.kind ?? ''] ?? '') === (candidate.dataset.value ?? ''))));
       let count = 0;
       items.forEach((item) => {
+        const wasHidden = item.hidden;
         const tags: string[] = JSON.parse(item.dataset.tags ?? '[]');
         item.hidden = Object.entries(active).some(([key, value]) => value !== '' && (key === 'tag' ? !tags.includes(value) : item.dataset[key] !== value));
         if (!item.hidden) count++;
+        if (wasHidden && !item.hidden) animateFeedback(item);
       });
       scope.querySelectorAll<HTMLElement>('[data-filter-section]').forEach((section) => {
         section.hidden = ![...section.querySelectorAll<HTMLElement>('[data-work]')].some((item) => !item.hidden);

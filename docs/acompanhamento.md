@@ -4,13 +4,13 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** revisão R-009 implementada e enviada em main no commit 4c70688, com CI aprovado: largura total sem margens externas, navegação no fluxo e polimento responsivo. Check de 32 arquivos sem erros/avisos/hints; build de sete páginas e 98 destinos; 84 testes Chromium passaram (13 de produção e 71 de prévia), com dez tamanhos de janela de 320 a 3440 px. Conteúdo real e hospedagem continuam pendentes.
+**Fase atual:** R-011/F-08 implementada e validada localmente: auditoria da referência, pesquisa de portfólios e movimento leve. Check de 34 arquivos sem erros/avisos/hints; build de sete páginas e 110 destinos; 91 testes Chromium passaram (14 de produção e 77 de prévia). Largura total, dez tamanhos de janela e menu aprovado preservados. Envio/CI desta etapa em conferência; conteúdo real e hospedagem continuam pendentes.
 
 **Revisão do autor:** menu lateral aprovado em R-010. Preservar esse componente e sua adaptação para celular. A revisão final das demais composições, conteúdo e mídia continua pendente.
 
-**Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida na sessão de implementação. Mantido em execução por solicitação do usuário; esta revisão documental não repetiu a conferência HTTP.
+**Prévia para análise do autor:** servidor de desenvolvimento mantido em `http://127.0.0.1:4321/`. A suíte de prévia exercitou as composições e os novos movimentos nesse servidor; continuar disponível para a revisão do autor.
 
-**Próximo passo:** P-02 e C-03: reunir nome público, apresentação, contatos e uma primeira seleção de trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Sugestão de início: apresentação da Entrada/Sobre e um trabalho completo de um cômodo, expandindo a seleção em seguida. Com o inventário, definir a estreia em P-01. A base visual/técnica já validada permite essa integração; sitemap/feed, revisão final e hospedagem vêm depois, conforme as dependências do guia.
+**Próximo passo:** conferir envio/CI de R-011 e colher a revisão visual do autor na prévia com animações. Retomar P-02/C-03 com apresentação, contatos e trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Depois definir a estreia em P-01, concluir revisão e preparação de publicação conforme o guia.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -79,13 +79,14 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 | F-05 | Implementar Sótão | Em andamento | C-01, C-02 e V-02; material depende de C-03 | Mapa, lore, mesa, fichas, sessões e baús implementados e validados com metadados; falta conteúdo real |
 | F-06 | Completar interações e relações entre áreas | Em andamento | Áreas incluídas e E-006 | Filtros, sorteador, sumário, relações de entrada/saída e navegação testados com amostras; falta revisar relações e demos definitivas |
 | F-07 | Implementar metadados, 404, sitemap e feed definido para estreia | Em andamento | C-01, URLs e E-006 | Metadados e 404 preparados; sitemap/feed e endereço final permanecem pendentes |
+| F-08 | Auditar e implementar movimento e microinterações | Concluído | R-011, V-02/V-04 e componentes existentes | Inventário dos 24 HTMLs e canvas, pesquisa com fontes primárias e implementação em movimento.md. Testes de mouse/teclado/toque, conteúdo sem JS, redução de movimento e regressões responsivas passaram; menu preservado. Revisão visual final do autor permanece em Q-02 |
 
 ## Revisão, publicação e manutenção
 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | Q-01 | Revisar conteúdo e navegação completos | Pendente | C-03 e áreas incluídas | Sem destinos falsos, mídia ausente, marcadores públicos indevidos ou dados inconsistentes |
-| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 84 testes locais, composições dos cinco cômodos em dez janelas e detalhes em quatro larguras; capturas representativas revisadas. Revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendente |
+| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 91 testes locais, incluindo movimento, toque emulado e uso sem JS. Composições em dez janelas e detalhes em quatro larguras; capturas representativas revisadas. Aprovação dos efeitos, revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendentes |
 | Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Base atual validada em cópia sem referência com npm ci/build/verify e no CI; pasta ausente do índice, árvore remota e histórico inicial. Repetir revisão final quando o conteúdo/escopo estiver completo |
 | L-01 | Preparar hospedagem, repositório e domínio | Em andamento | D-002 e E-005 | Repositório main e CI prontos; conta de hospedagem e domínio ainda a definir |
 | L-02 | Publicar e conferir a versão pública | Pendente | Q-01 a Q-03 e L-01 | URL acessível; páginas, mídia e acesso direto conferidos; revisão publicada registrada |
@@ -96,8 +97,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
-- **Ambiente:** instalação já validada; Astro check/build e 84 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações.
-- **Git:** revisão responsiva enviada em main, origem sincronizada e CI aprovado em 4c70688. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
+- **Ambiente:** instalação já validada; Astro check/build e 91 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações. Nenhuma dependência adicionada para movimento.
+- **Git:** revisão responsiva validada em 4c70688; envio e CI da etapa de movimento em conferência. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -176,6 +177,15 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Conferência:** lidos acompanhamento, decisões, fases de conteúdo/revisão/publicação do guia, inventário editorial e operação. Git iniciou limpo e sincronizado. Não foi identificada necessidade de refazer a arquitetura para iniciar o conteúdo; a base anterior continua com 84 testes e CI aprovados, sem nova execução da aplicação nesta etapa.
 - **Próximo passo recomendado:** P-02/C-03, começando pela apresentação pessoal, contatos e um trabalho real completo. A abrangência do lançamento em P-01 permanece a definir com o inventário. Depois completar mídia/interações correspondentes, F-07, Q-01 a Q-03 e L-01 a L-03, respeitando as dependências.
 - **Documentos e verificação:** aprovação, ponto de retomada e primeiro lote editorial registrados. O primeiro lote é uma sugestão de organização, sem aprovação presumida da seleção ou do número de trabalhos da estreia. Conferência documental passou: nove arquivos, 29 tarefas, 32 decisões e 25 links locais; diff sem erros de espaços. Nenhum código da aplicação alterado; fechamento documental com `[skip ci]`, sem atribuir novos testes da aplicação a esta etapa.
+
+### 01/11/2026 — auditoria e implementação de movimento
+
+- **Pedido e tarefa:** R-011/F-08; analisar todo o código de movimento fornecido, pesquisar portfólios e implementar animações simples e suaves. Ampliação expressamente solicitada, independente do conteúdo ainda ausente em P-02/C-03. R-010 continua preservada.
+- **Auditoria:** estilos/scripts dos 12 HTMLs exportados e 12 fontes de canvas, JSON e busca de animação SVG/eventos/keyframes. Encontradas transições de objetos, livros, quadros, fitas, abas e notas em 200–250 ms. Não há sequências de keyframes ou lógica JS de animação fornecida. support.js referenciado pelos arquivos do canvas está ausente; não foi necessário para adaptar os efeitos. Sete páginas exportadas tinham regra de redução de movimento.
+- **Pesquisa:** fontes dos próprios autores Josh W. Comeau, Brittany Chiang e Emil Kowalski, com documentação MDN. O código v4 de Brittany é identificado como histórico; HTML atual também consultado. Inventário, fontes e decisões reunidos em movimento.md. Nenhuma biblioteca externa ou dependência acrescentada.
+- **Implementação:** camada CSS compartilhada; hover e foco equivalentes; livros/objetos e fotos com deslocamentos pequenos, botões com resposta de pressão, setas/caderno/baús discretos. Entradas únicas por IntersectionObserver e APIs nativas, sem esconder conteúdo. Respostas de filtros e sorteio sem atrasar estados/anúncios. Preferência de movimento reduzido cancela animações em andamento e preserva funções. Hovers com deslocamento limitados a ponteiro fino; toque testado sem estado de hover persistente.
+- **Verificação local:** check de 34 arquivos, zero erros/avisos/hints; build de sete páginas; verify com 110 destinos locais. Passaram 14 testes de produção e 77 de desenvolvimento: os 84 anteriores e sete novos, além do reforço da redução de movimento. Cobertura inclui conteúdo/navegação sem JS, entrada única, cancelamento dinâmico, mouse/teclado, filtros, sorteio e toque emulado. Capturas representativas da Entrada, Galeria mobile e Sótão desktop revisadas; demais composições seguem na matriz automatizada.
+- **Limites e continuidade:** confirmar envio/CI e colher revisão visual dos efeitos. Outros motores e dispositivos físicos não testados. Apresentação, trabalhos, mídias/áudio reais, sitemap/feed/endereço e publicação permanecem pendentes. Reference segue local e ignorada; a aplicação não lê a pasta.
 
 ## Modelo de registro futuro
 

@@ -1,4 +1,4 @@
-@layer reset, base, components, pages, rooms, responsive;
+@layer reset, base, components, pages, rooms, responsive, motion;
 
 @layer reset {
   *, *::before, *::after { box-sizing: border-box; }
@@ -55,7 +55,6 @@
   .tab-clay { background: #edd0b6; } .tab-sand { background: #e6d5b9; } .tab-sage { background: #d8dbc8; }
   .tab-label { font-size: 18px; line-height: 1.1; }
   .tab-label small { display: block; margin-top: 5px; color: #5a473b; font-size: 11px; }
-  .room-tab:hover { transform: translateX(-7px); }
   .room-tab[aria-current='page'] { transform: translateX(-15px); box-shadow: -2px 3px 0 rgb(56 42 34 / 15%); }
   .room-tab[aria-current='page']::before { content: ''; position: absolute; left: -5px; top: 26px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--ink); background: var(--clay); }
   .site-footer { grid-column: 1 / -1; grid-row: 3; margin: 0 var(--page-gutter); padding: 35px 0 40px; display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px dashed var(--border); }
@@ -67,7 +66,6 @@
   .object-caption { display: block; color: var(--muted); font-size: 16px; text-align: center; line-height: 1.4; margin-top: 10px; }
   .object-caption b, .shelf-label b { color: var(--link); font-weight: 400; }
   .wall-object { display: block; color: var(--ink); text-decoration: none; transition: transform .22s ease; min-width: 0; }
-  .wall-object:hover { transform: rotate(0) translateY(-5px); }
   .section-title { font-family: var(--font-paint); font-weight: 550; font-size: clamp(35px, 4.4vw, 59px); letter-spacing: -.04em; line-height: 1.1; }
   .section-title em { font-weight: 500; color: var(--link); }
   .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 26px; }
@@ -134,7 +132,7 @@
   .book span { position: absolute; inset: 23px 2px; display: flex; justify-content: center; align-items: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 15px; }
   .book-tall { height: 146px; width: 50px; } .book-short { height: 109px; width: 42px; }
   .book-cream { background: #ead5b8; color: var(--ink); } .book-olive { background: #5e6650; } .book-peach { background: #f0cdb1; color: var(--ink); } .book-brown { background: var(--ink); }
-  .book:hover { transform: translateY(-9px); color: inherit; }
+  .book:hover { color: inherit; }
   .book-spacer { width: 31px; height: 103px; background: #da925f; margin-left: 8px; transform: rotate(12deg); transform-origin: bottom left; }
   .shelf-dice { display: flex; align-items: center; gap: 15px; padding-bottom: 3px; color: var(--link); text-decoration: none; }
   .shelf-dice svg { fill: #ead2b2; transform: rotate(-12deg); }
@@ -225,7 +223,7 @@
     .navigation-caption { display: none; } .room-tabs { flex-direction: row; gap: 5px; padding-inline: 16px; width: max-content; }
     .room-tab { min-height: 42px; padding: 8px 12px; border: 1px solid var(--wood); border-radius: 8px 8px 1px 1px; gap: 6px; box-shadow: none; }
     .room-tab svg { width: 19px; height: 19px; } .tab-label { font-size: 13px; } .tab-label small { display: none; }
-    .room-tab:hover { transform: translateY(-2px); } .room-tab[aria-current='page'] { transform: translateY(-3px); box-shadow: 0 3px 0 var(--clay); } .room-tab[aria-current='page']::before { display: none; }
+    .room-tab[aria-current='page'] { transform: translateY(-3px); box-shadow: 0 3px 0 var(--clay); } .room-tab[aria-current='page']::before { display: none; }
     .entrance { padding: 28px 20px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 30px 20px; }
     .home-heading { display: contents; }
     .house-sign { width: 100%; padding-inline: 5px; grid-column: 1 / -1; grid-row: 1; } .house-sign .eyebrow { font-size: 14px; }

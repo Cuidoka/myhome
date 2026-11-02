@@ -45,6 +45,8 @@ Abas precisam de nomes explícitos e indicação da página atual. Elementos int
 
 O menu lateral da revisão responsiva foi aprovado pelo autor em R-010. Preservar essa direção no desktop e a adaptação horizontal no celular ao integrar os trabalhos reais.
 
+R-011 acrescenta a revisão de animações em F-08. Inventário da referência, pesquisa, efeitos e limites estão em [movimento.md](movimento.md). Usar entradas únicas e respostas discretas a ações, com conteúdo disponível sem JavaScript e redução de movimento respeitada.
+
 As fontes e cores estão detalhadas na análise. O lettering autoral é uma possibilidade futura, sem impedir o início com a tipografia de referência. Adaptações de legibilidade e desempenho devem preservar o caráter visual e ter justificativa registrada quando forem relevantes.
 
 ## Fase 0 — análise e planejamento
@@ -95,7 +97,7 @@ As fontes e cores estão detalhadas na análise. O lettering autoral é uma poss
 
 ## Fase 4 — cômodos e funcionalidades
 
-**Tarefas:** F-01 a F-07.
+**Tarefas:** F-01 a F-08.
 
 Ordem proposta: Oficina, Sala, Galeria, Estúdio e Sótão. A ordem pode acompanhar os trabalhos disponíveis sem mudar o objetivo do projeto.
 
@@ -105,6 +107,7 @@ Ordem proposta: Oficina, Sala, Galeria, Estúdio e Sótão. A ordem pode acompan
 - Implementar demos que pertençam aos projetos selecionados; não transformar exemplos da referência em trabalhos fictícios do autor.
 - Implementar feed, metadados, compartilhamento e sitemap conforme o escopo do lançamento.
 - Revisar relações entre trabalhos e remover destinos demonstrativos.
+- Concluir F-08: aplicar movimentos leves pesquisados, preservando o menu aprovado, os hovers da referência e a equivalência entre mouse, teclado e toque. Conferir redução de movimento e ausência de regressões responsivas.
 
 **Saída:** todas as áreas incluídas no lançamento funcionam de ponta a ponta, no desktop e no celular. Áreas adiadas ficam registradas com sua consequência para a navegação.
 
