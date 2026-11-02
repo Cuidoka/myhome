@@ -4,13 +4,15 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** revisão R-009 implementada: largura total sem margens externas, navegação no fluxo e polimento responsivo. Check de 32 arquivos sem erros/avisos/hints; build de sete páginas e 98 destinos; 84 testes Chromium passaram (13 de produção e 71 de prévia), com dez tamanhos de janela de 320 a 3440 px. Envio e CI desta revisão em conferência. Conteúdo real e hospedagem continuam pendentes.
+**Fase atual:** revisão R-009 implementada e enviada em main no commit 4c70688, com CI aprovado: largura total sem margens externas, navegação no fluxo e polimento responsivo. Check de 32 arquivos sem erros/avisos/hints; build de sete páginas e 98 destinos; 84 testes Chromium passaram (13 de produção e 71 de prévia), com dez tamanhos de janela de 320 a 3440 px. Conteúdo real e hospedagem continuam pendentes.
 
 **Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida. Mantido em execução conforme pedido mais recente; aguardar observações do autor.
 
-**Próximo passo:** concluir conferência do envio/CI e colher a revisão do autor na prévia de R-009. Depois reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. Mídia e apresentação reais ainda precisam de revisão antes do lançamento; sitemap/feed e hospedagem vêm depois.
+**Próximo passo:** colher a revisão do autor na prévia de R-009. Depois reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. Mídia e apresentação reais ainda precisam de revisão antes do lançamento; sitemap/feed e hospedagem vêm depois.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
+
+**Revisão R-009:** enquadramento externo de 1440 px substituído por página fluida, sem proporção obrigatória. Grade da navegação, escalas, estante, quadros e tabelas refinados conforme [arquitetura-visual.md](arquitetura-visual.md).
 
 **Ambiente atual:** acesso local e rede liberados. Node 24.22.1; npm 11.21.1 executado via `pnpm dlx npm@11` a partir do runtime fornecido, sem instalação global. Dependências e lockfile criados; origem configurada para `Cuidoka/myhome`. O erro 403 do conector permanece apenas como histórico; integração por Git local confirmada.
 
@@ -93,7 +95,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
 - **Ambiente:** instalação já validada; Astro check/build e 84 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações.
-- **Git:** CI das implementações inicial e de estruturação passou; revisão responsiva atual aguardando registro do envio e CI. O 403 anterior do conector não bloqueia o Git local.
+- **Git:** revisão responsiva enviada em main, origem sincronizada e CI aprovado em 4c70688. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -163,7 +165,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Fontes:** guias de responsividade e CSS Grid da MDN consultados e vinculados em arquitetura-visual.md. Sem dependências ou serviços novos.
 - **Verificação real:** check de 32 arquivos, zero erros/avisos/hints; build de sete páginas; verify com 98 destinos locais e exclusão de rascunhos, amostras e referência. Passaram 13 testes de produção e 71 de prévia. Matriz de dez janelas, entre 320×740 e 3440×1440; verificadas largura total, ausência de overflow, separação conteúdo/abas, janela baixa, redimensionamento, tabela por teclado e fluxos existentes. Capturas representativas da entrada, cinco cômodos e detalhes revisadas, com atenção a celular, tablet, desktop e ultrawide.
 - **Ocorrência do ambiente:** chamar Playwright diretamente não iniciou o servidor de produção porque npm não está no PATH padrão. A execução pelo script npm via runtime fornecido resolveu; os 13 testes passaram. Não foi necessário mudar a aplicação nem instalar ferramentas globais.
-- **Limites e continuidade:** revisão do autor, conteúdo/contato e mídia reais, áudio, outros motores/toque físico e publicação continuam pendentes. Servidor 4321 mantido; reference permanece ignorada. Conferir envio/CI desta revisão e registrar o resultado antes de encerrar.
+- **Integração concluída:** commit [4c70688](https://github.com/Cuidoka/myhome/commit/4c706887da01390c76352cdffb2890a77f7891d9) enviado em main e confirmado no remoto. A [execução CI 41377380717](https://github.com/Cuidoka/myhome/actions/runs/41377380717) passou, incluindo ambas as suítes. Documentação conferida: nove arquivos, 29 tarefas, 31 decisões e 23 links locais. Índice e histórico Git sem reference. Fechamento documental usa `[skip ci]`, sem alterar o código validado.
+- **Limites e continuidade:** revisão do autor, conteúdo/contato e mídia reais, áudio, outros motores/toque físico e publicação continuam pendentes. Servidor 4321 mantido e Galeria com HTTP 200, composição e aviso de prévia conferidos. Retomar da revisão do autor e P-02/C-03.
 
 ## Modelo de registro futuro
 
