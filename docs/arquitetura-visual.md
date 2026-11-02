@@ -14,6 +14,8 @@ Etapa vinculada a R-008, V-01/V-02, C-01/C-02 e F-01 a F-06. A estrutura preserv
 | [Variáveis de ambiente](https://docs.astro.build/en/guides/environment-variables/) | import.meta.env.DEV permite amostras somente no servidor de desenvolvimento; SITE_URL permanece o endereço final de produção |
 | [MDN: feTurbulence](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feTurbulence) | Ruído estável para papel, lápis e tinta; sementes constantes evitam mudanças aleatórias entre renderizações |
 | [MDN: feDisplacementMap](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap) | Deslocamento discreto para tirar a regularidade geométrica dos contornos |
+| [MDN: design responsivo](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design) | Adaptação à largura disponível, imagens flexíveis e pontos de quebra definidos pela composição |
+| [MDN: fundamentos de CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Basic_concepts) | Colunas flexíveis e navegação no fluxo, sem reservar espaço com posicionamento absoluto |
 
 Não foi introduzido framework de interface adicional, banco de dados ou serviço externo. O site continua gerando arquivos estáticos com Astro.
 
@@ -65,6 +67,18 @@ Papéis e fitas têm pequenas rotações; sombras são discretas e duras. A comp
 
 As camadas CSS seguem a ordem reset, base, components, pages, rooms e responsive. Essa ordem é importante: as adaptações de celular precisam prevalecer sobre as composições de desktop.
 
+## Largura total e adaptação das telas
+
+R-009 e D-016 substituem o enquadramento externo de 1440 px. A casa ocupa 100% da largura disponível, sem margens de centralização ou bordas laterais. Não há proporção de tela obrigatória nem detecção de Mac ou de outro sistema operacional.
+
+No desktop, a grade principal reserva uma coluna para as abas, encostadas à borda direita. O conteúdo ocupa a coluna flexível restante. A navegação acompanha a rolagem; em janelas baixas suas abas ficam mais compactas. Até 760 px, a navegação passa para a faixa horizontal superior e as cenas se reorganizam.
+
+Os respiros internos usam `--page-gutter`, entre 28 e 96 px no desktop, e ajustes próprios para celular. Eles separam textos e objetos das bordas sem limitar a largura da página. Parágrafos e objetos têm limites locais de leitura e escala, evitando linhas excessivamente longas ou desenhos ampliados sem controle em ultrawide.
+
+A estante da Sala integra a grade do cabeçalho, sem margem negativa. Quadros se redistribuem em duas, três ou mais colunas conforme o espaço. Em telas intermediárias, listas e cadernos passam para uma coluna antes de prejudicar a leitura. As tabelas possuem rolagem interna e região focável por teclado; a página não deve ganhar rolagem horizontal.
+
+A matriz compartilhada em `tests/viewports.ts` cobre 320×740, 390×844, 768×1024, 1024×768, 1280×1024, 1366×768, 1440×900, 1920×1080, 2560×1440 e 3440×1440. Ela inclui diferentes larguras e proporções, sem vincular a interface a um modelo de computador.
+
 ## Origem dos ativos escolhidos
 
 Foram adaptados **28 SVGs selecionados**: fitas e capa do Estúdio; ferramentas e clipe da Oficina; xícara da Sala; desenhos, caderno, cavalete, fotos ilustrativas e filme da Galeria; mapa, mesa, teto e baús do Sótão; mapa tático da Entrada.
@@ -99,6 +113,6 @@ No celular a etiqueta antecede a folha e as notas vêm depois. A fonte de conte�
 
 Os testes separam produção e prévia em portas distintas para impedir que uma sessão de desenvolvimento em andamento masque o resultado do build. Produção usa 4322; desenvolvimento continua em 4321 para análise do autor. Os resultados efetivos ficam no acompanhamento, sem tratar teste escrito como teste executado.
 
-Cobertura preparada: composições dos cinco cômodos em cinco larguras, imagem carregada, ausência de overflow da página, geração de nomes, combinação de filtros, coleções, sumário, detalhe, relações e exclusão de amostras/rascunhos da produção.
+Cobertura preparada: composições dos cinco cômodos em dez tamanhos de janela, entrada e detalhes em celular/desktop/ultrawide, imagens carregadas, largura total da casa, separação entre conteúdo e navegação, ausência de overflow da página, janela baixa e redimensionamento, rolagem de tabela por teclado, geração de nomes, combinação de filtros, coleções, sumário, detalhe, relações e exclusão de amostras/rascunhos da produção.
 
 Limites que permanecem: revisão final do autor, trabalhos e mídia reais, teste do áudio com arquivo final, outros motores de navegador, toque em dispositivo físico, sitemap/feed com endereço final e deploy. A referência só fornece layouts de celular para Entrada, Sótão e Texto; os demais cômodos foram adaptados mantendo seus objetos e hierarquia.

@@ -1,6 +1,5 @@
 ---
 import Art from '../Art.astro';
-import Bookshelf from '../Bookshelf.astro';
 import FilterControls from '../FilterControls.astro';
 import { workHref, readingMinutes, shortDate, type Work } from '../../lib/content';
 interface Props { works: Work[]; }
@@ -11,7 +10,6 @@ const stages = ['semente', 'broto', 'árvore'].map((value) => ({ value, count: w
 const years = [...new Set(works.map((work) => work.data.publishedAt!.getUTCFullYear()))];
 ---
 <div class="reading-scene" data-room-scene="sala" data-filter-scope>
-  <Bookshelf works={works} />
   <div class="reading-feature"><div><span class="scene-caption handwriting">em cima da mesa</span><article class="paper reading-excerpt"><span class="tape" aria-hidden="true"></span><div class="excerpt-meta"><time>{shortDate(featured.data.publishedAt)}</time><span>{readingMinutes(featured)} min de leitura</span><span class="maturity">{featured.data.maturity}</span></div><h2><a href={workHref(featured)}>{featured.data.title}</a></h2><p>{featured.data.summary}</p><p class="excerpt-paragraph">{featured.body?.split('\n').find((line) => line.length > 90 && !line.startsWith('#') && !line.startsWith('Amostra de composição'))}</p><a class="text-link" href={workHref(featured)}>Continuar lendo</a></article></div><aside class="reading-sidebar"><FilterControls label="Assuntos" kind="tag" options={tags} /><FilterControls label="Por maturidade" kind="maturity" options={stages} /><Art name="coffee" class="reading-coffee" /></aside></div>
   <section class="text-archive" aria-labelledby="texts-title"><h2 id="texts-title">Todos os textos</h2><p class="filter-status handwriting" data-filter-status aria-live="polite" aria-atomic="true">{works.length} textos na estante</p>{years.map((year) => <section class="archive-year" data-filter-section><h3>{year}</h3><ul>{works.filter((work) => work.data.publishedAt!.getUTCFullYear() === year).map((work) => <li data-work data-tags={JSON.stringify(work.data.tags)} data-maturity={work.data.maturity}><time datetime={work.data.publishedAt!.toISOString()}>{shortDate(work.data.publishedAt)}</time><div><a href={workHref(work)}>{work.data.title}</a><p>{work.data.summary}</p></div><span class="maturity">{work.data.maturity}</span><span class="read-time handwriting">{readingMinutes(work)} min</span></li>)}</ul></section>)}</section>
 </div>

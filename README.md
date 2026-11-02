@@ -25,7 +25,7 @@ npm run verify
 npm run preview
 ```
 
-Os testes de navegador passaram localmente em Chromium: oito para produção e 38 para a prévia. Instalar o navegador com `npx playwright install chromium`, executar `npm run test:browser` após o build e `npm run test:preview` para o desenvolvimento. As duas suítes usam portas distintas; o CI executa ambas. O [guia de operação](docs/operacao.md) registra resultados reais e limitações.
+Os testes de navegador passaram localmente em Chromium: 13 para produção e 71 para a prévia. Instalar o navegador com `npx playwright install chromium`, executar `npm run test:browser` após o build e `npm run test:preview` para o desenvolvimento. As duas suítes usam portas distintas; o CI executa ambas. O [guia de operação](docs/operacao.md) registra resultados reais e limitações.
 
 Em `npm run dev`, 28 amostras identificadas permitem revisar a composição completa. Elas usam `previewOnly: true` e **não geram páginas no build público**. O modelo privado continua sem rota. Os SVGs decorativos adaptados são ativos próprios do site; `reference/` não é dependência de execução ou build.
 
@@ -55,4 +55,4 @@ A pasta `reference/` é material local e está excluída pelo `.gitignore`. Ela 
 
 `docs/acompanhamento.md` é a fonte principal dos estados das tarefas. `docs/decisoes.md` guarda o histórico de aprovações e propostas. O guia explica a sequência, sem duplicar o controle de estados.
 
-Check de Astro/TypeScript, build, links e 46 testes de navegador passaram localmente. Cômodos revisados em 320, 390, 768, 1024 e 1440 px; entrada e detalhes também revisados. Conteúdo/mídia reais e publicação continuam no acompanhamento.
+Revisão R-009: página com largura total, sem margens externas nem proporção obrigatória; navegação e elementos se adaptam à janela. Check de Astro/TypeScript, build, links e 84 testes de navegador passaram localmente, com dez tamanhos de janela entre 320 e 3440 px. Capturas representativas da entrada, cômodos e detalhes revisadas. Conteúdo/mídia reais e publicação continuam no acompanhamento.

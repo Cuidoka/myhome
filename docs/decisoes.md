@@ -23,6 +23,7 @@ As evidências abaixo referem-se à conversa que iniciou o projeto. Recomendar u
 | R-006 | 01/11/2026 | Responder em português | Pedido mais recente: “Me desponda em portugues”. Documentação mantida em português para acompanhar a comunicação |
 | R-007 | 01/11/2026 | Iniciar a execução do plano e integrar ao remoto correto | “Do it, remote repository is https://github.com/Cuidoka/myhome.git”. Autoriza implementação e integração de código ao repositório; não resolve conteúdo final ou configuração de hospedagem |
 | R-008 | 01/11/2026 | Estruturar o site seguindo documentação oficial e máxima fidelidade à referência | Pedido de continuar a implementação preservando especialmente traços e estética. Abrange componentes e composição própria de cada cômodo; manter registro contínuo |
+| R-009 | 01/11/2026 | Remover margens externas e adaptar o site a diferentes computadores e proporções | Pedido: “Não crie as margens”, site convencional responsivo, sem exclusividade para Mac/16:10, com polimento dos elementos. Substitui o limite externo de 1440 px; preserva traços e conceito da casa de R-008 |
 
 ## Decisões técnicas e propostas
 
@@ -43,6 +44,7 @@ As evidências abaixo referem-se à conversa que iniciou o projeto. Recomendar u
 | D-013 | Usar Git local autenticado após liberação do ambiente | Sessão passou a permitir rede e escrita. O 403 anterior pertence ao conector e não deve ser tratado como falta de autorização do usuário | Commit 704def5 enviado e origem sincronizada; CI inicial aprovado. Exceção safe.directory restrita à pasta adicionada, pois `.git` foi criado pela conta sandbox anterior; sem alteração de outros repositórios |
 | D-014 | Exemplos identificados somente no desenvolvimento para revisar as composições | Decisão de implementação para atender R-008 sem inventar trabalhos do autor; documentação oficial de coleções e import.meta.env.DEV consultada | Implementado e validado: 28 amostras, aviso no início/rodapé, rascunhos privados e produção sem páginas das amostras; controles e relações verificados em desenvolvimento |
 | D-015 | Preservar filtros e adaptar SVGs selecionados da referência como ativos próprios | Traços irregulares, tinta desgastada e objetos desenhados são parte do sistema original | Implementado: filtros centralizados, 28 SVGs selecionados, composições por cômodo e CSS responsivo. Sem copiar páginas inteiras, capturas ou criar dependência de reference no build; fontes oficiais e critérios em arquitetura-visual.md |
+| D-016 | Página com largura total, grade fluida e espaçamento interno adaptável | Correção de V-02/V-04 para R-009: retirar moldura externa, reservar a coluna da navegação no fluxo e impedir sobreposições por posicionamento fixo. Limites locais de leitura e tamanho dos objetos continuam necessários | Implementado dentro do escopo autorizado. Matriz ampliada para celulares, telas 4:3, 16:9, 16:10 e ultrawide, sem detecção de sistema operacional; resultados de verificação no acompanhamento |
 
 ## Escolhas abertas e dependências
 

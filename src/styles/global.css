@@ -16,6 +16,9 @@
     --border: #d8bfa7; --font-body: 'Shantell Sans Variable', 'Segoe Print', cursive;
     --font-paint: 'Fraunces Variable', Georgia, serif; --font-hand: Kalam, 'Segoe Print', cursive;
     --paper-shadow: 1px 3px 0 rgb(56 42 34 / 10%);
+    --page-gutter: clamp(28px, 4vw, 96px);
+    --navigation-width: clamp(164px, 13vw, 210px);
+    --section-gap: clamp(36px, 5vw, 88px);
   }
   html { scroll-behavior: smooth; scroll-padding-top: 90px; background: var(--wall); }
   body { color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65; font-variation-settings: 'INFM' 55, 'BNCE' 8; }
@@ -31,8 +34,9 @@
   .painted { color: var(--clay); font-family: var(--font-paint); font-weight: 780; font-variation-settings: 'SOFT' 100, 'WONK' 1; letter-spacing: -.055em; line-height: .95; }
   .eyebrow { font-size: 14px; color: var(--muted); }
   .text-link { display: inline-flex; gap: 10px; align-items: center; text-decoration-thickness: 1px; }
-  .house { width: min(100%, 1440px); margin-inline: auto; position: relative; }
-  .content-width { margin-inline: 84px; }
+  .house { width: 100%; min-height: 100svh; position: relative; display: grid; grid-template-columns: minmax(0, 1fr) var(--navigation-width); grid-template-rows: 1fr auto auto; }
+  .house > main { grid-column: 1; grid-row: 1; min-width: 0; }
+  .content-width { margin-inline: var(--page-gutter); }
   .skip-link { position: fixed; top: -100px; left: 16px; z-index: 50; background: var(--paper); padding: 12px 18px; }
   .skip-link:focus { top: 12px; }
   .mobile-break { display: none; }
@@ -43,7 +47,8 @@
   .pin, .pinned::before { position: absolute; content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--clay); border: 1px solid var(--ink); box-shadow: 1px 2px 0 rgb(56 42 34 / 18%); top: -5px; left: 48%; z-index: 2; }
   .pinned { position: relative; }
   .tape { position: absolute; width: 73px; height: 21px; left: 39%; top: -11px; background: rgb(218 146 95 / 44%); transform: rotate(-5deg); clip-path: polygon(2% 0,98% 2%,95% 25%,100% 50%,96% 78%,99% 100%,1% 97%,4% 73%,0 47%,4% 23%); z-index: 2; }
-  .room-navigation { position: absolute; right: 0; top: 180px; width: 190px; z-index: 10; }
+  .room-navigation { grid-column: 2; grid-row: 1; position: sticky; top: 24px; align-self: start; margin-top: 110px; width: 100%; z-index: 10; }
+  .house-home .room-navigation { margin-top: 170px; }
   .navigation-caption { display: block; font-size: 15px; color: var(--muted); margin: 0 0 10px 18px; transform: rotate(-3deg); }
   .room-tabs { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 7px; }
   .room-tab { display: flex; gap: 10px; align-items: center; min-height: 64px; padding: 10px 13px; border: 1.5px solid var(--wood); border-right: 0; border-radius: 13px 0 0 12px; color: var(--ink); text-decoration: none; box-shadow: inset -9px 0 rgb(56 42 34 / 5%); transition: transform .2s; background: var(--paper); position: relative; }
@@ -53,7 +58,7 @@
   .room-tab:hover { transform: translateX(-7px); }
   .room-tab[aria-current='page'] { transform: translateX(-15px); box-shadow: -2px 3px 0 rgb(56 42 34 / 15%); }
   .room-tab[aria-current='page']::before { content: ''; position: absolute; left: -5px; top: 26px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--ink); background: var(--clay); }
-  .site-footer { margin: 0 50px; padding: 35px 34px 40px; display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px dashed var(--border); }
+  .site-footer { grid-column: 1 / -1; grid-row: 3; margin: 0 var(--page-gutter); padding: 35px 0 40px; display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px dashed var(--border); }
   .farewell { font-size: clamp(17px, 1.6vw, 22px); line-height: 1.45; }
   .footer-note { font-size: 14px; color: var(--muted); display: block; margin-top: 8px; }
   .site-footer nav { display: flex; gap: 25px; font-size: 13px; flex-wrap: wrap; }
@@ -74,13 +79,13 @@
 }
 
 @layer pages {
-  .entrance { padding: 55px 50px 0; }
-  .home-heading { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: 35px; padding: 0 224px 0 34px; min-height: 220px; }
+  .entrance { padding: 55px var(--page-gutter) 0; }
+  .home-heading { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; gap: clamp(35px, 5vw, 100px); min-height: 220px; }
   .house-sign { position: relative; transform: rotate(-2deg); align-self: start; padding-top: 4px; min-width: 0; container-type: inline-size; }
   .house-sign .eyebrow { padding-left: 6px; }
   .house-sign h1 { font-size: clamp(72px, 27cqi, 208px); margin-left: -7px; }
   .sign-flourish { display: block; text-align: center; color: var(--muted); font-size: 16px; padding-top: 9px; }
-  .photo-line { align-self: start; position: relative; display: flex; gap: 10px; padding: 25px 5px 32px; margin: 5px 10px 0 0; color: var(--ink); text-decoration: none; transform: rotate(2deg); }
+  .photo-line { align-self: start; justify-self: end; position: relative; display: flex; gap: 10px; width: 100%; max-width: 580px; padding: 25px 5px 32px; margin: 5px 10px 0 0; color: var(--ink); text-decoration: none; transform: rotate(2deg); }
   .clothesline { position: absolute; left: -12px; right: -5px; top: 12px; height: 35px; border-bottom: 2px solid var(--wood); border-radius: 0 0 60% 30%; transform: rotate(-3deg); }
   .polaroid { background: var(--white-paper); border: 1px solid var(--border); padding: 6px 6px 3px; width: 32%; box-shadow: 2px 3px 0 rgb(56 42 34 / 9%); position: relative; }
   .polaroid::before { content: ''; position: absolute; top: -19px; left: 45%; width: 7px; height: 27px; background: #b89475; border: 1px solid var(--wood); border-radius: 2px; z-index: 2; transform: rotate(3deg); }
@@ -88,7 +93,8 @@
   .polaroid figcaption { font: 12px/1.4 var(--font-hand); text-align: center; white-space: nowrap; margin-top: 7px; }
   .photo-one { transform: rotate(-7deg); } .photo-two { transform: translateY(10px) rotate(3deg); } .photo-three { transform: rotate(6deg); }
   .photo-caption { position: absolute; bottom: -4px; right: 12px; font-size: 14px; color: var(--link); transform: rotate(-3deg); }
-  .wall { display: grid; grid-template-columns: .95fr 1.14fr 1fr; gap: 30px 38px; padding: 54px 190px 30px 34px; align-items: start; }
+  .wall { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(34px, 4vw, 70px) clamp(28px, 3.5vw, 90px); padding-block: var(--section-gap) 40px; align-items: start; }
+  .wall > * { width: 100%; max-width: 480px; justify-self: center; }
   .welcome { padding: 24px 23px 17px; transform: rotate(-3deg); }
   .welcome h2 { font-size: clamp(20px, 1.85vw, 26px); margin-bottom: 12px; }
   .welcome p { font-size: 14px; line-height: 1.65; }
@@ -140,15 +146,15 @@
   .wooden-shelf::before, .wooden-shelf::after { content: ''; position: absolute; top: 12px; left: 10%; width: 27px; height: 22px; background: #5a473b; clip-path: polygon(0 0,100% 0,0 100%); }
   .wooden-shelf::after { left: auto; right: 10%; }
   .illustration-note { text-align: right; margin: 18px 24px 0; color: var(--muted); font-size: 12px; }
-  .about-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; padding: 88px 75px 80px 0; }
+  .about-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--section-gap); padding-block: var(--section-gap); }
   .about-heading .eyebrow { display: block; margin-bottom: 18px; }
   .about-copy { max-width: 540px; padding-top: 20px; }
   .about-copy p { margin-bottom: 20px; line-height: 1.85; font-size: 16px; }
   .about-copy .about-postscript { font-size: 18px; line-height: 1.6; color: var(--muted); }
   .about-copy .text-link { font-size: 15px; }
-  .featured-section { margin-top: 65px; padding-right: 120px; }
+  .featured-section { margin-top: var(--section-gap); }
   .featured-section .section-title { margin: 10px 0 30px; }
-  .room-content { padding: 62px 245px 85px 84px; min-height: 75vh; }
+  .room-content { padding: 62px var(--page-gutter) 85px; min-height: 75vh; }
   .room-heading { margin-bottom: 58px; }
   .back-link { font-size: 15px; text-decoration: none; }
   .room-title { font-size: clamp(72px, 11.8vw, 166px); margin-top: 25px; transform: rotate(-2deg); }
@@ -194,22 +200,28 @@
 }
 
 @layer responsive {
-  @media (min-width: 1441px) { .house { border-inline: 1px solid rgb(115 94 80 / 9%); } }
+  @media (min-width: 761px) and (max-height: 620px) {
+    .room-navigation { top: 12px; margin-top: 80px; }
+    .house-home .room-navigation { margin-top: 100px; }
+    .room-tab { min-height: 46px; }
+    .tab-label small { display: none; }
+  }
   @media (max-width: 1100px) and (min-width: 761px) {
-    .entrance { padding-inline: 28px; } .home-heading { padding-inline: 16px 170px; gap: 15px; }
+    .home-heading { gap: 24px; }
     .house-sign .eyebrow, .sign-flourish { font-size: 13px; }
     .photo-line { margin-right: 0; gap: 6px; } .polaroid figcaption { font-size: 9px; } .photo-caption { font-size: 12px; }
-    .room-navigation { width: 154px; top: 210px; } .room-tab { padding: 9px; min-height: 60px; gap: 6px; } .room-tab svg { width: 23px; } .tab-label { font-size: 16px; } .tab-label small { font-size: 10px; }
-    .wall { padding: 30px 151px 20px 16px; gap: 28px 20px; } .welcome { padding: 19px 14px; } .welcome p { font-size: 12px; } .welcome h2 { font-size: 20px; } .welcome .handwriting { font-size: 15px; }
+    .room-tab { padding: 9px; min-height: 60px; gap: 6px; } .room-tab svg { width: 23px; } .tab-label { font-size: 16px; } .tab-label small { font-size: 10px; }
+    .wall { padding-block: 40px 30px; gap: 32px 24px; } .welcome { padding: 19px 14px; } .welcome p { font-size: 13px; } .welcome h2 { font-size: 20px; } .welcome .handwriting { font-size: 15px; }
     .updates { padding: 15px 12px; } .updates li { font-size: 11px; } .code-paper { padding: 14px 10px; } .object-caption { font-size: 14px; } .drawing-object { margin-inline: 6px; }
     .shelf-area { gap: 25px; padding-inline: 16px; } .shelf-dice span { display: none; } .shelf-frame { width: 70px; } .shelf-plant { width: 85px; }
-    .content-width { margin-inline: 44px; } .about-section { gap: 35px; padding-right: 0; } .about-copy p { font-size: 14px; }
-    .room-content { padding-inline: 44px 200px; } .empty-room { gap: 25px; } .empty-note { padding: 20px; } .empty-note h2 { font-size: 26px; }
-    .site-footer { margin-inline: 28px; padding-inline: 16px; } .site-footer nav { gap: 15px; font-size: 11px; }
+    .about-section { gap: 35px; } .about-copy p { font-size: 15px; }
+    .empty-room { gap: 25px; } .empty-note { padding: 20px; } .empty-note h2 { font-size: 26px; }
+    .site-footer nav { gap: 15px; font-size: 12px; }
   }
   @media (max-width: 760px) {
+    .house { display: block; }
     html { scroll-padding-top: 80px; }
-    .room-navigation { position: sticky; top: 0; width: 100%; padding: 9px 0 6px; background: rgb(243 231 214 / 97%); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: thin; }
+    .room-navigation, .house-home .room-navigation { position: sticky; top: 0; width: 100%; margin-top: 0; padding: 9px 0 6px; background: rgb(243 231 214 / 97%); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: thin; }
     .navigation-caption { display: none; } .room-tabs { flex-direction: row; gap: 5px; padding-inline: 16px; width: max-content; }
     .room-tab { min-height: 42px; padding: 8px 12px; border: 1px solid var(--wood); border-radius: 8px 8px 1px 1px; gap: 6px; box-shadow: none; }
     .room-tab svg { width: 19px; height: 19px; } .tab-label { font-size: 13px; } .tab-label small { display: none; }

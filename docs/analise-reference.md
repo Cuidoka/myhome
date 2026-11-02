@@ -43,6 +43,8 @@ Os HTMLs possuem navegação entre arquivos, âncoras e efeitos CSS. Não possue
 
 As páginas desktop usam largura fixa de 1440 px, muitos posicionamentos absolutos e estilos repetidos. O celular está em arquivos separados; não há um sistema responsivo integrado. Somente entrada, sótão e texto possuem composição mobile explícita. As demais telas e os tamanhos intermediários exigem adaptação.
 
+Na revisão posterior R-009, o autor pediu remover as margens externas e atender diferentes computadores e proporções. O canvas de 1440 px permanece uma referência estética; a aplicação usa largura total e composições fluidas, conforme [arquitetura-visual.md](arquitetura-visual.md).
+
 As imagens e obras mostradas são ilustrações em SVG embutidas no HTML. Os PNGs são capturas de página, não os arquivos finais de obras para publicar. Textos, títulos, personagens, datas, contagens e projetos são demonstrativos, conforme o LEIA-ME.
 
 Na implementação, usar componentes compartilhados, tokens e layouts fluidos. Reservar posicionamento absoluto para detalhes decorativos dentro de objetos. Garantir leitura, foco de teclado e ordem de navegação coerentes; os objetos clicáveis precisam de nomes claros. Avaliar o custo dos filtros SVG no celular e manter texturas discretas para não prejudicar a leitura.

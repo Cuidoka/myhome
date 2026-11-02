@@ -4,11 +4,11 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** estrutura dos cinco cômodos e dos detalhes implementada e enviada em main no commit b2b4060, com CI aprovado. Check sem erros/avisos/hints, sete páginas no build público, 98 destinos locais e 46 testes Chromium aprovados localmente (oito de produção e 38 de prévia). Amostras identificadas só no desenvolvimento; conteúdo real e hospedagem ainda pendentes.
+**Fase atual:** revisão R-009 implementada: largura total sem margens externas, navegação no fluxo e polimento responsivo. Check de 32 arquivos sem erros/avisos/hints; build de sete páginas e 98 destinos; 84 testes Chromium passaram (13 de produção e 71 de prévia), com dez tamanhos de janela de 320 a 3440 px. Envio e CI desta revisão em conferência. Conteúdo real e hospedagem continuam pendentes.
 
 **Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida. Mantido em execução conforme pedido mais recente; aguardar observações do autor.
 
-**Próximo passo:** obter a revisão do autor na prévia local. Reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. A estrutura, filtros e relações já foram exercitados com amostras; falta validar a mídia final e a apresentação real antes do lançamento. Depois concluir sitemap/feed conforme escolha e configurar hospedagem.
+**Próximo passo:** concluir conferência do envio/CI e colher a revisão do autor na prévia de R-009. Depois reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. Mídia e apresentação reais ainda precisam de revisão antes do lançamento; sitemap/feed e hospedagem vêm depois.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -50,9 +50,9 @@ Uma dependência não resolvida em uma tarefa não impede automaticamente as dem
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | V-01 | Criar tokens e tipografia | Concluído | P-03 | Tokens centralizados e fontes locais renderizados; capturas revisadas |
-| V-02 | Criar layout, navegação e objetos compartilhados | Concluído | V-01 | Componentes renderizados, links, foco e aba atual verificados no Chromium; mesma fonte de conteúdo por dispositivo |
+| V-02 | Criar layout, navegação e objetos compartilhados | Concluído | V-01 e R-009 | Largura total sem moldura externa, navegação em coluna própria e adaptação para janela baixa. Links, foco, aba atual e separação entre conteúdo/abas verificados no Chromium |
 | V-03 | Implementar entrada, sobre e contato | Em andamento | V-02; conteúdo final depende de P-02 | Implementação responsiva validada; apresentação provisória e contato GitHub ainda precisam da revisão de conteúdo do autor |
-| V-04 | Revisar entrada em desktop e mobile | Concluído | V-03 | Capturas em 320/390/768/1024/1440 px revisadas; overflow do título em 320 px e sobreposição das fotos/abas corrigidos; testes de teclado e movimento passaram. Toque físico e outros motores não verificados |
+| V-04 | Revisar entrada em desktop e mobile | Concluído | V-03 e R-009 | Entrada testada em dez janelas entre 320 e 3440 px; largura total e ausência de overflow verificadas, capturas representativas revisadas. Teclado, redimensionamento e movimento reduzido passaram. Toque físico e outros motores não verificados |
 
 ## Conteúdo e páginas individuais
 
@@ -81,7 +81,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | Q-01 | Revisar conteúdo e navegação completos | Pendente | C-03 e áreas incluídas | Sem destinos falsos, mídia ausente, marcadores públicos indevidos ou dados inconsistentes |
-| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 46 testes locais, composições dos cinco cômodos em cinco larguras e detalhes revisados; revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendente |
+| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 84 testes locais, composições dos cinco cômodos em dez janelas e detalhes em quatro larguras; capturas representativas revisadas. Revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendente |
 | Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Base atual validada em cópia sem referência com npm ci/build/verify e no CI; pasta ausente do índice, árvore remota e histórico inicial. Repetir revisão final quando o conteúdo/escopo estiver completo |
 | L-01 | Preparar hospedagem, repositório e domínio | Em andamento | D-002 e E-005 | Repositório main e CI prontos; conta de hospedagem e domínio ainda a definir |
 | L-02 | Publicar e conferir a versão pública | Pendente | Q-01 a Q-03 e L-01 | URL acessível; páginas, mídia e acesso direto conferidos; revisão publicada registrada |
@@ -92,8 +92,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
-- **Ambiente:** instalação, Astro check, build e testes passam; a etapa atual acrescentou prévia segregada e totaliza 46 testes locais aprovados.
-- **Git:** envio concluído pelo Git local, branch main sincronizada. CI das implementações inicial e de estruturação passou; etapa atual validada em b2b4060. O 403 anterior do conector não bloqueia este fluxo.
+- **Ambiente:** instalação já validada; Astro check/build e 84 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações.
+- **Git:** CI das implementações inicial e de estruturação passou; revisão responsiva atual aguardando registro do envio e CI. O 403 anterior do conector não bloqueia o Git local.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -154,6 +154,16 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Pendências preservadas:** conteúdo e contato finais, mídia/áudio reais, decisão de estreia, revisão do autor, outros motores/toque físico, sitemap/feed/endereço e deploy. A pasta reference permanece local e ignorada; só ativos escolhidos estão no código.
 - **Integração concluída:** commit [b2b4060](https://github.com/Cuidoka/myhome/commit/b2b406001c30d05673d0a59e304937518dc69d33) enviado a main. A [execução CI 41375494516](https://github.com/Cuidoka/myhome/actions/runs/41375494516) terminou com success. Índice e histórico continuam sem reference/. As quebras de linha dos novos arquivos foram normalizadas conforme .gitattributes; verificação documental passou. A mudança final de espaçamento na Sala foi conferida novamente por teste direcionado e build antes do envio.
 - **Retomada:** servidor do autor mantido em `http://127.0.0.1:4321/`; Galeria respondeu HTTP 200 com nova composição e aviso de prévia conferidos. Fechamento somente documental usa `[skip ci]` após docs:check; não houve mudança de código depois do commit validado. Prosseguir com revisão visual e P-02/C-03, sem refazer a estrutura.
+
+### 01/11/2026 — largura total e polimento responsivo
+
+- **Pedido e tarefas:** R-009, revisão de V-02/V-04 e Q-02. Correção dentro do escopo autorizado; preserva estética e substitui o limite externo de 1440 px. D-016 e guia atualizados.
+- **Implementação:** casa em 100% da largura, sem margens de centralização/bordas externas; abas em coluna da grade, com posição sticky e adaptação a janela baixa. Respiros internos fluidos, tipografia e objetos com limites locais. Nenhuma regra de sistema operacional ou proporção obrigatória.
+- **Polimento:** cabeçalho da Sala incorpora a estante sem margem negativa; quadros se redistribuem sem deixar cinco peças e uma isolada em 1920 px. Ajustados espaçamentos, escalas de objetos e legibilidade. Tabelas/cadernos empilham antes de ficar estreitos; rolagem das tabelas recebe região focável por teclado.
+- **Fontes:** guias de responsividade e CSS Grid da MDN consultados e vinculados em arquitetura-visual.md. Sem dependências ou serviços novos.
+- **Verificação real:** check de 32 arquivos, zero erros/avisos/hints; build de sete páginas; verify com 98 destinos locais e exclusão de rascunhos, amostras e referência. Passaram 13 testes de produção e 71 de prévia. Matriz de dez janelas, entre 320×740 e 3440×1440; verificadas largura total, ausência de overflow, separação conteúdo/abas, janela baixa, redimensionamento, tabela por teclado e fluxos existentes. Capturas representativas da entrada, cinco cômodos e detalhes revisadas, com atenção a celular, tablet, desktop e ultrawide.
+- **Ocorrência do ambiente:** chamar Playwright diretamente não iniciou o servidor de produção porque npm não está no PATH padrão. A execução pelo script npm via runtime fornecido resolveu; os 13 testes passaram. Não foi necessário mudar a aplicação nem instalar ferramentas globais.
+- **Limites e continuidade:** revisão do autor, conteúdo/contato e mídia reais, áudio, outros motores/toque físico e publicação continuam pendentes. Servidor 4321 mantido; reference permanece ignorada. Conferir envio/CI desta revisão e registrar o resultado antes de encerrar.
 
 ## Modelo de registro futuro
 

@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { viewports, expectFluidLayout } from './viewports';
 
 for (const [name, path] of [['entrada', '/'], ['texto', '/sala/amostras/comecar-sem-saber/'], ['obra', '/galeria/amostras/farol/']]) {
-  for (const width of [390, 1440]) {
+  for (const width of [390, 1440, 1920, 3440]) {
     test(`detalhe-${name}-${width}`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width, height: 1000 });
       expect((await page.goto(path!))?.status()).toBe(200);
       await page.evaluate(() => document.fonts.ready);
       await page.evaluate(() => Promise.all([...document.images].map(async (image) => { image.loading = 'eager'; await image.decode().catch(() => undefined); })));
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width + 1);
+      await expectFluidLayout(page);
       await expect(page.getByRole('link', { name: 'Prévia · exemplos da referência', exact: true })).toBeVisible();
       const screenshotPath = testInfo.outputPath('detalhe.png');
       await page.screenshot({ fullPage: true, path: screenshotPath });
@@ -26,9 +28,9 @@ test('campanha possui página individual e rótulo de demonstração', async ({ 
 });
 
 for (const room of ['oficina', 'sala', 'galeria', 'estudio', 'sotao']) {
-  for (const width of [320, 390, 768, 1024, 1440]) {
+  for (const { width, height } of viewports) {
     test(`composicao-${room}-${width}`, async ({ page }, testInfo) => {
-      await page.setViewportSize({ width, height: 1000 });
+      await page.setViewportSize({ width, height });
       const errors: string[] = [];
       page.on('pageerror', (error) => errors.push(error.message));
       expect((await page.goto(`/${room}/`))?.status()).toBe(200);
@@ -41,6 +43,7 @@ for (const room of ['oficina', 'sala', 'galeria', 'estudio', 'sotao']) {
       await testInfo.attach(`${room}-${width}`, { path, contentType: 'image/png' });
       expect(size.bad).toEqual([]);
       expect(size.content).toBeLessThanOrEqual(size.width + 1);
+      await expectFluidLayout(page);
       await expect(page.getByRole('complementary', { name: 'Aviso de demonstração' })).toBeVisible();
       expect(errors).toEqual([]);
     });
@@ -100,4 +103,28 @@ test('texto renderiza sumário, notas e relações entre cômodos', async ({ pag
 
 test('rascunho continua inacessível inclusive em desenvolvimento', async ({ page }) => {
   expect((await page.goto('/oficina/modelo-privado/'))?.status()).toBe(404);
+});
+
+test('navegação acompanha uma janela baixa e o redimensionamento', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 600 });
+  await page.goto('/');
+  const navigation = page.getByRole('navigation', { name: 'Cômodos da casa' });
+  await expect(navigation.getByRole('link', { name: /Galeria/ })).toBeInViewport();
+  await navigation.getByRole('link', { name: /Sala/ }).click();
+  for (const width of [1920, 1024, 390, 3440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expectFluidLayout(page);
+    await expect(page.getByRole('heading', { name: 'sala', exact: true })).toBeVisible();
+  }
+});
+
+test('tabela da oficina permite alcançar todas as colunas com teclado', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/oficina/');
+  const table = page.getByRole('region', { name: 'Projetos', exact: true });
+  await table.focus();
+  await expect(table).toBeFocused();
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(() => table.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+  await expectFluidLayout(page);
 });

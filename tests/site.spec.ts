@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { viewports, expectFluidLayout } from './viewports';
 
-for (const width of [320, 390, 768, 1024, 1440]) {
+for (const { width, height } of viewports) {
   test(`entrada legível e navegável em ${width}px`, async ({ page }, testInfo) => {
-    await page.setViewportSize({ width, height: 1000 });
+    await page.setViewportSize({ width, height });
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto('/');
@@ -18,6 +19,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
     await page.screenshot({ fullPage: true, path: snapshotPath });
     await testInfo.attach(`entrada-${width}`, { path: snapshotPath, contentType: 'image/png' });
     expect(dimensions.content, JSON.stringify(dimensions.overflow)).toBeLessThanOrEqual(dimensions.viewport + 1);
+    await expectFluidLayout(page);
     const welcome = await page.locator('.welcome').boundingBox();
     const photographs = await page.locator('.photo-line').boundingBox();
     if (width <= 760) expect(welcome!.y + welcome!.height).toBeLessThan(photographs!.y + 5);

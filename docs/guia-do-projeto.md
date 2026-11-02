@@ -76,6 +76,7 @@ As fontes e cores estão detalhadas na análise. O lettering autoral é uma poss
 - Construir layout, navegação, rodapé e objetos reutilizáveis: papel, fita, alfinete, quadro, polaroid e livro, conforme uso real.
 - Implementar a entrada com composição desktop e mobile, incluindo apresentação, contato e acesso aos trabalhos.
 - Comparar com a referência e revisar tamanhos intermediários, leitura, foco e toque.
+- Aplicar R-009: largura total sem moldura ou margens externas, com espaçamento interno fluido. Preservar os traços da casa sem impor largura de 1440 px ou proporção 16:10.
 
 **Saída:** entrada navegável e responsiva, com direção visual revisável. Marcadores de conteúdo devem ser identificados como provisórios. Ajustes posteriores de conteúdo não invalidam a estrutura já verificada.
 
@@ -110,7 +111,7 @@ Ordem proposta: Oficina, Sala, Galeria, Estúdio e Sótão. A ordem pode acompan
 **Tarefas:** Q-01 a Q-03.
 
 - Verificar todo conteúdo público, links, imagens, áudio, datas e dados pessoais escolhidos para publicação.
-- Revisar páginas em celular, tablet e desktop; considerar 390 px e 1440 px como referências, além de 320 px, 768 px e 1024 px para adaptação.
+- Revisar páginas em celular, tablet, desktop e ultrawide usando a matriz de `tests/viewports.ts`, de 320 a 3440 px. Conferir proporções variadas, janela baixa, redimensionamento, ausência de margens externas e de sobreposição com a navegação.
 - Revisar navegação por teclado, foco visível, títulos, textos alternativos, controles e movimento reduzido.
 - Executar build e verificações definidas para o projeto. Testes automatizados devem cobrir comportamentos relevantes; mudanças cosméticas não exigem testes que apenas repitam o código.
 - Conferir carregamento de mídia e fontes, erros de execução, metadados e acesso direto às URLs.

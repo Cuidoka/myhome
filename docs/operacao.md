@@ -2,7 +2,7 @@
 
 Procedimento da aplicação inicial em Astro. O ambiente foi liberado após os bloqueios iniciais: dependências instaladas, check/build e testes de navegador passaram localmente. A integração remota usa Git local; o CI executa as mesmas verificações no GitHub. Publicação do site ainda não realizada. O acompanhamento guarda o histórico e os resultados do envio/CI.
 
-Na etapa de estruturação visual, as verificações locais passaram a cobrir oito testes de produção e 38 de desenvolvimento. O build público segue com sete páginas, agora com 98 destinos locais conferidos. As 28 amostras são visíveis apenas em astro dev; não confundir esse modo com astro preview, que serve o build de produção.
+Na revisão responsiva R-009, passaram 13 testes de produção e 71 de desenvolvimento. O build público segue com sete páginas e 98 destinos locais conferidos. As 28 amostras são visíveis apenas em astro dev; não confundir esse modo com astro preview, que serve o build de produção.
 
 ## Estado do ambiente
 
@@ -61,12 +61,14 @@ Comandos da aplicação. A disponibilidade dos scripts não significa que todos 
 | `npm run build` | Gerar versão de produção em dist | Passou localmente: sete páginas |
 | `npm run verify` | Links, âncoras, mídias e exclusão de rascunhos/amostras/referência no build | Passou localmente: 98 destinos conferidos |
 | `npm run preview` | Inspecionar build localmente | Serviu a entrada com HTTP 200 em localhost |
-| `npm run test:browser` | Produção e exclusão de conteúdo privado/de prévia | Oito testes passaram; servidor de teste próprio em 4322 |
-| `npm run test:preview` | Cômodos completos com amostras e fluxos editoriais | 38 testes passaram; usa astro dev em 4321 e reutiliza o servidor local quando disponível |
+| `npm run test:browser` | Produção e exclusão de conteúdo privado/de prévia | 13 testes passaram; servidor de teste próprio em 4322 |
+| `npm run test:preview` | Cômodos completos com amostras e fluxos editoriais | 71 testes passaram; usa astro dev em 4321 e reutiliza o servidor local quando disponível |
 
 Manter somente `package-lock.json` para a aplicação. Ele foi gerado localmente. O CI usa `npm ci` com permissão somente de leitura; o job antigo que criaria commits de lockfile foi removido após a liberação do ambiente.
 
-O workflow faz checagem documental, Astro/TypeScript, build, conferência de links e testes Playwright em 320, 390, 768, 1024 e 1440 px. Os testes registram screenshots; resultado verde não substitui a revisão visual humana das capturas. Build, lockfile e relatório ficam no artefato `verificacao-da-casa` por sete dias.
+O workflow faz checagem documental, Astro/TypeScript, build, conferência de links e testes Playwright com a matriz de dez janelas em `tests/viewports.ts`, entre 320 e 3440 px. Ela inclui proporções variadas e ultrawide, além de testes de janela baixa e redimensionamento. Os testes registram screenshots; resultado verde não substitui a revisão visual humana das capturas. Build, lockfile e relatório ficam no artefato `verificacao-da-casa` por sete dias.
+
+Neste ambiente npm não está no PATH padrão. O comando verificado para executar scripts é `node <caminho-do-pnpm.cjs> dlx npm@11 run <script>`, com o diretório do Node fornecido no PATH. Usar esse fluxo também para `test:browser`, pois seu servidor temporário precisa encontrar npm. Em uma instalação comum de Node com npm no PATH, os comandos da tabela continuam válidos.
 
 A [execução inicial](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com sucesso para a implementação 704def5. A entrada também foi revisada visualmente pelas capturas locais. Atualizações exclusivamente documentais podem usar `[skip ci]` após `docs:check`, sem declarar um novo teste da aplicação para esse commit.
 
@@ -111,7 +113,7 @@ Executar verificações proporcionais ao trabalho. Ampliar os testes quando uma 
 
 | Área | Cenário | Evidência a registrar |
 | --- | --- | --- |
-| Responsividade | 320, 390, 768, 1024 e 1440 px; sem rolagem horizontal acidental da página | Páginas conferidas e eventuais exceções; rolagem intencional das abas é separada da página |
+| Responsividade | Matriz de dez janelas de 320 a 3440 px, proporções variadas, janela baixa e redimensionamento | Página ocupa toda a largura, sem sobreposição da navegação nem rolagem horizontal acidental; abas e tabelas têm rolagem interna quando necessário |
 | Navegação | Entrada, abas, links de detalhes, retorno e acesso direto a URL | Fluxos realizados e destinos corrigidos |
 | Teclado | Ordem do Tab, foco visível, ativação e acesso ao conteúdo | Resultado dos fluxos essenciais |
 | Leitura | Hierarquia de títulos, contraste e largura de texto | Problemas encontrados e correções |
@@ -174,7 +176,7 @@ Na entrega final, acrescentar um exemplo real de inclusão de conteúdo com os c
 | Item | Situação atual |
 | --- | --- |
 | Stack e versões usadas | Astro 7.4.4, TypeScript, CSS nativo, Markdown; Node 24 no CI. Versões resolvidas em package-lock.json |
-| Comandos verificados | Instalação, docs:check, check, build, verify, preview, oito testes de produção e 38 de desenvolvimento passaram localmente |
+| Comandos verificados | Instalação já validada; docs:check, check, build, verify, preview, 13 testes de produção e 71 de desenvolvimento passaram localmente |
 | URL e repositório | `https://github.com/Cuidoka/myhome`; não há URL pública do site |
 | Provedor e configuração | Propostos, sem configuração |
 | Revisão e data do lançamento | Não há lançamento |
