@@ -14,6 +14,8 @@ let links = 0;
 for (const page of pages) {
   const html = await readFile(page, 'utf8');
   assert(!html.includes('modelo-privado'), `Rascunho apareceu em ${page}`);
+  assert(!html.includes('/amostras/'), `Amostra de desenvolvimento apareceu em ${page}`);
+  assert(!html.includes('Prévia de desenvolvimento'), `Aviso de desenvolvimento apareceu em ${page}`);
   assert(!/(?:href|src)=["'][^"']*reference\//.test(html), 'Dependência pública da referência.');
   assert(html.includes('lang="pt-BR"'), `Idioma ausente: ${page}`);
   for (const [, raw] of html.matchAll(/(?:href|src)="([^"\s]*)"/g)) {

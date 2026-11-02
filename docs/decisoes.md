@@ -22,6 +22,7 @@ As evidências abaixo referem-se à conversa que iniciou o projeto. Recomendar u
 | R-005 | 01/11/2026 | Documentar continuamente etapas aprovadas, pendências, análise e caminho completo | Pedido do usuário para documentar o trabalho a partir deste ponto e manter um guia do início ao fim. Sustenta os registros e as instruções de continuidade |
 | R-006 | 01/11/2026 | Responder em português | Pedido mais recente: “Me desponda em portugues”. Documentação mantida em português para acompanhar a comunicação |
 | R-007 | 01/11/2026 | Iniciar a execução do plano e integrar ao remoto correto | “Do it, remote repository is https://github.com/Cuidoka/myhome.git”. Autoriza implementação e integração de código ao repositório; não resolve conteúdo final ou configuração de hospedagem |
+| R-008 | 01/11/2026 | Estruturar o site seguindo documentação oficial e máxima fidelidade à referência | Pedido de continuar a implementação preservando especialmente traços e estética. Abrange componentes e composição própria de cada cômodo; manter registro contínuo |
 
 ## Decisões técnicas e propostas
 
@@ -40,6 +41,8 @@ As evidências abaixo referem-se à conversa que iniciou o projeto. Recomendar u
 | D-011 | Lockfile gerado localmente e CI somente de leitura com npm ci | Ambiente local liberado na retomada; dependências puderam ser instaladas e verificadas | Implementado: package-lock.json gerado pelo npm 11.21.1; CI não precisa criar commits. Substitui D-009 |
 | D-012 | Atualizar Astro para 7.4.4 e usar importações atuais de Zod | Auditoria da primeira instalação apontou problemas nas versões resolvidas de Astro 6/esbuild/sharp; checagem também apontou ausência de tipos Node | Correção técnica dentro da stack aprovada. Astro 7.4.4, tipos Node e APIs de Zod ajustados; instalação final sem vulnerabilidades reportadas; check/build passaram |
 | D-013 | Usar Git local autenticado após liberação do ambiente | Sessão passou a permitir rede e escrita. O 403 anterior pertence ao conector e não deve ser tratado como falta de autorização do usuário | Commit 704def5 enviado e origem sincronizada; CI inicial aprovado. Exceção safe.directory restrita à pasta adicionada, pois `.git` foi criado pela conta sandbox anterior; sem alteração de outros repositórios |
+| D-014 | Exemplos identificados somente no desenvolvimento para revisar as composições | Decisão de implementação para atender R-008 sem inventar trabalhos do autor; documentação oficial de coleções e import.meta.env.DEV consultada | Implementado e validado: 28 amostras, aviso no início/rodapé, rascunhos privados e produção sem páginas das amostras; controles e relações verificados em desenvolvimento |
+| D-015 | Preservar filtros e adaptar SVGs selecionados da referência como ativos próprios | Traços irregulares, tinta desgastada e objetos desenhados são parte do sistema original | Implementado: filtros centralizados, 28 SVGs selecionados, composições por cômodo e CSS responsivo. Sem copiar páginas inteiras, capturas ou criar dependência de reference no build; fontes oficiais e critérios em arquitetura-visual.md |
 
 ## Escolhas abertas e dependências
 

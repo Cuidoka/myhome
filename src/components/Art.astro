@@ -1,0 +1,7 @@
+---
+import { artwork, type ArtworkName } from '../data/art';
+interface Props { name: ArtworkName; alt?: string; class?: string; eager?: boolean; }
+const { name, alt = '', class: className, eager = false } = Astro.props;
+const art = artwork[name];
+---
+<img class:list={['sketch-art', className]} src={art.src} width={art.width} height={art.height} alt={alt} aria-hidden={alt ? undefined : 'true'} loading={eager ? 'eager' : 'lazy'} decoding="async" />

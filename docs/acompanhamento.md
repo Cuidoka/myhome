@@ -4,9 +4,13 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** base instalada, validada e enviada para `Cuidoka/myhome`, branch main. Check sem erros/avisos/hints, sete páginas estáticas, 93 destinos locais e oito testes Chromium aprovados localmente. Capturas da entrada revisadas nas cinco larguras previstas. CI inicial aprovado no GitHub; sem hospedagem pública.
+**Fase atual:** estrutura dos cinco cômodos e dos detalhes implementada, com traços e objetos adaptados da referência. Check sem erros/avisos/hints, sete páginas no build público, 98 destinos locais e 46 testes Chromium aprovados localmente (oito de produção e 38 de prévia). Amostras identificadas só no desenvolvimento; conteúdo real e hospedagem ainda pendentes. Integração desta etapa em andamento.
 
-**Próximo passo:** reunir apresentação final, contatos escolhidos e primeiros trabalhos em P-02/C-03; definir o conteúdo de estreia em P-01. Com dados reais, exercitar templates, filtros, mídia e relações, concluir os cômodos e a revisão de lançamento. Depois configurar hospedagem e endereço público. Não recriar o scaffold ou voltar a tratar dependências/Git como bloqueados.
+**Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida. Mantido em execução conforme pedido mais recente; aguardar observações do autor.
+
+**Próximo passo:** concluir integração desta etapa e obter a revisão do autor na prévia local. Reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. A estrutura, filtros e relações já foram exercitados com amostras; falta validar a mídia final e a apresentação real antes do lançamento. Depois concluir sitemap/feed conforme escolha e configurar hospedagem.
+
+**Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
 **Ambiente atual:** acesso local e rede liberados. Node 24.22.1; npm 11.21.1 executado via `pnpm dlx npm@11` a partir do runtime fornecido, sem instalação global. Dependências e lockfile criados; origem configurada para `Cuidoka/myhome`. O erro 403 do conector permanece apenas como histórico; envio local será verificado separadamente.
 
@@ -54,8 +58,8 @@ Uma dependência não resolvida em uma tarefa não impede automaticamente as dem
 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
-| C-01 | Definir coleções, metadados, relações e URLs | Em andamento | P-03 e escopo P-01 | Schema sincronizado e rascunho excluído no build; faltam exercitar páginas públicas/relações com dados de trabalho e consolidar regras editoriais finais |
-| C-02 | Implementar layouts individuais | Implementado, não validado | C-01 e V-02 | Template com Markdown, sumário, imagens, áudio opcional, links e relacionados; aguarda renderização e dados reais |
+| C-01 | Definir coleções, metadados, relações e URLs | Concluído | P-03 e escopo P-01 | Coleção validada, política pública/prévia, ordenação determinística, metadados por cômodo e regras documentadas; exclusão de rascunhos/amostras e relações exercitadas. Seleção editorial real permanece em C-03 |
+| C-02 | Implementar layouts individuais | Concluído | C-01 e V-02 | Anatomia de etiqueta, folha e notas; objeto principal conforme tipo, Markdown, sumário e relações. Rotas de projeto/texto/faixa/campanha/obra exercitadas com amostras; mídia real pendente nas tarefas dos cômodos |
 | C-03 | Integrar conteúdo real inicial | Pendente | P-02 e C-02 | Apresentação, contato e seleção de trabalhos revisados; sem autoria ou contagens fictícias |
 
 ## Cômodos e interações
@@ -64,12 +68,12 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
-| F-01 | Implementar Oficina | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Rota, estado vazio, listagem e detalhe genéricos criados; faltam trabalhos reais, demos escolhidas e validação |
-| F-02 | Implementar Sala | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Rota, listagem e leitura preparadas; faltam textos, arquivo editorial completo e validação |
-| F-03 | Implementar Galeria | Em andamento | C-01, C-02 e V-02; imagens dependem de C-03 | Rota e suporte a imagens preparados; faltam obras, composição final com mídia real e validação |
-| F-04 | Implementar Estúdio | Em andamento | C-01, C-02 e V-02; áudio depende de C-03 | Rota e suporte a áudio nativo preparados; faltam faixas, coleções e validação do player |
-| F-05 | Implementar Sótão | Em andamento | C-01, C-02 e V-02; material depende de C-03 | Rota e conteúdo por cômodo preparados; faltam campanhas, relações de sessões/personagens e composição final |
-| F-06 | Completar interações e relações entre áreas | Em andamento | Áreas incluídas e E-006 | Filtros por tags e relacionados implementados; comportamento com conteúdo e demos ainda não verificado |
+| F-01 | Implementar Oficina | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Bancada, sorteador funcional de exemplo, tecnologias, prancheta e caderno validados; faltam projetos reais e demos escolhidas |
+| F-02 | Implementar Sala | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Estante, destaque, filtros combinados, arquivo anual e leitura validados; faltam textos reais e revisão editorial do autor |
+| F-03 | Implementar Galeria | Em andamento | C-01, C-02 e V-02; imagens dependem de C-03 | Molduras, caderno, cavalete, varal e filtro de categorias validados; faltam obras/fotos reais e revisão com suas proporções |
+| F-04 | Implementar Estúdio | Em andamento | C-01, C-02 e V-02; áudio depende de C-03 | Capa, ficha, fitas, filtro por coleção e lista validados; sem play falso na amostra. Faltam faixas reais e teste de áudio |
+| F-05 | Implementar Sótão | Em andamento | C-01, C-02 e V-02; material depende de C-03 | Mapa, lore, mesa, fichas, sessões e baús implementados e validados com metadados; falta conteúdo real |
+| F-06 | Completar interações e relações entre áreas | Em andamento | Áreas incluídas e E-006 | Filtros, sorteador, sumário, relações de entrada/saída e navegação testados com amostras; falta revisar relações e demos definitivas |
 | F-07 | Implementar metadados, 404, sitemap e feed definido para estreia | Em andamento | C-01, URLs e E-006 | Metadados e 404 preparados; sitemap/feed e endereço final permanecem pendentes |
 
 ## Revisão, publicação e manutenção
@@ -77,7 +81,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | Q-01 | Revisar conteúdo e navegação completos | Pendente | C-03 e áreas incluídas | Sem destinos falsos, mídia ausente, marcadores públicos indevidos ou dados inconsistentes |
-| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | Entrada e oito fluxos Chromium validados localmente e no CI; revisão final de conteúdo, mídia real, demais fluxos e outros motores pendente |
+| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 46 testes locais, composições dos cinco cômodos em cinco larguras e detalhes revisados; revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendente |
 | Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Base atual validada em cópia sem referência com npm ci/build/verify e no CI; pasta ausente do índice, árvore remota e histórico inicial. Repetir revisão final quando o conteúdo/escopo estiver completo |
 | L-01 | Preparar hospedagem, repositório e domínio | Em andamento | D-002 e E-005 | Repositório main e CI prontos; conta de hospedagem e domínio ainda a definir |
 | L-02 | Publicar e conferir a versão pública | Pendente | Q-01 a Q-03 e L-01 | URL acessível; páginas, mídia e acesso direto conferidos; revisão publicada registrada |
@@ -88,10 +92,10 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
-- **Ambiente:** instalação, Astro check, build e oito testes Playwright passaram após liberação; bloqueios anteriores resolvidos para execução local.
+- **Ambiente:** instalação, Astro check, build e testes passam; a etapa atual acrescentou prévia segregada e totaliza 46 testes locais aprovados.
 - **Git:** envio concluído pelo Git local, branch main sincronizada. CI da implementação 704def5 passou. O 403 anterior do conector não bloqueia mais este fluxo.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
-- **Desenvolvimento:** base/entrada executadas e aparência da entrada revisada. Templates de trabalho com conteúdo real, áudio, filtros e relações ainda exigem dados e revisão; não declarar o lançamento completo.
+- **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
 ## Diário de execução
 
@@ -132,7 +136,25 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Integração concluída:** commit [704def5](https://github.com/Cuidoka/myhome/commit/704def56d08c5e79f138bf2302e70c6e22be0c24) enviado por Git local, fetch configurado e origin/main sincronizado. `git ls-tree` da origem e histórico inicial conferidos sem `reference/`. A [execução CI 41371821212](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com success, incluindo os testes de navegador no Linux.
 - **Encerramento desta etapa:** preview temporário encerrado. Documentação de fechamento verificada localmente; commit somente documental usa `[skip ci]` para evitar repetir testes de aplicação sem mudança de código. Conteúdo final, fluxos com dados reais e hospedagem continuam pendentes. Próximo ponto de retomada: P-02/C-03 e definição final de P-01.
 
-## Modelo de registro para próximas sessões
+### 01/11/2026 — servidor local para análise do autor
+
+- **Pedido:** “Rode o projeto para que eu analise”. Continuação de V-03/Q-02, sem alteração do conteúdo ou do escopo.
+- **Execução:** Astro iniciado em modo de desenvolvimento, restrito a `127.0.0.1:4321`, com atualização automática ao editar arquivos.
+- **Verificação:** entrada respondeu HTTP 200, com título da casa e boas-vindas presentes no HTML. Não foi necessário reinstalar dependências ou gerar outro build.
+- **Estado:** servidor mantido em execução por solicitação do usuário, disponível em `http://127.0.0.1:4321/`. Não é um deploy público. A análise visual do autor continua pendente; aguardar suas observações.
+
+### 01/11/2026 — estrutura fiel à referência e documentação oficial
+
+- **Pedido:** R-008; seguir o guia e documentação oficial, preservando traços e estética. Tarefas C-01/C-02 e avanço de F-01 a F-06, com refinamento de V-01/V-02.
+- **Fontes e arquitetura:** componentes, layouts, coleções, Zod, CSS e ambiente do Astro, mais documentação SVG da MDN. Aplicações e links reunidos em arquitetura-visual.md. Sem novos serviços, banco ou framework de interface.
+- **Visual:** filtros de papel/lápis/tinta, lettering desgastado e SVGs selecionados adaptados. Oficina com bancada/prancheta, Sala com estante/arquivo, Galeria com molduras/caderno/varal, Estúdio com fitas e Sótão com mapas/mesa/baús. Ajustes após inspeção: lombadas curtas, posição da estante, espaço entre título e bilhete, mapa tático e dados sobre a mesa. Toolbar do Astro desativada na prévia para não cobrir a composição.
+- **Conteúdo:** 28 amostras com previewOnly, sem atribuição de autoria, para revisar fluxos apenas em astro dev. Aviso inicial e no rodapé. Produção mantém estados vazios até haver conteúdo real. Rascunhos continuam sem rota em ambos os ambientes; relações públicas não podem apontar a amostras ou rascunhos.
+- **Estrutura editorial:** metadados específicos, leitura derivada do corpo, arquivo por ano, filtros combinados, coleções, lore/fichas/sessões, detalhe com etiqueta/sumário/notas e backlinks. Sorteador evita repetição imediata. Sem áudio fictício ou links de código inexistentes.
+- **Validação local:** check de 31 arquivos com zero erros/avisos/hints; build de sete páginas e 98 destinos locais; oito testes de produção e 38 de prévia passaram. Capturas em cinco larguras para cada cômodo e em 390/1440 para entrada, texto e obra. Comparação visual realizada com as capturas originais, incluindo revisão de celular. Inferência de imagem no teste foi ajustada após erro inicial de TypeScript. Produção e prévia usam portas separadas para evitar validar o modo errado.
+- **Pendências preservadas:** conteúdo e contato finais, mídia/áudio reais, decisão de estreia, revisão do autor, outros motores/toque físico, sitemap/feed/endereço e deploy. A pasta reference permanece local e ignorada; só ativos escolhidos estão no código.
+- **Integração:** preparar commit, conferir ausência da referência no índice e acompanhar CI; o servidor local solicitado pelo usuário permanece em execução para análise.
+
+## Modelo de registro futuro
 
 Copiar a estrutura abaixo para cada sessão ou entrega significativa. Relacionar tarefas pelo ID, sem registrar cada ação trivial.
 

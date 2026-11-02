@@ -1,0 +1,7 @@
+---
+import { workHref, type Work } from '../lib/content';
+interface Props { works: Work[]; }
+const { works } = Astro.props;
+const colors = ['rust', 'cream', 'olive', 'peach', 'brown'];
+---
+<nav class="reading-shelf" aria-label="Textos na estante"><span class="handwriting">os mais novos</span><div class="books">{works.slice(0, 6).map((work, index) => <a href={workHref(work)} aria-label={work.data.title} class:list={['book', `book-${colors[index % colors.length]}`, index % 2 === 0 ? 'book-tall' : 'book-medium']}><span>{work.data.spineTitle ?? work.data.title}</span></a>)}</div><div class="wooden-shelf" aria-hidden="true"></div></nav>

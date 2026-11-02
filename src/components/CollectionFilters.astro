@@ -1,0 +1,23 @@
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter-scope]').forEach((scope) => {
+    const active: Record<string, string> = {};
+    const buttons = scope.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const items = scope.querySelectorAll<HTMLElement>('[data-work]');
+    const status = scope.querySelector<HTMLElement>('[data-filter-status]');
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      const kind = button.dataset.kind ?? '';
+      active[kind] = button.dataset.value ?? '';
+      buttons.forEach((candidate) => candidate.setAttribute('aria-pressed', String((active[candidate.dataset.kind ?? ''] ?? '') === (candidate.dataset.value ?? ''))));
+      let count = 0;
+      items.forEach((item) => {
+        const tags: string[] = JSON.parse(item.dataset.tags ?? '[]');
+        item.hidden = Object.entries(active).some(([key, value]) => value !== '' && (key === 'tag' ? !tags.includes(value) : item.dataset[key] !== value));
+        if (!item.hidden) count++;
+      });
+      scope.querySelectorAll<HTMLElement>('[data-filter-section]').forEach((section) => {
+        section.hidden = ![...section.querySelectorAll<HTMLElement>('[data-work]')].some((item) => !item.hidden);
+      });
+      if (status) status.textContent = `${count} ${count === 1 ? 'trabalho encontrado' : 'trabalhos encontrados'}`;
+    }));
+  });
+</script>

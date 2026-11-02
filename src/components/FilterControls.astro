@@ -1,0 +1,5 @@
+---
+interface Props { label: string; kind: 'tag' | 'maturity' | 'category'; options: { value: string; count: number }[]; }
+const { label, kind, options } = Astro.props;
+---
+<div class:list={['filter-group', `filter-${kind}`]} role="group" aria-label={label}><h3>{label}</h3><div class="filter-options"><button class="tag-button" type="button" data-filter data-kind={kind} data-value="" aria-pressed="true">Tudo</button>{options.map((option) => <button class="tag-button" type="button" data-filter data-kind={kind} data-value={option.value} aria-pressed="false">{option.value}<small>{option.count}</small></button>)}</div></div>

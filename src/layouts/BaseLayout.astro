@@ -5,6 +5,8 @@ import '@fontsource/kalam/400.css';
 import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Icon from '../components/Icon.astro';
+import DesignEffects from '../components/DesignEffects.astro';
+import '../styles/rooms.css';
 import { site, type RoomSlug } from '../data/site';
 interface Props { title?: string; description?: string; current?: RoomSlug; home?: boolean; noindex?: boolean; }
 const { title, description = site.description, current = 'entrada', home = false, noindex = false } = Astro.props;
@@ -28,10 +30,13 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
     <title>{pageTitle}</title>
   </head>
   <body>
+    <DesignEffects />
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <div class:list={['house', { 'house-home': home }]}>
+    <div class:list={['house', `house-${current}`, { 'house-home': home }]}>
+      {import.meta.env.DEV && <p class="preview-mode handwriting"><a href="#aviso-demonstracao">Prévia · exemplos da referência</a></p>}
       <Navigation current={current} />
       <main id="conteudo" tabindex="-1"><slot /></main>
+      {import.meta.env.DEV && <aside id="aviso-demonstracao" class="preview-notice" aria-label="Aviso de demonstração"><b>Prévia de desenvolvimento</b><span>Exemplos de composição da referência, sem atribuição de autoria. Não entram no build público.</span></aside>}
       <footer class="site-footer">
         <div><p class="farewell">Obrigado pela visita.<br class="mobile-break" /> A porta fica sempre encostada.</p><span class="footer-note handwriting">uma casa feita aos poucos.</span></div>
         <nav aria-label="Rodapé"><a href="/#sobre">Quem mora aqui</a><a href={site.github} target="_blank" rel="noreferrer">Me encontre no GitHub <Icon name="arrow" size={15} /></a></nav>

@@ -2,6 +2,8 @@
 
 Procedimento da aplicação inicial em Astro. O ambiente foi liberado após os bloqueios iniciais: dependências instaladas, check/build e testes de navegador passaram localmente. A integração remota usa Git local; o CI executa as mesmas verificações no GitHub. Publicação do site ainda não realizada. O acompanhamento guarda o histórico e os resultados do envio/CI.
 
+Na etapa de estruturação visual, as verificações locais passaram a cobrir oito testes de produção e 38 de desenvolvimento. O build público segue com sete páginas, agora com 98 destinos locais conferidos. As 28 amostras são visíveis apenas em astro dev; não confundir esse modo com astro preview, que serve o build de produção.
+
 ## Estado do ambiente
 
 | Item | Verificação inicial em 01/11/2026 |
@@ -57,9 +59,10 @@ Comandos da aplicação. A disponibilidade dos scripts não significa que todos 
 | `npm run docs:check` | Links e consistência documental | Verificado localmente via Node diretamente, sem dependências |
 | `npm run check` | Checagem de Astro/TypeScript | Passou localmente: zero erros/avisos/hints |
 | `npm run build` | Gerar versão de produção em dist | Passou localmente: sete páginas |
-| `npm run verify` | Links, âncoras, mídias e exclusão de rascunho/referência no build | Passou localmente: 93 destinos conferidos |
+| `npm run verify` | Links, âncoras, mídias e exclusão de rascunhos/amostras/referência no build | Passou localmente: 98 destinos conferidos |
 | `npm run preview` | Inspecionar build localmente | Serviu a entrada com HTTP 200 em localhost |
-| `npm run test:browser` | Fluxos e screenshots no Chromium | Oito testes passaram; requer `npx playwright install chromium` antes do primeiro uso |
+| `npm run test:browser` | Produção e exclusão de conteúdo privado/de prévia | Oito testes passaram; servidor de teste próprio em 4322 |
+| `npm run test:preview` | Cômodos completos com amostras e fluxos editoriais | 38 testes passaram; usa astro dev em 4321 e reutiliza o servidor local quando disponível |
 
 Manter somente `package-lock.json` para a aplicação. Ele foi gerado localmente. O CI usa `npm ci` com permissão somente de leitura; o job antigo que criaria commits de lockfile foi removido após a liberação do ambiente.
 
@@ -67,7 +70,9 @@ O workflow faz checagem documental, Astro/TypeScript, build, conferência de lin
 
 A [execução inicial](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com sucesso para a implementação 704def5. A entrada também foi revisada visualmente pelas capturas locais. Atualizações exclusivamente documentais podem usar `[skip ci]` após `docs:check`, sem declarar um novo teste da aplicação para esse commit.
 
-O modelo privado é intencionalmente excluído da produção. Player e filtros só aparecem quando existem dados reais que os justifiquem. Sem áudio e trabalhos reais, esses fluxos permanecem sem revisão funcional completa.
+O modelo privado é excluído dos dois ambientes. Registros previewOnly só aparecem em desenvolvimento, com aviso no início e rodapé; também são excluídos do build. Os filtros, sumário, relações, sorteador e páginas individuais foram exercitados com amostras. A reprodução de áudio real permanece pendente porque nenhum arquivo foi fornecido; não há play fictício.
+
+As suítes usam portas distintas para não executar um teste de produção contra o servidor de desenvolvimento do autor. Capturas e relatórios ficam em subpastas production/preview de test-results/ e playwright-report/. O Chromium deve estar instalado via `npx playwright install chromium`. O CI instala o navegador e executa ambas as suítes.
 
 ## Conferência de Git e referência
 
@@ -167,7 +172,7 @@ Na entrega final, acrescentar um exemplo real de inclusão de conteúdo com os c
 | Item | Situação atual |
 | --- | --- |
 | Stack e versões usadas | Astro 7.4.4, TypeScript, CSS nativo, Markdown; Node 24 no CI. Versões resolvidas em package-lock.json |
-| Comandos verificados | Instalação, docs:check, check, build, verify, preview e oito testes Chromium passaram localmente |
+| Comandos verificados | Instalação, docs:check, check, build, verify, preview, oito testes de produção e 38 de desenvolvimento passaram localmente |
 | URL e repositório | `https://github.com/Cuidoka/myhome`; não há URL pública do site |
 | Provedor e configuração | Propostos, sem configuração |
 | Revisão e data do lançamento | Não há lançamento |

@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "verify": "node scripts/verify-build.mjs",
     "docs:check": "node scripts/verify-docs.mjs",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:preview": "playwright test --config=playwright.preview.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.0.0",

@@ -49,6 +49,9 @@ test('cômodos e 404 respondem; rascunhos não são publicados', async ({ page }
   }
   const response = await page.goto('/oficina/modelo-privado/');
   expect(response?.status()).toBe(404);
+  expect((await page.goto('/oficina/amostras/gerador-de-tavernas/'))?.status()).toBe(404);
+  await page.goto('/');
+  await expect(page.getByRole('complementary', { name: 'Aviso de demonstração' })).toHaveCount(0);
 });
 
 test('preferência por movimento reduzido é respeitada', async ({ page }) => {

@@ -4,6 +4,29 @@ Este documento reúne o que precisamos para trocar exemplos por conteúdo real. 
 
 ## Modelo já implementado
 
+### Prévia editorial e metadados por cômodo
+
+Os exemplos de src/content/trabalhos/amostras/ usam `draft: false` e `previewOnly: true`. Aparecem somente em astro dev, acompanhados de aviso; o build público os exclui. Não alterar essa marca para publicar exemplos como trabalhos do autor. O modelo privado original continua com draft: true e sem rota, inclusive no desenvolvimento.
+
+Além dos campos iniciais, a coleção oferece:
+
+| Campo | Uso |
+| --- | --- |
+| previewOnly | Reserva o item à demonstração de desenvolvimento; padrão false |
+| spineTitle | Título curto opcional da lombada, até 45 caracteres; nome completo permanece acessível |
+| artwork | Ilustração do catálogo tipado, para amostras ou composição; nomes inválidos falham na validação |
+| collection / durationSeconds | Coleção e duração informada em segundos para música; duração desconhecida não é inventada |
+| category / medium | Categoria da galeria e técnica/legenda |
+| snippet / interactive | Trecho de código opcional e ferramenta interativa suportada; nesta etapa, tavern-name |
+| notes | Anotações reais do processo, quando fornecidas |
+| campaign | Jogadores, lore, personagens/atributos e registros de sessões estruturados |
+
+`campaign` permite lore com tipo/título/texto, personagens com nome/papel/atributos/nota e sessões com número/título/resumo/data. O número de sessões exibido corresponde às entradas disponíveis, sem reutilizar contagens fictícias da referência.
+
+Os campos originais `demo` e `source` continuam sendo URLs de demonstração e código de um projeto real; `demo` não é a marca de amostra. Para isso existe previewOnly.
+
+As consultas separam publicações e demonstrações, validam relações e fazem ordenação determinística. Tempo de leitura e assuntos das listas derivam dos arquivos. Veja a [arquitetura visual e técnica](arquitetura-visual.md) para componentes e regras de visibilidade.
+
 A coleção `trabalhos` é definida em `src/content.config.ts`; os arquivos ficam em `src/content/trabalhos/`. Um único modelo privado foi criado, com `draft: true`, sem publicação. Não foram adicionados trabalhos fictícios. Os cômodos mostram estados vazios enquanto não há conteúdo real.
 
 Campos implementados: `title`, `summary`, `room`, `draft`, `featured`, `publishedAt`, `updatedAt`, `tags`, `maturity`, `related`, `image`, `imageAlt`, `audio`, `technologies`, `status`, `source` e `demo`. A URL é derivada do nome/caminho do arquivo: `/<room>/<id>/`. Não há campo `slug` separado nesta primeira versão. Um `id` não deve mudar depois de publicado sem tratar redirecionamento.

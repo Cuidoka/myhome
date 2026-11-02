@@ -1,0 +1,22 @@
+---
+interface Props { preview?: boolean; }
+const { preview = false } = Astro.props;
+---
+<div class="browser-window paper" data-tavern>
+  <div class="browser-title"><span aria-hidden="true">○ ○ ○</span><span>taverna.html</span></div>
+  <div class="generator-body"><p class="tavern-name" data-tavern-result aria-live="polite" aria-atomic="true">O Corvo Desconfiado</p><button type="button" class="sketch-button" data-tavern-button>Sortear outro nome</button></div>
+  {preview && <p class="generator-caption handwriting">demonstração interativa da referência</p>}
+</div>
+<script>
+  const animals = ['Corvo', 'Javali', 'Gato', 'Lobo', 'Texugo'];
+  const adjectives = ['Desconfiado', 'Sonolento', 'Torto', 'Viajante', 'Dourado'];
+  const names = animals.flatMap((animal) => adjectives.map((adjective) => `O ${animal} ${adjective}`));
+  document.querySelectorAll<HTMLElement>('[data-tavern]').forEach((generator) => {
+    const button = generator.querySelector<HTMLButtonElement>('[data-tavern-button]');
+    const result = generator.querySelector<HTMLElement>('[data-tavern-result]');
+    button?.addEventListener('click', () => {
+      const options = names.filter((name) => name !== result?.textContent);
+      if (result) result.textContent = options[Math.floor(Math.random() * options.length)]!;
+    });
+  });
+</script>

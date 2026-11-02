@@ -2,7 +2,7 @@
 
 Casa pessoal na internet para apresentar trabalhos, compartilhar processos e falar sobre quem mora aqui. A referência organiza o conteúdo em Entrada, Estúdio, Oficina, Sótão, Sala e Galeria.
 
-**Estado atual:** implementação inicial em Astro, TypeScript, CSS nativo e Markdown. Entrada ilustrada responsiva, páginas dos cinco cômodos, modelo editorial e página 404 criados. Os primeiros trabalhos reais e a apresentação final ainda precisam ser fornecidos. Não há site publicado.
+**Estado atual:** estrutura em Astro, TypeScript, CSS nativo e Markdown. Entrada e cinco cômodos com composições próprias, filtros, páginas individuais, sumário, notas e relações. Traços, papéis, lettering e objetos seguem a referência. Os primeiros trabalhos reais e a apresentação final ainda precisam ser fornecidos. Não há site publicado.
 
 Código enviado para [Cuidoka/myhome](https://github.com/Cuidoka/myhome), branch `main`. A [verificação inicial no GitHub Actions](https://github.com/Cuidoka/myhome/actions/runs/41371821212) passou. Hospedagem recomendada: Vercel, com build estático; conta e domínio ainda não configurados. Envio de código não equivale a deploy do site.
 
@@ -25,7 +25,9 @@ npm run verify
 npm run preview
 ```
 
-Os oito testes de navegador passaram localmente em Chromium. Para executá-los, instalar o Chromium de teste com `npx playwright install chromium` e usar `npm run test:browser`. O workflow executa essas verificações no GitHub. O [guia de operação](docs/operacao.md) registra resultados reais e limitações do ambiente.
+Os testes de navegador passaram localmente em Chromium: oito para produção e 38 para a prévia. Instalar o navegador com `npx playwright install chromium`, executar `npm run test:browser` após o build e `npm run test:preview` para o desenvolvimento. As duas suítes usam portas distintas; o CI executa ambas. O [guia de operação](docs/operacao.md) registra resultados reais e limitações.
+
+Em `npm run dev`, 28 amostras identificadas permitem revisar a composição completa. Elas usam `previewOnly: true` e **não geram páginas no build público**. O modelo privado continua sem rota. Os SVGs decorativos adaptados são ativos próprios do site; `reference/` não é dependência de execução ou build.
 
 ## Adicionar um trabalho
 
@@ -41,6 +43,8 @@ Nome, descrição e links gerais ficam em `src/data/site.ts`. A apresentação a
 4. Use o [inventário de conteúdo](docs/conteudo.md) para preparar a apresentação pessoal e os trabalhos reais.
 5. Siga o [guia de operação](docs/operacao.md) para desenvolvimento, validação, publicação e manutenção, após a definição da stack.
 
+A [arquitetura visual e técnica](docs/arquitetura-visual.md) reúne a organização dos componentes, os critérios de fidelidade e as fontes oficiais aplicadas.
+
 A [análise da referência](docs/analise-reference.md) registra as telas, o sistema visual e as limitações do protótipo. O arquivo [AGENTS.md](AGENTS.md) orienta a continuidade do trabalho e a atualização destes documentos.
 
 ## Referência local
@@ -51,4 +55,4 @@ A pasta `reference/` é material local e está excluída pelo `.gitignore`. Ela 
 
 `docs/acompanhamento.md` é a fonte principal dos estados das tarefas. `docs/decisoes.md` guarda o histórico de aprovações e propostas. O guia explica a sequência, sem duplicar o controle de estados.
 
-Check de Astro/TypeScript, build, links e oito testes de navegador passaram localmente. A entrada foi revisada nas larguras de 320, 390, 768, 1024 e 1440 px. Conteúdo real, demais fluxos editoriais e publicação continuam no acompanhamento.
+Check de Astro/TypeScript, build, links e 46 testes de navegador passaram localmente. Cômodos revisados em 320, 390, 768, 1024 e 1440 px; entrada e detalhes também revisados. Conteúdo/mídia reais e publicação continuam no acompanhamento.
