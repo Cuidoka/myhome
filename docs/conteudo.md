@@ -50,6 +50,16 @@ As ilustrações decorativas da entrada foram desenhadas em SVG no código e sã
 
 Essas informações podem ser reunidas em um único lote. Ausência de um item não bloqueia planejamento ou componentes independentes. A publicação depende de completar os dados usados na versão final.
 
+### Primeiro lote sugerido para integração
+
+Após a aprovação do menu em R-010, a próxima tarefa é preencher P-02 e iniciar C-03. Para revisar uma página com conteúdo real, começar por:
+
+1. Nome público, apresentação para Entrada/Sobre e contatos/perfis destinados à publicação.
+2. Um trabalho real completo: cômodo, título, resumo, texto sobre o trabalho, participação do autor e links/arquivos aplicáveis ao tipo.
+3. Indicação de outros trabalhos prontos ou incompletos, para decidir em P-01 quais cômodos terão conteúdo na estreia.
+
+Esse lote inicial é uma recomendação de sequência; não fixa o número de trabalhos nem aprova a exclusão de qualquer cômodo. O retrato continua opcional. Datas, mídia, créditos e descrições devem acompanhar o material quando aplicáveis; registrar lacunas sem inventar dados. A integração permite revisar a composição com os tamanhos reais das imagens e textos antes de expandir a seleção.
+
 ## Modelo editorial proposto — C-01
 
 Os nomes exatos dos campos serão consolidados na implementação. Separar campos obrigatórios comuns de metadados opcionais; não exigir áudio ou imagem para tipos que não os utilizam.

@@ -6,9 +6,11 @@
 
 **Fase atual:** revisão R-009 implementada e enviada em main no commit 4c70688, com CI aprovado: largura total sem margens externas, navegação no fluxo e polimento responsivo. Check de 32 arquivos sem erros/avisos/hints; build de sete páginas e 98 destinos; 84 testes Chromium passaram (13 de produção e 71 de prévia), com dez tamanhos de janela de 320 a 3440 px. Conteúdo real e hospedagem continuam pendentes.
 
-**Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida. Mantido em execução conforme pedido mais recente; aguardar observações do autor.
+**Revisão do autor:** menu lateral aprovado em R-010. Preservar esse componente e sua adaptação para celular. A revisão final das demais composições, conteúdo e mídia continua pendente.
 
-**Próximo passo:** colher a revisão do autor na prévia de R-009. Depois reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. Mídia e apresentação reais ainda precisam de revisão antes do lançamento; sitemap/feed e hospedagem vêm depois.
+**Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida na sessão de implementação. Mantido em execução por solicitação do usuário; esta revisão documental não repetiu a conferência HTTP.
+
+**Próximo passo:** P-02 e C-03: reunir nome público, apresentação, contatos e uma primeira seleção de trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Sugestão de início: apresentação da Entrada/Sobre e um trabalho completo de um cômodo, expandindo a seleção em seguida. Com o inventário, definir a estreia em P-01. A base visual/técnica já validada permite essa integração; sitemap/feed, revisão final e hospedagem vêm depois, conforme as dependências do guia.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -52,7 +54,7 @@ Uma dependência não resolvida em uma tarefa não impede automaticamente as dem
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | V-01 | Criar tokens e tipografia | Concluído | P-03 | Tokens centralizados e fontes locais renderizados; capturas revisadas |
-| V-02 | Criar layout, navegação e objetos compartilhados | Concluído | V-01 e R-009 | Largura total sem moldura externa, navegação em coluna própria e adaptação para janela baixa. Links, foco, aba atual e separação entre conteúdo/abas verificados no Chromium |
+| V-02 | Criar layout, navegação e objetos compartilhados | Concluído | V-01 e R-009 | Largura total sem moldura externa, navegação em coluna própria e adaptação para janela baixa. Links, foco, aba atual e separação entre conteúdo/abas verificados no Chromium. Menu lateral aprovado pelo autor em R-010 |
 | V-03 | Implementar entrada, sobre e contato | Em andamento | V-02; conteúdo final depende de P-02 | Implementação responsiva validada; apresentação provisória e contato GitHub ainda precisam da revisão de conteúdo do autor |
 | V-04 | Revisar entrada em desktop e mobile | Concluído | V-03 e R-009 | Entrada testada em dez janelas entre 320 e 3440 px; largura total e ausência de overflow verificadas, capturas representativas revisadas. Teclado, redimensionamento e movimento reduzido passaram. Toque físico e outros motores não verificados |
 
@@ -167,6 +169,13 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Ocorrência do ambiente:** chamar Playwright diretamente não iniciou o servidor de produção porque npm não está no PATH padrão. A execução pelo script npm via runtime fornecido resolveu; os 13 testes passaram. Não foi necessário mudar a aplicação nem instalar ferramentas globais.
 - **Integração concluída:** commit [4c70688](https://github.com/Cuidoka/myhome/commit/4c706887da01390c76352cdffb2890a77f7891d9) enviado em main e confirmado no remoto. A [execução CI 41377380717](https://github.com/Cuidoka/myhome/actions/runs/41377380717) passou, incluindo ambas as suítes. Documentação conferida: nove arquivos, 29 tarefas, 31 decisões e 23 links locais. Índice e histórico Git sem reference. Fechamento documental usa `[skip ci]`, sem alterar o código validado.
 - **Limites e continuidade:** revisão do autor, conteúdo/contato e mídia reais, áudio, outros motores/toque físico e publicação continuam pendentes. Servidor 4321 mantido e Galeria com HTTP 200, composição e aviso de prévia conferidos. Retomar da revisão do autor e P-02/C-03.
+
+### 01/11/2026 — aprovação do menu e definição do próximo passo
+
+- **Retorno e tarefas:** usuário aprovou a aparência do menu lateral e perguntou sobre pendências e sequência. Registro R-010 vinculado a V-02/Q-02. Aprovação específica do menu; não encerra a revisão final do site.
+- **Conferência:** lidos acompanhamento, decisões, fases de conteúdo/revisão/publicação do guia, inventário editorial e operação. Git iniciou limpo e sincronizado. Não foi identificada necessidade de refazer a arquitetura para iniciar o conteúdo; a base anterior continua com 84 testes e CI aprovados, sem nova execução da aplicação nesta etapa.
+- **Próximo passo recomendado:** P-02/C-03, começando pela apresentação pessoal, contatos e um trabalho real completo. A abrangência do lançamento em P-01 permanece a definir com o inventário. Depois completar mídia/interações correspondentes, F-07, Q-01 a Q-03 e L-01 a L-03, respeitando as dependências.
+- **Documentos e verificação:** aprovação, ponto de retomada e primeiro lote editorial registrados. O primeiro lote é uma sugestão de organização, sem aprovação presumida da seleção ou do número de trabalhos da estreia. Conferência documental passou: nove arquivos, 29 tarefas, 32 decisões e 25 links locais; diff sem erros de espaços. Nenhum código da aplicação alterado; fechamento documental com `[skip ci]`, sem atribuir novos testes da aplicação a esta etapa.
 
 ## Modelo de registro futuro
 

@@ -43,6 +43,8 @@ Transformar os HTMLs em componentes reutilizáveis e layouts fluidos. Não usar 
 
 Abas precisam de nomes explícitos e indicação da página atual. Elementos interativos precisam funcionar com teclado, toque e ponteiro. Decorações não devem disputar o foco com o conteúdo. O movimento deve respeitar a preferência por redução de animação.
 
+O menu lateral da revisão responsiva foi aprovado pelo autor em R-010. Preservar essa direção no desktop e a adaptação horizontal no celular ao integrar os trabalhos reais.
+
 As fontes e cores estão detalhadas na análise. O lettering autoral é uma possibilidade futura, sem impedir o início com a tipografia de referência. Adaptações de legibilidade e desempenho devem preservar o caráter visual e ter justificativa registrada quando forem relevantes.
 
 ## Fase 0 — análise e planejamento

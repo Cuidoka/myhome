@@ -24,6 +24,7 @@ As evidências abaixo referem-se à conversa que iniciou o projeto. Recomendar u
 | R-007 | 01/11/2026 | Iniciar a execução do plano e integrar ao remoto correto | “Do it, remote repository is https://github.com/Cuidoka/myhome.git”. Autoriza implementação e integração de código ao repositório; não resolve conteúdo final ou configuração de hospedagem |
 | R-008 | 01/11/2026 | Estruturar o site seguindo documentação oficial e máxima fidelidade à referência | Pedido de continuar a implementação preservando especialmente traços e estética. Abrange componentes e composição própria de cada cômodo; manter registro contínuo |
 | R-009 | 01/11/2026 | Remover margens externas e adaptar o site a diferentes computadores e proporções | Pedido: “Não crie as margens”, site convencional responsivo, sem exclusividade para Mac/16:10, com polimento dos elementos. Substitui o limite externo de 1440 px; preserva traços e conceito da casa de R-008 |
+| R-010 | 01/11/2026 | Preservar o menu lateral apresentado na revisão responsiva | Retorno do usuário: “Gostei de como ficou o menu na lateral”. Aprovação visual desse componente em V-02/Q-02; manter sua adaptação para celular. A revisão final de conteúdo e do restante do site continua pendente |
 
 ## Decisões técnicas e propostas
 
