@@ -86,6 +86,6 @@ Essa fila incorpora a correção do usuário: conteúdo real não é a única pe
 
 ## Verificações e limites
 
-Check de 38 arquivos passou sem erros/avisos/hints. A ampliação dos testes encontrou overflow no novo grid do detalhe de projeto em 390 px; a coluna interna passou a usar minmax(0, 1fr), e o caso direcionado passou. A suíte ampliada de prévia passou com 111 testes, incluindo os cinco tipos em sete larguras; os 14 testes de produção também passaram. Build gerou sete páginas, com 113 destinos locais conferidos. O ajuste final de alinhamento das datas foi conferido novamente em 320/1440/3440. Envio e CI desta retomada ficam registrados no acompanhamento.
+Check de 38 arquivos passou sem erros/avisos/hints. A ampliação dos testes encontrou overflow no novo grid do detalhe de projeto em 390 px; a coluna interna passou a usar minmax(0, 1fr), e o caso direcionado passou. A suíte ampliada de prévia passou com 111 testes, incluindo os cinco tipos em sete larguras; os 14 testes de produção também passaram. Build gerou sete páginas, com 113 destinos locais conferidos. O ajuste final de alinhamento das datas foi conferido novamente em 320/1440/3440. O lote f12404e foi enviado e passou também no CI; evidências e link ficam no acompanhamento.
 
 Permanecem sem comprovação: reprodução de áudio final, mídia real em todas as proporções, leitores de tela e dispositivos físicos, outros motores de navegador, medição de desempenho em hardware modesto e fidelidade final aprovada pelo autor. A proteção de reference deve ser conferida em cada envio.

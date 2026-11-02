@@ -4,13 +4,13 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** R-012/V-05 em andamento. Auditoria por tela registrada e primeiro lote implementado em C-02/V-03: detalhes por tipo, contexto de leitura, navegação entre peças, mídia e lacunas da Entrada. Check de 38 arquivos sem erros/avisos/hints; build de sete páginas e 113 destinos; 125 testes Chromium passaram localmente (14 de produção e 111 de prévia). Envio/CI deste lote em conferência. O site continua em desenvolvimento inicial, com muitas diferenças visuais/funcionais ainda abertas.
+**Fase atual:** R-012/V-05 em andamento. Auditoria por tela registrada e primeiro lote enviado em main no commit f12404e, com CI aprovado: detalhes por tipo, contexto de leitura, navegação entre peças, mídia e lacunas da Entrada. Check de 38 arquivos sem erros/avisos/hints; build de sete páginas e 113 destinos; 125 testes Chromium passaram (14 de produção e 111 de prévia). O site continua em desenvolvimento inicial, com muitas diferenças visuais/funcionais ainda abertas.
 
 **Revisão do autor:** menu lateral aprovado em R-010. Preservar esse componente e sua adaptação para celular. A revisão final das demais composições, conteúdo e mídia continua pendente.
 
 **Prévia para análise do autor:** servidor de desenvolvimento mantido em `http://127.0.0.1:4321/`. A suíte de prévia exercitou as composições e os novos movimentos nesse servidor; continuar disponível para a revisão do autor.
 
-**Próximo passo:** conferir envio/CI deste lote e retomar a fila da [auditoria do projeto](auditoria-do-projeto.md), começando pela Galeria: molduras variadas, peça oval, cabos/ganchos e distribuição. Depois leitura, Oficina, Sótão, Estúdio e acabamento da Entrada. P-02/C-03 continuam pendentes, mas não bloqueiam essas melhorias. Conteúdo, validação final e publicação seguem as dependências do guia.
+**Próximo passo:** retomar a fila da [auditoria do projeto](auditoria-do-projeto.md), começando pela Galeria: molduras variadas, peça oval, cabos/ganchos e distribuição. Depois leitura, Oficina, Sótão, Estúdio e acabamento da Entrada. P-02/C-03 continuam pendentes, mas não bloqueiam essas melhorias. Conteúdo, validação final e publicação seguem as dependências do guia.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -99,7 +99,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
 - **Ambiente:** instalação já validada; check/build e 125 testes locais passam. Produção e desenvolvimento permanecem separados. Este lote não adicionou dependências.
-- **Git:** commits anteriores confirmados no remoto e push retornou Everything up-to-date no início de R-012. Novo lote aguarda registro de envio/CI. O 403 anterior do conector não bloqueia o Git local.
+- **Git:** commits anteriores confirmados no remoto; lote de refinamento enviado em f12404e e CI aprovado. Fechamento apenas documental não altera o código validado. O 403 anterior do conector não bloqueia o Git local.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -196,7 +196,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Auditoria:** inventário do repositório, leitura das configurações, rotas/layouts/componentes, estilos, dados/coleção, scripts/testes/CI e documentação. Revisitadas as 12 capturas; comparadas as 12 páginas e anatomias de desktop/mobile. 28 SVGs analisados como XML; 28 amostras mantêm previewOnly. Resultados, limites e fila por tela registrados em auditoria-do-projeto.md.
 - **Correções:** etiqueta e objeto específico por tipo na grade da leitura, sumário recolhível, trilha relacionada, cartões de relações e anterior/próximo. Eliminadas caixa de objeto vazia e nota automática não fornecida. WorkVisual centraliza dimensões/alt e evita duplicação de imagem; CharacterCard compartilhado. Entrada recebeu cena tática, desenho selecionado e datas nas novidades, sem novos arquivos da referência.
 - **Verificações reais:** check de 38 arquivos sem erros/avisos/hints; build de sete páginas, verify de 113 destinos e exclusão de rascunhos/amostras/reference. Passaram 111 testes de prévia e 14 de produção. A primeira rodada ampliada encontrou overflow no novo grid de projeto em 390 px; corrigido com coluna minmax(0, 1fr), caso direcionado e suíte completa aprovados. Revisadas capturas representativas de Entrada, texto, projeto, faixa e campanha em desktop/mobile. Documentação e Git conferidos antes do envio.
-- **Limites:** muitos refinamentos visuais continuam em V-05; C-02 não foi encerrada. O próximo lote é Galeria, seguido de leitura longa e demais cenas conforme a auditoria. Conteúdo real, áudio, revisão física/outros motores, SEO final e deploy continuam pendentes. Confirmar envio/CI deste lote; servidor local preservado.
+- **Integração concluída:** commit [f12404e](https://github.com/Cuidoka/myhome/commit/f12404e7988f4c467ffc2f73a16cc654b27bd65b) enviado em main e confirmado no remoto. A [execução CI 41384198173](https://github.com/Cuidoka/myhome/actions/runs/41384198173) passou, incluindo os 125 testes. Documentação conferida com 11 arquivos, 31 tarefas e 36 decisões; diff sem erros de espaços. Índice/histórico sem reference; exclusão confirmada. Detalhe de campanha respondeu HTTP 200 com fichas e aviso de prévia presentes. Fechamento documental usa `[skip ci]`.
+- **Limites:** muitos refinamentos visuais continuam em V-05; C-02 não foi encerrada. O próximo lote é Galeria, seguido de leitura longa e demais cenas conforme a auditoria. Conteúdo real, áudio, revisão física/outros motores, SEO final e deploy continuam pendentes. Servidor local preservado em 4321.
 
 ## Modelo de registro futuro
 

@@ -4,7 +4,7 @@ Casa pessoal na internet para apresentar trabalhos, compartilhar processos e fal
 
 **Estado atual:** base funcional inicial em Astro, TypeScript, CSS nativo e Markdown. Entrada e cinco cômodos têm estrutura própria, filtros, detalhes e relações; a fidelidade visual e editorial ainda exige vários lotes de refinamento. A [auditoria por tela](docs/auditoria-do-projeto.md) registra o que funciona, as lacunas e a fila de continuidade. Conteúdo real e publicação também estão pendentes.
 
-Código enviado para [Cuidoka/myhome](https://github.com/Cuidoka/myhome), branch `main`. A [verificação da etapa de movimento no GitHub Actions](https://github.com/Cuidoka/myhome/actions/runs/41379953708) passou. Hospedagem recomendada: Vercel, com build estático; conta e domínio ainda não configurados. Envio de código não equivale a deploy do site.
+Código enviado para [Cuidoka/myhome](https://github.com/Cuidoka/myhome), branch `main`. A [verificação do primeiro lote de refinamento no GitHub Actions](https://github.com/Cuidoka/myhome/actions/runs/41384198173) passou. Hospedagem recomendada: Vercel, com build estático; conta e domínio ainda não configurados. Envio de código não equivale a deploy do site.
 
 ## Executar e verificar
 
