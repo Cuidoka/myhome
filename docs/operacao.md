@@ -8,7 +8,7 @@ Procedimento da aplicação inicial em Astro. O ambiente foi liberado após os b
 | --- | --- |
 | Diretório | `C:\Users\siltu\Documents\PROJETOS\Cuidoka` |
 | Shell | PowerShell |
-| Git | Inicializado e origem configurada para Cuidoka/myhome; acesso local liberado. Exceção safe.directory restrita à pasta por propriedade da conta sandbox anterior |
+| Git | Main enviado e sincronizado com Cuidoka/myhome; CI inicial aprovado. Exceção safe.directory restrita à pasta por propriedade da conta sandbox anterior |
 | Node.js e npm | Node 24.22.1 e npm 11.21.1 via pnpm 11.25.0 do runtime fornecido. Sem instalação global. CI usa Node 24 com npm |
 | Aplicação e dependências | Instaladas; lockfile gerado localmente. Astro 7.4.4; instalação final reportou zero vulnerabilidades |
 | Hospedagem e domínio | Não definidos |
@@ -65,6 +65,8 @@ Manter somente `package-lock.json` para a aplicação. Ele foi gerado localmente
 
 O workflow faz checagem documental, Astro/TypeScript, build, conferência de links e testes Playwright em 320, 390, 768, 1024 e 1440 px. Os testes registram screenshots; resultado verde não substitui a revisão visual humana das capturas. Build, lockfile e relatório ficam no artefato `verificacao-da-casa` por sete dias.
 
+A [execução inicial](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com sucesso para a implementação 704def5. A entrada também foi revisada visualmente pelas capturas locais. Atualizações exclusivamente documentais podem usar `[skip ci]` após `docs:check`, sem declarar um novo teste da aplicação para esse commit.
+
 O modelo privado é intencionalmente excluído da produção. Player e filtros só aparecem quando existem dados reais que os justifiquem. Sem áudio e trabalhos reais, esses fluxos permanecem sem revisão funcional completa.
 
 ## Conferência de Git e referência
@@ -82,6 +84,8 @@ git ls-files -- reference
 Resultados esperados: a regra `/reference/` explica a exclusão e `git ls-files -- reference` não lista arquivos. O `.gitignore` sozinho não remove arquivos já rastreados. Se o estado futuro revelar referência rastreada, corrigir o índice e verificar o histórico antes de qualquer envio; não apagar a pasta local para resolver isso.
 
 Conferir o resultado do build para garantir que a pasta e seus arquivos não são publicados. Para demonstrar independência, instalar e compilar uma cópia limpa do código versionado sem `reference/`. Não mover ou excluir a referência do autor para fazer esse teste.
+
+Na versão inicial, essa conferência passou em cópia de 36 arquivos com `npm ci`, build e verify; nenhuma referência foi copiada. Árvore remota e histórico inicial também foram conferidos. A cópia temporária permaneceu em `.qa/` porque a política do ambiente recusou sua remoção; a pasta é ignorada e não foi enviada. Preview de QA encerrado ao final da sessão.
 
 ## Validação por tipo de mudança
 
@@ -167,6 +171,6 @@ Na entrega final, acrescentar um exemplo real de inclusão de conteúdo com os c
 | URL e repositório | `https://github.com/Cuidoka/myhome`; não há URL pública do site |
 | Provedor e configuração | Propostos, sem configuração |
 | Revisão e data do lançamento | Não há lançamento |
-| Resultado das verificações | Aplicação preparada para CI; acompanhar a execução real e a revisão visual |
+| Resultado das verificações | Base atual passou localmente e no CI inicial; cópia limpa sem referência validada. Revisão final com trabalhos reais ainda pendente |
 | Procedimento real de recuperação | A validar em L-03 |
 | Pendências pós-lançamento aceitas | Nenhuma definida |

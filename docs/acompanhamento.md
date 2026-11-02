@@ -4,9 +4,9 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** base instalada e validada localmente: check sem erros/avisos/hints, sete páginas estáticas, 93 destinos locais verificados e oito testes Chromium aprovados. Capturas da entrada revisadas nas cinco larguras previstas. Integração pelo Git local em andamento; sem hospedagem pública.
+**Fase atual:** base instalada, validada e enviada para `Cuidoka/myhome`, branch main. Check sem erros/avisos/hints, sete páginas estáticas, 93 destinos locais e oito testes Chromium aprovados localmente. Capturas da entrada revisadas nas cinco larguras previstas. CI inicial aprovado no GitHub; sem hospedagem pública.
 
-**Próximo passo:** concluir conferência em cópia limpa sem referência e enviar pelo Git local; verificar o CI do remoto. Depois, reunir apresentação final e trabalhos reais em P-02/C-03. Não recriar o scaffold ou voltar a tratar as dependências como bloqueadas.
+**Próximo passo:** reunir apresentação final, contatos escolhidos e primeiros trabalhos em P-02/C-03; definir o conteúdo de estreia em P-01. Com dados reais, exercitar templates, filtros, mídia e relações, concluir os cômodos e a revisão de lançamento. Depois configurar hospedagem e endereço público. Não recriar o scaffold ou voltar a tratar dependências/Git como bloqueados.
 
 **Ambiente atual:** acesso local e rede liberados. Node 24.22.1; npm 11.21.1 executado via `pnpm dlx npm@11` a partir do runtime fornecido, sem instalação global. Dependências e lockfile criados; origem configurada para `Cuidoka/myhome`. O erro 403 do conector permanece apenas como histórico; envio local será verificado separadamente.
 
@@ -39,7 +39,7 @@ Uma dependência não resolvida em uma tarefa não impede automaticamente as dem
 | P-01 | Consolidar stack, conteúdo em arquivos e escopo do lançamento | Em andamento | D-001 a D-005 | Stack e início autorizados; seleção final dos cômodos de estreia depende do conteúdo real |
 | P-02 | Reunir apresentação, contato e seleção inicial de trabalhos | Aguardando definição | E-001 a E-004 | Inventário preenchido; distinguir itens prontos, ausentes e adiados. Conteúdo restante pode ser integrado depois |
 | P-03 | Verificar ambiente e criar aplicação mínima | Concluído | Base técnica definida em P-01 e autorização para implementação | Instalação, check, build e testes locais passaram; versões e comandos registrados |
-| P-04 | Preparar Git e rotinas locais | Em andamento | P-03; remoto definido em D-008 | Remoto configurado e lockfile gerado localmente; conferir índice, cópia limpa e envio. CI usa npm ci |
+| P-04 | Preparar Git e rotinas locais | Concluído | P-03; remoto definido em D-008 | Lockfile local, scripts validados, Git configurado e commit 704def5 enviado em main; origem sincronizada e CI inicial aprovado |
 
 ## Visual e entrada
 
@@ -77,9 +77,9 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | Q-01 | Revisar conteúdo e navegação completos | Pendente | C-03 e áreas incluídas | Sem destinos falsos, mídia ausente, marcadores públicos indevidos ou dados inconsistentes |
-| Q-02 | Validar visual, acessibilidade e funcionalidades | Pendente | V-04 e áreas incluídas | Cenários do guia de operação executados e resultados registrados; problemas essenciais resolvidos |
-| Q-03 | Validar build, Git e independência da referência | Pendente | P-04, F-07 e áreas incluídas | Verificações passam; `reference/` fora do índice e artefatos; build reproduzível sem a pasta |
-| L-01 | Preparar hospedagem, repositório e domínio | Aguardando definição | D-002 e E-005 | Configuração pronta e ação externa coberta por autorização; domínio opcional resolvido |
+| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | Entrada e oito fluxos Chromium validados localmente e no CI; revisão final de conteúdo, mídia real, demais fluxos e outros motores pendente |
+| Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Base atual validada em cópia sem referência com npm ci/build/verify e no CI; pasta ausente do índice, árvore remota e histórico inicial. Repetir revisão final quando o conteúdo/escopo estiver completo |
+| L-01 | Preparar hospedagem, repositório e domínio | Em andamento | D-002 e E-005 | Repositório main e CI prontos; conta de hospedagem e domínio ainda a definir |
 | L-02 | Publicar e conferir a versão pública | Pendente | Q-01 a Q-03 e L-01 | URL acessível; páginas, mídia e acesso direto conferidos; revisão publicada registrada |
 | L-03 | Entregar instruções finais e pendências residuais | Pendente | L-02 | Operação e recuperação verificadas; resultado e backlog documentados |
 | M-01 | Manter conteúdo e dependências | Pendente | L-03 | Rotina recorrente definida na entrega; cada ocorrência gera registro próprio |
@@ -89,7 +89,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
 - **Ambiente:** instalação, Astro check, build e oito testes Playwright passaram após liberação; bloqueios anteriores resolvidos para execução local.
-- **Git:** inicializado, origem configurada e regra de exclusão conferida; envio local e CI em andamento. O 403 anterior do conector não foi tomado como evidência de falha do Git local.
+- **Git:** envio concluído pelo Git local, branch main sincronizada. CI da implementação 704def5 passou. O 403 anterior do conector não bloqueia mais este fluxo.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** base/entrada executadas e aparência da entrada revisada. Templates de trabalho com conteúdo real, áudio, filtros e relações ainda exigem dados e revisão; não declarar o lançamento completo.
 
@@ -128,7 +128,9 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Correções:** auditoria inicial apontou três dependências com avisos; Astro atualizado de 6.4.8 para 7.4.4. Tipos Node adicionados e importações Zod atualizadas. Auditoria da instalação final reportou zero vulnerabilidades. Lockfile gerado localmente e job de escrita automática removido do CI.
 - **Falhas encontradas e corrigidas:** check inicial teve dois erros por tipos Node ausentes; primeira rodada de navegador encontrou overflow em 320 px e uma captura falhou com seis workers. Título passou a respeitar seu contêiner, fotos reservaram espaço para as abas e testes passaram a usar dois workers. Espaços do título sobre ajustados para celular.
 - **Verificações concluídas:** check com zero erros/avisos/hints; build de sete páginas; 93 destinos locais; oito testes Chromium cobrindo cinco larguras, navegação, teclado, rascunhos e movimento reduzido. Capturas das cinco larguras revisadas. Abertura na aba integrada indisponível por falha do host de navegador; revisão visual feita pelas capturas reais dos testes.
-- **Ainda em execução:** conferência de cópia limpa, commit/envio e leitura do resultado CI. Conteúdo final e hospedagem continuam pendentes.
+- **Cópia limpa:** 36 arquivos de fonte/documentação copiados sem referência, Git ou dependências. npm ci, build de sete páginas e conferência dos 93 destinos passaram, com auditoria sem vulnerabilidades reportadas. A política do ambiente recusou a remoção recursiva dessa cópia temporária, sem justificativa adicional; ela permanece ignorada em `.qa/`, fora do índice/remoto. Nenhuma tentativa de contornar essa recusa foi feita.
+- **Integração concluída:** commit [704def5](https://github.com/Cuidoka/myhome/commit/704def56d08c5e79f138bf2302e70c6e22be0c24) enviado por Git local, fetch configurado e origin/main sincronizado. `git ls-tree` da origem e histórico inicial conferidos sem `reference/`. A [execução CI 41371821212](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com success, incluindo os testes de navegador no Linux.
+- **Encerramento desta etapa:** preview temporário encerrado. Documentação de fechamento verificada localmente; commit somente documental usa `[skip ci]` para evitar repetir testes de aplicação sem mudança de código. Conteúdo final, fluxos com dados reais e hospedagem continuam pendentes. Próximo ponto de retomada: P-02/C-03 e definição final de P-01.
 
 ## Modelo de registro para próximas sessões
 
