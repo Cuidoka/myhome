@@ -4,15 +4,15 @@
 
 ## Situação atual e retomada
 
-**Fase atual:** estrutura dos cinco cômodos e dos detalhes implementada, com traços e objetos adaptados da referência. Check sem erros/avisos/hints, sete páginas no build público, 98 destinos locais e 46 testes Chromium aprovados localmente (oito de produção e 38 de prévia). Amostras identificadas só no desenvolvimento; conteúdo real e hospedagem ainda pendentes. Integração desta etapa em andamento.
+**Fase atual:** estrutura dos cinco cômodos e dos detalhes implementada e enviada em main no commit b2b4060, com CI aprovado. Check sem erros/avisos/hints, sete páginas no build público, 98 destinos locais e 46 testes Chromium aprovados localmente (oito de produção e 38 de prévia). Amostras identificadas só no desenvolvimento; conteúdo real e hospedagem ainda pendentes.
 
 **Prévia para análise do autor:** servidor de desenvolvimento iniciado em `http://127.0.0.1:4321/`, com resposta HTTP 200 conferida. Mantido em execução conforme pedido mais recente; aguardar observações do autor.
 
-**Próximo passo:** concluir integração desta etapa e obter a revisão do autor na prévia local. Reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. A estrutura, filtros e relações já foram exercitados com amostras; falta validar a mídia final e a apresentação real antes do lançamento. Depois concluir sitemap/feed conforme escolha e configurar hospedagem.
+**Próximo passo:** obter a revisão do autor na prévia local. Reunir apresentação final, contatos e primeiros trabalhos em P-02/C-03, definir estreia em P-01 e substituir amostras por conteúdo real. A estrutura, filtros e relações já foram exercitados com amostras; falta validar a mídia final e a apresentação real antes do lançamento. Depois concluir sitemap/feed conforme escolha e configurar hospedagem.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
-**Ambiente atual:** acesso local e rede liberados. Node 24.22.1; npm 11.21.1 executado via `pnpm dlx npm@11` a partir do runtime fornecido, sem instalação global. Dependências e lockfile criados; origem configurada para `Cuidoka/myhome`. O erro 403 do conector permanece apenas como histórico; envio local será verificado separadamente.
+**Ambiente atual:** acesso local e rede liberados. Node 24.22.1; npm 11.21.1 executado via `pnpm dlx npm@11` a partir do runtime fornecido, sem instalação global. Dependências e lockfile criados; origem configurada para `Cuidoka/myhome`. O erro 403 do conector permanece apenas como histórico; integração por Git local confirmada.
 
 ## Estados usados
 
@@ -93,7 +93,7 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
 - **Ambiente:** instalação, Astro check, build e testes passam; a etapa atual acrescentou prévia segregada e totaliza 46 testes locais aprovados.
-- **Git:** envio concluído pelo Git local, branch main sincronizada. CI da implementação 704def5 passou. O 403 anterior do conector não bloqueia mais este fluxo.
+- **Git:** envio concluído pelo Git local, branch main sincronizada. CI das implementações inicial e de estruturação passou; etapa atual validada em b2b4060. O 403 anterior do conector não bloqueia este fluxo.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -152,7 +152,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Estrutura editorial:** metadados específicos, leitura derivada do corpo, arquivo por ano, filtros combinados, coleções, lore/fichas/sessões, detalhe com etiqueta/sumário/notas e backlinks. Sorteador evita repetição imediata. Sem áudio fictício ou links de código inexistentes.
 - **Validação local:** check de 31 arquivos com zero erros/avisos/hints; build de sete páginas e 98 destinos locais; oito testes de produção e 38 de prévia passaram. Capturas em cinco larguras para cada cômodo e em 390/1440 para entrada, texto e obra. Comparação visual realizada com as capturas originais, incluindo revisão de celular. Inferência de imagem no teste foi ajustada após erro inicial de TypeScript. Produção e prévia usam portas separadas para evitar validar o modo errado.
 - **Pendências preservadas:** conteúdo e contato finais, mídia/áudio reais, decisão de estreia, revisão do autor, outros motores/toque físico, sitemap/feed/endereço e deploy. A pasta reference permanece local e ignorada; só ativos escolhidos estão no código.
-- **Integração:** preparar commit, conferir ausência da referência no índice e acompanhar CI; o servidor local solicitado pelo usuário permanece em execução para análise.
+- **Integração concluída:** commit [b2b4060](https://github.com/Cuidoka/myhome/commit/b2b406001c30d05673d0a59e304937518dc69d33) enviado a main. A [execução CI 41375494516](https://github.com/Cuidoka/myhome/actions/runs/41375494516) terminou com success. Índice e histórico continuam sem reference/. As quebras de linha dos novos arquivos foram normalizadas conforme .gitattributes; verificação documental passou. A mudança final de espaçamento na Sala foi conferida novamente por teste direcionado e build antes do envio.
+- **Retomada:** servidor do autor mantido em `http://127.0.0.1:4321/`; Galeria respondeu HTTP 200 com nova composição e aviso de prévia conferidos. Fechamento somente documental usa `[skip ci]` após docs:check; não houve mudança de código depois do commit validado. Prosseguir com revisão visual e P-02/C-03, sem refazer a estrutura.
 
 ## Modelo de registro futuro
 

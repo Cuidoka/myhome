@@ -70,6 +70,8 @@ O workflow faz checagem documental, Astro/TypeScript, build, conferência de lin
 
 A [execução inicial](https://github.com/Cuidoka/myhome/actions/runs/41371821212) terminou com sucesso para a implementação 704def5. A entrada também foi revisada visualmente pelas capturas locais. Atualizações exclusivamente documentais podem usar `[skip ci]` após `docs:check`, sem declarar um novo teste da aplicação para esse commit.
 
+A [execução da estruturação visual](https://github.com/Cuidoka/myhome/actions/runs/41375494516) também passou, para b2b4060. Ela inclui ambas as suítes, de produção e desenvolvimento, além de check/build/verify. O servidor local 4321 permanece ativo para a revisão do autor; o servidor 4322 dos testes é temporário e encerrado pelo runner.
+
 O modelo privado é excluído dos dois ambientes. Registros previewOnly só aparecem em desenvolvimento, com aviso no início e rodapé; também são excluídos do build. Os filtros, sumário, relações, sorteador e páginas individuais foram exercitados com amostras. A reprodução de áudio real permanece pendente porque nenhum arquivo foi fornecido; não há play fictício.
 
 As suítes usam portas distintas para não executar um teste de produção contra o servidor de desenvolvimento do autor. Capturas e relatórios ficam em subpastas production/preview de test-results/ e playwright-report/. O Chromium deve estar instalado via `npx playwright install chromium`. O CI instala o navegador e executa ambas as suítes.
