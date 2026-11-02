@@ -36,6 +36,9 @@ Não foi introduzido framework de interface adicional, banco de dados ou serviç
 | src/styles/global.css | Tokens, regras gerais e estrutura da entrada |
 | src/styles/rooms.css | Tratamento dos traços, composição dos cômodos e anatomia dos detalhes |
 | src/styles/motion.css, src/lib/motion.ts e src/components/Motion.astro | Estados de interação, respostas pontuais, entradas únicas e preferência de movimento |
+| src/components/DetailObject.astro e src/styles/details.css | Objeto e anatomia editorial por tipo, alinhados à etiqueta/folha/notas |
+| src/components/WorkVisual.astro e src/components/CharacterCard.astro | Imagem com dimensões/alt e ficha de personagem compartilhadas entre cena e detalhe |
+| src/components/WorkNavigation.astro | Anterior/próximo a partir da mesma coleção visível e do mesmo cômodo |
 | src/content.config.ts | Schema de trabalhos e metadados opcionais de cada tipo |
 | src/lib/content.ts | Política de publicação/prévia, relações, ordenação e formatação de dados |
 | src/pages/[room]/index.astro | Seleção do cômodo, dados e estado vazio honesto |
@@ -104,9 +107,9 @@ Campos novos estão detalhados no [inventário editorial](conteudo.md). Os arqui
 
 ## Anatomia do detalhe
 
-O nome do cômodo continua pintado na parede. Quando apropriado, o objeto principal aparece antes da leitura: janela de ferramenta, mapa, capa ou moldura. Depois vêm etiqueta de dados e sumário, folha de texto e notas ao lado.
+O nome do cômodo continua pintado na parede. O objeto principal e a folha ocupam a mesma coluna: janela de ferramenta, mapa com personagens, capa com área de áudio ou moldura. Etiqueta/sumário ficam à esquerda e contexto/notas à direita. Metadados de tecnologia/estado, coleção/duração, jogadores/sessões e categoria/técnica são exibidos conforme o tipo. Sem objeto ou notas disponíveis, seus recipientes não são criados.
 
-O Markdown é renderizado pelo Astro. Os títulos de nível 2 alimentam o sumário. Os dados de publicação, revisão, assuntos e maturidade ficam na etiqueta. “Quem aponta pra cá” deriva das relações recebidas, e os trabalhos relacionados mostram as relações de saída; não há lista duplicada mantida manualmente.
+O Markdown é renderizado pelo Astro. Os títulos de nível 2 alimentam o sumário recolhível em details/summary. Os dados de publicação, revisão, assuntos e maturidade ficam na etiqueta. “Quem aponta pra cá” deriva das relações recebidas, e os trabalhos relacionados mostram as relações de saída em cartões. Uma faixa relacionada alimenta o contexto de leitura, com player apenas se houver áudio. Anterior/próximo deriva da ordenação dos trabalhos do mesmo cômodo, sem destinos manuais.
 
 No celular a etiqueta antecede a folha e as notas vêm depois. A fonte de conteúdo é a mesma, sem arquivos paralelos para desktop e mobile.
 
@@ -116,4 +119,4 @@ Os testes separam produção e prévia em portas distintas para impedir que uma 
 
 Cobertura preparada: composições dos cinco cômodos em dez tamanhos de janela, entrada e detalhes em celular/desktop/ultrawide, imagens carregadas, largura total da casa, separação entre conteúdo e navegação, ausência de overflow da página, janela baixa e redimensionamento, rolagem de tabela por teclado, geração de nomes, combinação de filtros, coleções, sumário, detalhe, relações e exclusão de amostras/rascunhos da produção.
 
-Limites que permanecem: revisão final do autor, trabalhos e mídia reais, teste do áudio com arquivo final, outros motores de navegador, toque em dispositivo físico, sitemap/feed com endereço final e deploy. A referência só fornece layouts de celular para Entrada, Sótão e Texto; os demais cômodos foram adaptados mantendo seus objetos e hierarquia.
+Limites que permanecem: fidelidade por tela conforme [auditoria-do-projeto.md](auditoria-do-projeto.md), notas/figuras e metadata mobile, revisão final do autor, trabalhos e mídia reais, teste do áudio com arquivo final, outros motores de navegador, toque em dispositivo físico, sitemap/feed com endereço final e deploy. A referência só fornece layouts de celular para Entrada, Sótão e Texto; os demais cômodos foram adaptados mantendo seus objetos e hierarquia.

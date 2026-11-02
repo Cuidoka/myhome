@@ -1,16 +1,16 @@
 # Acompanhamento do projeto
 
-Última atualização: 01/11/2026. Este arquivo é a fonte principal do estado das tarefas. A sequência e os critérios estão no [guia](guia-do-projeto.md); a autorização de cada decisão está no [registro de decisões](decisoes.md).
+Última atualização: 02/11/2026. Este arquivo é a fonte principal do estado das tarefas. A sequência e os critérios estão no [guia](guia-do-projeto.md); a autorização de cada decisão está no [registro de decisões](decisoes.md).
 
 ## Situação atual e retomada
 
-**Fase atual:** R-011/F-08 implementada e enviada em main no commit ddfdcb9, com CI aprovado: auditoria da referência, pesquisa de portfólios e movimento leve. Check de 34 arquivos sem erros/avisos/hints; build de sete páginas e 110 destinos; 91 testes Chromium passaram (14 de produção e 77 de prévia). Largura total, dez tamanhos de janela e menu aprovado preservados. Conteúdo real e hospedagem continuam pendentes.
+**Fase atual:** R-012/V-05 em andamento. Auditoria por tela registrada e primeiro lote implementado em C-02/V-03: detalhes por tipo, contexto de leitura, navegação entre peças, mídia e lacunas da Entrada. Check de 38 arquivos sem erros/avisos/hints; build de sete páginas e 113 destinos; 125 testes Chromium passaram localmente (14 de produção e 111 de prévia). Envio/CI deste lote em conferência. O site continua em desenvolvimento inicial, com muitas diferenças visuais/funcionais ainda abertas.
 
 **Revisão do autor:** menu lateral aprovado em R-010. Preservar esse componente e sua adaptação para celular. A revisão final das demais composições, conteúdo e mídia continua pendente.
 
 **Prévia para análise do autor:** servidor de desenvolvimento mantido em `http://127.0.0.1:4321/`. A suíte de prévia exercitou as composições e os novos movimentos nesse servidor; continuar disponível para a revisão do autor.
 
-**Próximo passo:** colher a revisão visual do autor na prévia com animações. Retomar P-02/C-03 com apresentação, contatos e trabalhos reais, conforme o [inventário de conteúdo](conteudo.md). Depois definir a estreia em P-01, concluir revisão e preparação de publicação conforme o guia.
+**Próximo passo:** conferir envio/CI deste lote e retomar a fila da [auditoria do projeto](auditoria-do-projeto.md), começando pela Galeria: molduras variadas, peça oval, cabos/ganchos e distribuição. Depois leitura, Oficina, Sótão, Estúdio e acabamento da Entrada. P-02/C-03 continuam pendentes, mas não bloqueiam essas melhorias. Conteúdo, validação final e publicação seguem as dependências do guia.
 
 **Etapa R-008:** arquitetura, fontes oficiais e critérios de fidelidade registrados em [arquitetura-visual.md](arquitetura-visual.md). Foram adaptados filtros e 28 SVGs selecionados; 28 registros de amostra validam a composição e são excluídos da produção. Não confundir ativos decorativos compartilhados com registros de portfólio.
 
@@ -57,13 +57,14 @@ Uma dependência não resolvida em uma tarefa não impede automaticamente as dem
 | V-02 | Criar layout, navegação e objetos compartilhados | Concluído | V-01 e R-009 | Largura total sem moldura externa, navegação em coluna própria e adaptação para janela baixa. Links, foco, aba atual e separação entre conteúdo/abas verificados no Chromium. Menu lateral aprovado pelo autor em R-010 |
 | V-03 | Implementar entrada, sobre e contato | Em andamento | V-02; conteúdo final depende de P-02 | Implementação responsiva validada; apresentação provisória e contato GitHub ainda precisam da revisão de conteúdo do autor |
 | V-04 | Revisar entrada em desktop e mobile | Concluído | V-03 e R-009 | Entrada testada em dez janelas entre 320 e 3440 px; largura total e ausência de overflow verificadas, capturas representativas revisadas. Teclado, redimensionamento e movimento reduzido passaram. Toque físico e outros motores não verificados |
+| V-05 | Auditar e refinar fidelidade por tela e por tipo de trabalho | Em andamento | R-012 e base implementada | Comparação de todas as referências com fonte/rotas atuais; distinguir estrutura pronta de lacunas visuais/funcionais; corrigir por lotes e registrar verificações. Aprovação do menu não encerra demais telas |
 
 ## Conteúdo e páginas individuais
 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | C-01 | Definir coleções, metadados, relações e URLs | Concluído | P-03 e escopo P-01 | Coleção validada, política pública/prévia, ordenação determinística, metadados por cômodo e regras documentadas; exclusão de rascunhos/amostras e relações exercitadas. Seleção editorial real permanece em C-03 |
-| C-02 | Implementar layouts individuais | Concluído | C-01 e V-02 | Anatomia de etiqueta, folha e notas; objeto principal conforme tipo, Markdown, sumário e relações. Rotas de projeto/texto/faixa/campanha/obra exercitadas com amostras; mídia real pendente nas tarefas dos cômodos |
+| C-02 | Implementar layouts individuais | Em andamento | C-01, V-02 e R-012 | Primeiro lote corrigiu encaixe objeto/etiqueta/folha, metadados por tipo, trilha relacionada e anterior/próximo. Cinco tipos exercitados em sete larguras. Permanecem notas contextualizadas, figuras/legendas, metadata mobile e validação de mídia/conteúdo longo |
 | C-03 | Integrar conteúdo real inicial | Pendente | P-02 e C-02 | Apresentação, contato e seleção de trabalhos revisados; sem autoria ou contagens fictícias |
 
 ## Cômodos e interações
@@ -72,12 +73,12 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
-| F-01 | Implementar Oficina | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Bancada, sorteador funcional de exemplo, tecnologias, prancheta e caderno validados; faltam projetos reais e demos escolhidas |
-| F-02 | Implementar Sala | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Estante, destaque, filtros combinados, arquivo anual e leitura validados; faltam textos reais e revisão editorial do autor |
-| F-03 | Implementar Galeria | Em andamento | C-01, C-02 e V-02; imagens dependem de C-03 | Molduras, caderno, cavalete, varal e filtro de categorias validados; faltam obras/fotos reais e revisão com suas proporções |
-| F-04 | Implementar Estúdio | Em andamento | C-01, C-02 e V-02; áudio depende de C-03 | Capa, ficha, fitas, filtro por coleção e lista validados; sem play falso na amostra. Faltam faixas reais e teste de áudio |
-| F-05 | Implementar Sótão | Em andamento | C-01, C-02 e V-02; material depende de C-03 | Mapa, lore, mesa, fichas, sessões e baús implementados e validados com metadados; falta conteúdo real |
-| F-06 | Completar interações e relações entre áreas | Em andamento | Áreas incluídas e E-006 | Filtros, sorteador, sumário, relações de entrada/saída e navegação testados com amostras; falta revisar relações e demos definitivas |
+| F-01 | Implementar Oficina | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Bancada/sorteador e listas funcionam; refinar prancheta, estados e caderno com artigos relacionados. Projetos/demos reais ainda pendentes |
+| F-02 | Implementar Sala | Em andamento | C-01, C-02 e V-02; conteúdo depende de C-03 | Estante/filtros/arquivo funcionam; completar explicações de maturidade, acabamento do destaque e leitura longa. Textos reais e revisão editorial pendentes |
+| F-03 | Implementar Galeria | Em andamento | C-01, C-02 e V-02; imagens dependem de C-03 | Categorias, caderno e varal funcionam; refinar molduras/formatos, cabos, luz, distribuição e envelope. Obras/fotos reais e proporções finais pendentes |
+| F-04 | Implementar Estúdio | Em andamento | C-01, C-02 e V-02; áudio depende de C-03 | Capa/fitas/filtro/lista funcionam; detalhe agora tem área de áudio própria. Completar controles/lista e materiais complementares conforme áudio/créditos reais |
+| F-05 | Implementar Sótão | Em andamento | C-01, C-02 e V-02; material depende de C-03 | Mapa/lore/mesa/diário funcionam; detalhe agora mostra personagens. Faltam conexões visuais/âncoras, refinamento das fichas e conteúdos reais de mundo |
+| F-06 | Completar interações e relações entre áreas | Em andamento | Áreas incluídas e E-006 | Relações, filtros e sorteador testados; acrescentados trilha relacionada e anterior/próximo. Faltam notas contextuais, âncoras por sessão, relações do caderno e demos definitivas |
 | F-07 | Implementar metadados, 404, sitemap e feed definido para estreia | Em andamento | C-01, URLs e E-006 | Metadados e 404 preparados; sitemap/feed e endereço final permanecem pendentes |
 | F-08 | Auditar e implementar movimento e microinterações | Concluído | R-011, V-02/V-04 e componentes existentes | Inventário dos 24 HTMLs e canvas, pesquisa com fontes primárias e implementação em movimento.md. Testes de mouse/teclado/toque, conteúdo sem JS, redução de movimento e regressões responsivas passaram; menu preservado. Revisão visual final do autor permanece em Q-02 |
 
@@ -86,8 +87,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 | ID | Tarefa | Estado | Dependência | Critério de conclusão |
 | --- | --- | --- | --- | --- |
 | Q-01 | Revisar conteúdo e navegação completos | Pendente | C-03 e áreas incluídas | Sem destinos falsos, mídia ausente, marcadores públicos indevidos ou dados inconsistentes |
-| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 91 testes locais, incluindo movimento, toque emulado e uso sem JS. Composições em dez janelas e detalhes em quatro larguras; capturas representativas revisadas. Aprovação dos efeitos, revisão final de conteúdo/mídia e outros motores/dispositivos físicos pendentes |
-| Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Base atual validada em cópia sem referência com npm ci/build/verify e no CI; pasta ausente do índice, árvore remota e histórico inicial. Repetir revisão final quando o conteúdo/escopo estiver completo |
+| Q-02 | Validar visual, acessibilidade e funcionalidades | Em andamento | V-04 e áreas incluídas | 125 testes locais: cômodos em dez janelas, Entrada/detalhes em sete larguras, estados vazios e novos fluxos. Capturas representativas revisadas. Fidelidade, conteúdo/mídia, desempenho e outros motores/dispositivos físicos ainda pendentes |
+| Q-03 | Validar build, Git e independência da referência | Em andamento | P-04, F-07 e áreas incluídas | Build/verify desta etapa sem referência e Git sem a pasta. Cópia limpa histórica validou a base inicial; CI e revisão final devem acompanhar cada lote sem inferir validação de conteúdo ainda ausente |
 | L-01 | Preparar hospedagem, repositório e domínio | Em andamento | D-002 e E-005 | Repositório main e CI prontos; conta de hospedagem e domínio ainda a definir |
 | L-02 | Publicar e conferir a versão pública | Pendente | Q-01 a Q-03 e L-01 | URL acessível; páginas, mídia e acesso direto conferidos; revisão publicada registrada |
 | L-03 | Entregar instruções finais e pendências residuais | Pendente | L-02 | Operação e recuperação verificadas; resultado e backlog documentados |
@@ -97,8 +98,8 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 
 - **Escolha técnica e lançamento:** implementação inicial autorizada; seleção de conteúdo e abrangência da estreia ainda não finalizadas.
 - **Conteúdo:** não foram fornecidos apresentação final, contatos públicos ou seleção de trabalhos reais. Exemplos da referência continuam demonstrativos.
-- **Ambiente:** instalação já validada; Astro check/build e 91 testes locais passam. Produção e desenvolvimento permanecem separados nas verificações. Nenhuma dependência adicionada para movimento.
-- **Git:** etapa de movimento enviada em main e confirmada no remoto, com CI aprovado em ddfdcb9. O 403 anterior do conector não bloqueia o Git local. Fechamento apenas documental não representa novo teste da aplicação.
+- **Ambiente:** instalação já validada; check/build e 125 testes locais passam. Produção e desenvolvimento permanecem separados. Este lote não adicionou dependências.
+- **Git:** commits anteriores confirmados no remoto e push retornou Everything up-to-date no início de R-012. Novo lote aguarda registro de envio/CI. O 403 anterior do conector não bloqueia o Git local.
 - **Publicação:** remoto confirmado; hospedagem e domínio ainda não configurados. Nenhum deploy realizado.
 - **Desenvolvimento:** componentes e composições dos cômodos, detalhes, filtros e relações exercitados com amostras identificadas. Áudio/mídia e conteúdo reais ainda exigem revisão; não declarar o lançamento completo.
 
@@ -187,6 +188,15 @@ Estrutura dos cinco cômodos criada como parte do início autorizado. Isso não 
 - **Verificação local:** check de 34 arquivos, zero erros/avisos/hints; build de sete páginas; verify com 110 destinos locais. Passaram 14 testes de produção e 77 de desenvolvimento: os 84 anteriores e sete novos, além do reforço da redução de movimento. Cobertura inclui conteúdo/navegação sem JS, entrada única, cancelamento dinâmico, mouse/teclado, filtros, sorteio e toque emulado. Capturas representativas da Entrada, Galeria mobile e Sótão desktop revisadas; demais composições seguem na matriz automatizada.
 - **Integração concluída:** commit [ddfdcb9](https://github.com/Cuidoka/myhome/commit/ddfdcb98ccb067d9ecd3c880f1818df367c2448f) enviado em main e confirmado no remoto. A [execução CI 41379953708](https://github.com/Cuidoka/myhome/actions/runs/41379953708) passou, incluindo ambas as suítes. Documentação conferida: dez arquivos, 30 tarefas e 34 decisões. Índice e histórico Git sem reference; regra de exclusão conferida. Prévia com HTTP 200 e inclusão do módulo de movimento confirmados. Fechamento apenas documental usa `[skip ci]`.
 - **Limites e continuidade:** colher revisão visual dos efeitos. Outros motores e dispositivos físicos não testados. Apresentação, trabalhos, mídias/áudio reais, sitemap/feed/endereço e publicação permanecem pendentes. Reference segue local e ignorada; a aplicação não lê a pasta. Servidor 4321 mantido para análise do autor.
+
+### 02/11/2026 — auditoria geral e primeiro lote de correções
+
+- **Pedido:** R-012; commit/push, nova análise da pasta e das referências, lista realista do que falta e continuação. Reforçada exclusão de reference. D-018 organiza o primeiro lote; V-05 criada e C-02 reaberta para corrigir o diagnóstico anterior de estrutura concluída.
+- **Git inicial:** árvore limpa; remoto main em 774605c9b38eef10da38c4b747da48f426e77e3a. Push solicitado retornou Everything up-to-date. Movimento ddfdcb9 e documentação já estavam enviados. Índice e histórico sem reference, regra check-ignore confirmada.
+- **Auditoria:** inventário do repositório, leitura das configurações, rotas/layouts/componentes, estilos, dados/coleção, scripts/testes/CI e documentação. Revisitadas as 12 capturas; comparadas as 12 páginas e anatomias de desktop/mobile. 28 SVGs analisados como XML; 28 amostras mantêm previewOnly. Resultados, limites e fila por tela registrados em auditoria-do-projeto.md.
+- **Correções:** etiqueta e objeto específico por tipo na grade da leitura, sumário recolhível, trilha relacionada, cartões de relações e anterior/próximo. Eliminadas caixa de objeto vazia e nota automática não fornecida. WorkVisual centraliza dimensões/alt e evita duplicação de imagem; CharacterCard compartilhado. Entrada recebeu cena tática, desenho selecionado e datas nas novidades, sem novos arquivos da referência.
+- **Verificações reais:** check de 38 arquivos sem erros/avisos/hints; build de sete páginas, verify de 113 destinos e exclusão de rascunhos/amostras/reference. Passaram 111 testes de prévia e 14 de produção. A primeira rodada ampliada encontrou overflow no novo grid de projeto em 390 px; corrigido com coluna minmax(0, 1fr), caso direcionado e suíte completa aprovados. Revisadas capturas representativas de Entrada, texto, projeto, faixa e campanha em desktop/mobile. Documentação e Git conferidos antes do envio.
+- **Limites:** muitos refinamentos visuais continuam em V-05; C-02 não foi encerrada. O próximo lote é Galeria, seguido de leitura longa e demais cenas conforme a auditoria. Conteúdo real, áudio, revisão física/outros motores, SEO final e deploy continuam pendentes. Confirmar envio/CI deste lote; servidor local preservado.
 
 ## Modelo de registro futuro
 

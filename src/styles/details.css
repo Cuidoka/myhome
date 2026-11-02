@@ -1,0 +1,91 @@
+@layer rooms {
+  .detail-layout { display: grid; grid-template-columns: minmax(130px, .55fr) minmax(0, 3fr) minmax(165px, .7fr); gap: clamp(24px, 2.5vw, 55px); align-items: start; }
+  .detail-layout.detail-without-notes { grid-template-columns: minmax(130px, .55fr) minmax(0, 3fr); }
+  .detail-main { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; justify-items: center; }
+  .detail-main > * { min-width: 0; width: 100%; max-width: 850px; margin: 0; }
+  .detail-label { padding: 0; max-width: 240px; width: 100%; transform: none; display: grid; gap: 25px; }
+  .detail-tag { --paper-fill: #ead8bb; margin: 0; padding: 27px 20px 20px; transform: rotate(-1.5deg); }
+  .detail-tag::after { clip-path: polygon(12% 0, 86% 1%, 100% 7%, 99% 100%, 1% 99%, 0 7%); }
+  .detail-label dt { color: var(--muted); font: 13px var(--font-hand); }
+  .detail-label dd { margin: 4px 0 19px; font-size: 13px; overflow-wrap: anywhere; }
+  .detail-label dd:last-child { margin-bottom: 0; }
+  .detail-toc { padding: 17px; }
+  .detail-toc summary { cursor: pointer; font-size: 17px; color: var(--link); }
+  .detail-toc summary span { display: block; font-size: 12px; color: var(--muted); padding-left: 15px; }
+  .detail-label .article-toc { margin: 15px 0 0; padding: 0; border: 0; }
+  .detail-label .article-toc ul { margin: 0; padding-left: 16px; }
+  .detail-label .article-toc li + li { margin-top: 9px; }
+  .detail-layout .article-paper { padding: clamp(25px, 3vw, 45px); }
+  .detail-layout .article-heading { padding-bottom: 26px; border-bottom: 1px dashed var(--border); }
+  .detail-object { max-width: 850px; margin: 0; }
+  .detail-object .browser-window { max-width: none; }
+  .detail-object img { width: 100%; height: auto; }
+  .detail-object .browser-window > img { padding: 14px; max-height: 480px; object-fit: contain; }
+  .detail-art { width: min(100%, 560px); margin-inline: auto; }
+  .detail-art .art-frame img { height: auto; max-height: 600px; object-fit: contain; }
+  .detail-art figcaption { text-align: center; color: var(--muted); margin-top: 16px; }
+  .detail-track { display: grid; gap: 25px; align-items: center; }
+  .detail-track-with-cover { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .detail-track-player { padding: 25px; min-width: 0; }
+  .detail-track-name { font-size: clamp(20px, 2vw, 28px); margin: 12px 0 22px; line-height: 1.4; }
+  .detail-track-player label, .audio-missing { font-size: 14px; color: var(--muted); }
+  .detail-track-player audio { margin-top: 10px; }
+  .detail-campaign { display: grid; gap: 35px; }
+  .detail-campaign .campaign-map { width: 100%; }
+  .detail-character-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .detail-character-cards .character-card:last-child { grid-column: auto; width: 100%; }
+  .detail-character-cards .character-card { font-size: 13px; }
+  .wall-notes { min-width: 0; max-width: 290px; width: 100%; gap: 32px; }
+  .wall-notes .post-it { margin-top: 15px; }
+  .wall-notes .post-it:nth-child(2n) { background: #dfddc6; transform: rotate(-2deg); }
+  .reading-soundtrack { padding: 18px; display: grid; gap: 12px; }
+  .reading-soundtrack > a { font-size: 15px; text-decoration: none; }
+  .reading-soundtrack > span { font-size: 14px; color: var(--muted); }
+  .relation-list { display: grid; gap: 15px; list-style: none; padding: 0; margin-top: 17px; }
+  .relation-card { display: grid; gap: 6px; padding: 16px; color: var(--ink); text-decoration: none; font-size: 14px; }
+  .relation-card small { color: var(--muted); font-size: 13px; }
+  .detail-main > .related-works .relation-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .work-neighbor { color: var(--ink); text-decoration: none; padding: 20px; }
+  .work-neighbor span { display: block; color: var(--muted); font-size: 14px; margin-bottom: 7px; }
+  .work-neighbor b { font-weight: 450; font-size: 16px; }
+  .work-neighbor-next { grid-column: 2; text-align: right; }
+}
+
+@layer responsive {
+  @media (min-width: 761px) and (max-width: 1200px) {
+    .detail-layout, .detail-layout.detail-without-notes { grid-template-columns: 140px minmax(0, 1fr); gap: 25px; }
+    .wall-notes { grid-column: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+    .detail-track-with-cover { grid-template-columns: 1fr; }
+    .detail-track .record-cover { max-width: 280px; }
+    .detail-layout .article-heading h1 { font-size: 28px; }
+  }
+  @media (max-width: 760px) {
+    .detail-layout, .detail-layout.detail-without-notes { grid-template-columns: minmax(0, 1fr); gap: 27px; }
+    .detail-label { max-width: none; gap: 18px; }
+    .detail-tag { padding: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 8px 15px; }
+    .detail-label .detail-tag dt { grid-column: 1; }
+    .detail-label .detail-tag dd { grid-column: 2; margin: 0; }
+    .detail-toc { padding: 16px 20px; }
+    .detail-toc summary span { display: inline; padding-left: 15px; }
+    .detail-layout .article-paper { padding: 28px 22px; }
+    .detail-track-with-cover { grid-template-columns: minmax(0, 1fr); }
+    .detail-track .record-cover { max-width: 280px; width: 80%; }
+    .detail-character-cards { gap: 16px; }
+    .detail-character-cards .character-card { padding: 12px; }
+    .wall-notes { grid-column: 1; grid-template-columns: minmax(0, 1fr); max-width: none; padding: 0; }
+    .wall-notes .post-it { max-width: 360px; }
+    .detail-main > .related-works .relation-list { grid-template-columns: minmax(0, 1fr); }
+    .work-navigation { gap: 14px; }
+    .work-neighbor { padding: 16px; }
+    .work-neighbor b { font-size: 14px; }
+  }
+}
+
+@layer motion {
+  .relation-card, .work-neighbor { transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease; }
+  .relation-card:focus-visible, .work-neighbor:focus-visible { color: var(--link); }
+  @media (hover: hover) and (pointer: fine) {
+    .relation-card:hover, .work-neighbor:hover { color: var(--link); }
+  }
+}

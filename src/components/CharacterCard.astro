@@ -1,0 +1,11 @@
+---
+import type { Work } from '../lib/content';
+interface Props { character: NonNullable<Work['data']['campaign']>['characters'][number]; }
+const { character } = Astro.props;
+---
+<article class="paper character-card">
+  <h3>{character.name}</h3>
+  <span class="handwriting">{character.role}</span>
+  {character.stats && <dl>{Object.entries(character.stats).map(([attribute, value]) => <div><dt>{attribute}</dt><dd>{value}</dd></div>)}</dl>}
+  {character.note && <p class="handwriting">{character.note}</p>}
+</article>

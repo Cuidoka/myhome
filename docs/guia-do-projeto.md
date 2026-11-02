@@ -18,6 +18,8 @@ A facilidade de deploy é um critério pedido pelo usuário. O pedido posterior 
 
 O objetivo é reduzir interrupções e desvios evitáveis. Não é possível garantir ausência de imprevistos de conteúdo, ambiente ou serviços externos; o procedimento de retomada existe para preservar a continuidade nesses casos.
 
+Após R-012, a [auditoria por tela](auditoria-do-projeto.md) organiza os lotes de refinamento em V-05 e reabre a anatomia editorial em C-02. A base funcional está validada, mas o projeto segue no começo do acabamento e da integração de conteúdo. Seguir a fila da auditoria; não reduzir todas as pendências a materiais do autor nem tratar testes aprovados como aprovação visual final.
+
 ## Escopo proposto da primeira versão
 
 | Área | Entrega prevista | Limite inicial |

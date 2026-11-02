@@ -2,9 +2,10 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getRoom } from '../../data/site';
-import { getVisibleWorks, workHref, readingMinutes } from '../../lib/content';
-import Art from '../../components/Art.astro';
-import TavernGenerator from '../../components/TavernGenerator.astro';
+import { getVisibleWorks, workHref, readingMinutes, duration } from '../../lib/content';
+import DetailObject from '../../components/DetailObject.astro';
+import WorkVisual from '../../components/WorkVisual.astro';
+import WorkNavigation from '../../components/WorkNavigation.astro';
 export async function getStaticPaths() {
   return (await getVisibleWorks()).map((work) => ({ params: { room: work.data.room, id: work.id }, props: { work } }));
 }
@@ -14,28 +15,49 @@ const { Content, headings } = await render(work);
 const works = await getVisibleWorks();
 const related = works.filter((item) => work.data.related.includes(item.id));
 const backlinks = works.filter((item) => item.data.related.includes(work.id));
+const readingTrack = work.data.room === 'sala' ? related.find((item) => item.data.room === 'estudio') : undefined;
+const hasNotes = work.data.notes.length > 0 || backlinks.length > 0 || readingTrack;
+const sections = headings.filter((heading) => heading.depth === 2);
 const formatDate = (date: Date) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' }).format(date);
 ---
 <BaseLayout title={work.data.title} description={work.data.summary} current={work.data.room}>
   <div class="room-content article-room">
     <header class="room-heading"><a class="back-link handwriting" href={room.href}>← voltar para {room.name.toLowerCase()}</a><p class="painted room-title article-room-label">{room.name.toLocaleLowerCase('pt-BR')}</p></header>
-    {work.data.room !== 'sala' && <div class="detail-object">
-      {work.data.interactive === 'tavern-name' ? <TavernGenerator preview={work.data.previewOnly} /> : work.data.room === 'galeria' ? <div class="art-frame">{work.data.image ? <img src={work.data.image} alt={work.data.imageAlt} width="700" height="700" /> : work.data.artwork && <Art name={work.data.artwork} alt={`Ilustração: ${work.data.title}`} eager />}</div> : work.data.artwork && <Art name={work.data.artwork} alt={`Ilustração: ${work.data.title}`} eager />}
-    </div>}
-    <div class="detail-layout">
-      <aside class="paper detail-label" aria-label="Dados deste trabalho"><dl>{work.data.publishedAt && <><dt>Escrito em</dt><dd><time datetime={work.data.publishedAt.toISOString()}>{formatDate(work.data.publishedAt)}</time></dd></>}{work.data.updatedAt && <><dt>Revisto em</dt><dd>{formatDate(work.data.updatedAt)}</dd></>}{work.data.room === 'sala' && <><dt>Leitura</dt><dd>{readingMinutes(work)} minutos</dd></>}{work.data.maturity && <><dt>Maturidade</dt><dd><span class="maturity">{work.data.maturity}</span></dd></>}{work.data.tags.length > 0 && <><dt>Assuntos</dt><dd>{work.data.tags.join(', ')}</dd></>}</dl>
-        {headings.filter((heading) => heading.depth === 2).length > 1 && <nav class="article-toc" aria-label="Neste trabalho"><span class="handwriting">neste texto</span><ul>{headings.filter((heading) => heading.depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
+    <div class:list={['detail-layout', { 'detail-without-notes': !hasNotes }]}>
+      <aside class="detail-label" aria-label="Dados deste trabalho">
+        <dl class="paper detail-tag">
+          {work.data.publishedAt && <><dt>Publicado em</dt><dd><time datetime={work.data.publishedAt.toISOString()}>{formatDate(work.data.publishedAt)}</time></dd></>}
+          {work.data.updatedAt && <><dt>Revisto em</dt><dd><time datetime={work.data.updatedAt.toISOString()}>{formatDate(work.data.updatedAt)}</time></dd></>}
+          {work.data.room === 'sala' && <><dt>Leitura</dt><dd>{readingMinutes(work)} minutos</dd></>}
+          {work.data.maturity && <><dt>Maturidade</dt><dd><span class="maturity">{work.data.maturity}</span></dd></>}
+          {work.data.status && <><dt>Estado</dt><dd>{work.data.status}</dd></>}
+          {work.data.room === 'oficina' && work.data.technologies.length > 0 && <><dt>Feito com</dt><dd>{work.data.technologies.join(', ')}</dd></>}
+          {work.data.room === 'estudio' && work.data.collection && <><dt>Fita</dt><dd>{work.data.collection}</dd></>}
+          {work.data.durationSeconds && <><dt>Duração</dt><dd>{duration(work.data.durationSeconds)}</dd></>}
+          {work.data.campaign && <>{work.data.campaign.players && <><dt>Jogadores</dt><dd>{work.data.campaign.players}</dd></>}<dt>Sessões no diário</dt><dd>{work.data.campaign.sessions.length}</dd></>}
+          {work.data.room === 'galeria' && <>{work.data.category && <><dt>Categoria</dt><dd>{work.data.category}</dd></>}{work.data.medium && <><dt>Técnica</dt><dd>{work.data.medium}</dd></>}</>}
+          {work.data.tags.length > 0 && <><dt>Assuntos</dt><dd>{work.data.tags.join(', ')}</dd></>}
+        </dl>
+        {sections.length > 1 && <details class="paper detail-toc" open><summary class="handwriting">neste trabalho <span>{sections.length} partes</span></summary><nav class="article-toc" aria-label="Neste trabalho"><ul>{sections.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav></details>}
       </aside>
-    <article class="article-paper paper">
-      <header class="article-heading"><span class="eyebrow handwriting">{work.data.maturity ?? work.data.status ?? room.detail}</span><h1>{work.data.title}</h1><p class="article-summary">{work.data.summary}</p><div class="article-metadata">{work.data.publishedAt && <time datetime={work.data.publishedAt.toISOString()}>Publicado em {formatDate(work.data.publishedAt)}</time>}{work.data.updatedAt && <span>Revisto em {formatDate(work.data.updatedAt)}</span>}{work.data.technologies.length > 0 && <span>{work.data.technologies.join(' · ')}</span>}</div></header>
-      {work.data.image && work.data.room !== 'galeria' && <figure class="article-image"><img src={work.data.image} alt={work.data.imageAlt} width="1000" height="700" /><figcaption class="handwriting">{work.data.imageAlt}</figcaption></figure>}
-      {work.data.audio && <div class="audio-player"><label for="track-audio" class="handwriting">Ouvir {work.data.title}</label><audio id="track-audio" controls preload="metadata" src={work.data.audio}>Seu navegador não oferece reprodução de áudio. <a href={work.data.audio}>Baixar a faixa</a></audio></div>}
-      <div class="prose"><Content /></div>
-      {(work.data.source || work.data.demo) && <nav class="project-links" aria-label="Links do projeto">{work.data.source && <a class="text-link" href={work.data.source} target="_blank" rel="noreferrer">Ver código-fonte ↗</a>}{work.data.demo && <a class="text-link" href={work.data.demo} target="_blank" rel="noreferrer">Experimentar o projeto ↗</a>}</nav>}
-    </article>
-      <aside class="wall-notes" aria-label="Notas na parede"><h2>notas na parede</h2>{(work.data.notes.length > 0 ? work.data.notes : ['Primeiro o objeto, depois o motivo.']).map((note) => <p class="post-it handwriting">{note}</p>)}{backlinks.length > 0 && <section class="related-works"><h2>quem aponta pra cá</h2><ul>{backlinks.map((item) => <li><a href={workHref(item)}>{item.data.title} ↗</a></li>)}</ul></section>}</aside>
+      <div class="detail-main">
+        <DetailObject work={work} />
+        <article class="article-paper paper">
+          <header class="article-heading"><span class="eyebrow handwriting">{work.data.maturity ?? work.data.status ?? room.detail}</span><h1>{work.data.title}</h1><p class="article-summary">{work.data.summary}</p></header>
+          {work.data.image && work.data.room === 'sala' && <figure class="article-image"><WorkVisual work={work} eager /><figcaption class="handwriting">{work.data.imageAlt}</figcaption></figure>}
+          {work.data.audio && work.data.room !== 'estudio' && <div class="audio-player"><label for="track-audio" class="handwriting">Ouvir {work.data.title}</label><audio id="track-audio" controls preload="metadata" src={work.data.audio}><a href={work.data.audio}>Baixar o áudio</a></audio></div>}
+          <div class="prose"><Content /></div>
+          {(work.data.source || work.data.demo) && <nav class="project-links" aria-label="Links do projeto">{work.data.source && <a class="text-link" href={work.data.source} target="_blank" rel="noreferrer">Ver código-fonte ↗</a>}{work.data.demo && <a class="text-link" href={work.data.demo} target="_blank" rel="noreferrer">Experimentar o projeto ↗</a>}</nav>}
+        </article>
+        {related.length > 0 && <aside class="related-works" aria-labelledby="related-title"><h2 id="related-title" class="handwriting">os cômodos conversam</h2><ul class="relation-list">{related.map((item) => <li><a class="paper relation-card" href={workHref(item)}><small class="handwriting">{getRoom(item.data.room)?.name}</small><span>{item.data.title} ↗</span></a></li>)}</ul></aside>}
+        <WorkNavigation work={work} works={works} />
+        <a class="back-link handwriting article-back" href={room.href}>← todos os trabalhos de {room.name.toLowerCase()}</a>
+      </div>
+      {hasNotes && <aside class="wall-notes" aria-label="Notas na parede">
+        {readingTrack && <section class="paper reading-soundtrack pinned" aria-labelledby="soundtrack-title"><h2 id="soundtrack-title">trilha para ler junto</h2><a href={workHref(readingTrack)}>{readingTrack.data.title} ↗</a>{readingTrack.data.durationSeconds && <span class="handwriting">{duration(readingTrack.data.durationSeconds)}</span>}{readingTrack.data.audio && <audio controls preload="none" src={readingTrack.data.audio} aria-label={`Ouvir ${readingTrack.data.title}`} />}</section>}
+        {work.data.notes.length > 0 && <section><h2>notas na parede</h2>{work.data.notes.map((note) => <p class="post-it handwriting">{note}</p>)}</section>}
+        {backlinks.length > 0 && <section class="related-works"><h2>quem aponta pra cá</h2><ul class="relation-list">{backlinks.map((item) => <li><a class="paper relation-card" href={workHref(item)}><small class="handwriting">{getRoom(item.data.room)?.name}</small><span>{item.data.title} ↗</span></a></li>)}</ul></section>}
+      </aside>}
     </div>
-    {related.length > 0 && <aside class="related-works" aria-labelledby="related-title"><h2 id="related-title" class="handwriting">os cômodos conversam</h2><ul>{related.map((item) => <li><a href={workHref(item)}>{item.data.title} ↗</a></li>)}</ul></aside>}
-    <a class="back-link handwriting article-back" href={room.href}>← todos os trabalhos de {room.name.toLowerCase()}</a>
   </div>
 </BaseLayout>

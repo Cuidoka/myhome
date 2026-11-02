@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { viewports, expectFluidLayout } from './viewports';
 
-for (const [name, path] of [['entrada', '/'], ['texto', '/sala/amostras/comecar-sem-saber/'], ['obra', '/galeria/amostras/farol/']]) {
-  for (const width of [390, 1440, 1920, 3440]) {
+for (const [name, path] of [['entrada', '/'], ['texto', '/sala/amostras/comecar-sem-saber/'], ['obra', '/galeria/amostras/farol/'], ['projeto', '/oficina/amostras/gerador-de-tavernas/'], ['faixa', '/estudio/amostras/vigilia-no-farol/'], ['campanha', '/sotao/amostras/mare-de-vidro/']]) {
+  for (const width of [320, 390, 768, 1024, 1440, 1920, 3440]) {
     test(`detalhe-${name}-${width}`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width, height: 1000 });
       expect((await page.goto(path!))?.status()).toBe(200);
@@ -97,7 +97,7 @@ test('texto renderiza sumário, notas e relações entre cômodos', async ({ pag
   await page.getByRole('navigation', { name: 'Neste trabalho' }).getByRole('link', { name: 'A primeira nota', exact: true }).click();
   await expect(page).toHaveURL(/#a-primeira-nota$/);
   await expect(page.getByRole('heading', { name: 'quem aponta pra cá', exact: true })).toBeVisible();
-  await page.getByRole('link', { name: 'Vigília no farol ↗', exact: true }).first().click();
+  await page.getByRole('link', { name: /Vigília no farol ↗/ }).first().click();
   await expect(page.getByRole('heading', { name: 'Vigília no farol', exact: true })).toBeVisible();
 });
 
@@ -210,4 +210,52 @@ test('toque filtra fitas sem manter deslocamento de hover', async ({ browser }) 
   await expect(page.locator('.track-list [data-work]:visible')).toHaveCount(3);
   await expectFluidLayout(page);
   await context.close();
+});
+
+test('fichas individuais mostram dados próprios de cada tipo', async ({ page }) => {
+  await page.goto('/oficina/amostras/gerador-de-tavernas/');
+  await expect(page.getByRole('complementary', { name: 'Dados deste trabalho' })).toContainText('Feito com');
+  await expect(page.locator('.detail-main > .detail-object')).toBeVisible();
+  await page.goto('/estudio/amostras/vigilia-no-farol/');
+  await expect(page.locator('.detail-tag')).toContainText('Duração');
+  await expect(page.locator('.detail-track-player')).toContainText('Áudio ainda não anexado');
+  await expect(page.locator('audio')).toHaveCount(0);
+  await page.goto('/sotao/amostras/mare-de-vidro/');
+  await expect(page.locator('.detail-tag')).toContainText('Jogadores');
+  await expect(page.locator('.detail-character-cards .character-card')).toHaveCount(3);
+  await page.goto('/galeria/amostras/farol/');
+  await expect(page.locator('.detail-tag')).toContainText('Técnica');
+});
+
+test('projeto sem objeto ou notas não cria espaços e conteúdo artificiais', async ({ page }) => {
+  await page.goto('/oficina/amostras/ficha-interativa/');
+  await expect(page.locator('.detail-object')).toHaveCount(0);
+  await expect(page.locator('.wall-notes')).toHaveCount(0);
+  await expect(page.getByText('Primeiro o objeto, depois o motivo.', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Ficha de personagem interativa', exact: true })).toBeVisible();
+});
+
+test('imagem de projeto aparece no objeto com proporção informada e sem duplicação', async ({ page }) => {
+  await page.goto('/oficina/amostras/mapas-com-ruido/');
+  const image = page.locator('.detail-object img');
+  await expect(image).toHaveAttribute('width', '680');
+  await expect(image).toHaveAttribute('height', '430');
+  await expect(page.locator('.article-image')).toHaveCount(0);
+  expect(await image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+});
+
+test('trilha relacionada, sumário recolhível e navegação entre peças têm destinos reais', async ({ page }) => {
+  await page.goto('/sala/amostras/comecar-sem-saber/');
+  await expect(page.locator('.reading-soundtrack')).toContainText('Vigília no farol');
+  await expect(page.locator('.reading-soundtrack audio')).toHaveCount(0);
+  const toc = page.locator('.detail-toc');
+  await toc.locator('summary').click();
+  await expect(toc).not.toHaveAttribute('open');
+  await toc.locator('summary').click();
+  await expect(toc).toHaveAttribute('open');
+  const neighbor = page.getByRole('navigation', { name: 'Outros trabalhos deste cômodo' }).getByRole('link').first();
+  const href = await neighbor.getAttribute('href');
+  await neighbor.click();
+  await expect(page).toHaveURL(href!);
+  await expect(page.locator('h1')).not.toHaveText('Sobre começar coisas sem saber onde vão dar');
 });

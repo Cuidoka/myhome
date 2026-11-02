@@ -24,6 +24,13 @@
   .polaroid > .sketch-art { aspect-ratio: 1; object-fit: cover; }
   .home-character { position: absolute; right: -20px; top: 72%; width: 130px; padding: 10px; font-size: 10px; transform: rotate(6deg); z-index: 3; }
   .home-character h3 { font-size: 12px; } .home-character dl { display: flex; gap: 4px; margin: 7px 0; } .home-character dl div { border: 1px solid var(--wood); flex: 1; text-align: center; } .home-character dd { margin: 0; } .home-character dt { font-size: 8px; }
+  .tactical-object { grid-column: 1 / -1; width: min(100%, 420px); transform: rotate(-2deg); }
+  .tactical-drawing { position: relative; }
+  .tactical-label { position: absolute; bottom: 6%; left: 7%; background: var(--paper); padding: 2px 8px; font-size: 14px; }
+  .wood-frame > .sketch-art { aspect-ratio: 1; object-fit: contain; }
+  .updates time { color: var(--link); font-size: 12px; padding-top: 1px; white-space: nowrap; }
+  .updates li:has(time) { display: grid; grid-template-columns: 65px minmax(0, 1fr); gap: 8px; }
+  .updates li:has(time) .update-marker { display: none; }
   .table-scroll { overflow-x: auto; max-width: 100%; scrollbar-width: thin; scrollbar-color: var(--wood-light) transparent; }
   .project-table { min-width: 480px; }
   .scene-columns { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 45px; align-items: start; margin-top: 65px; }
@@ -43,6 +50,7 @@
 }
 
 @layer rooms {
+  .updates li:has(time) { display: grid; }
   .room-content { padding-top: 65px; }
   .scene-heading { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .8fr); gap: clamp(30px, 4vw, 80px); align-items: center; margin-bottom: var(--section-gap); min-height: 195px; }
   .scene-heading .back-link { font-size: 13px; color: var(--muted); }
@@ -180,6 +188,18 @@
 }
 
 @layer responsive {
+  @media (min-width: 1200px) {
+    .wall { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 42px 30px; }
+    .welcome { grid-column: 1; grid-row: 1; }
+    .music-object { grid-column: 2; grid-row: 1; align-self: center; }
+    .map-object { grid-column: 3 / 5; grid-row: 1; max-width: 420px; justify-self: start; }
+    .updates { grid-column: 1; grid-row: 2; }
+    .code-object { grid-column: 2; grid-row: 2; }
+    .drawing-object { grid-column: 3; grid-row: 2; margin-inline: 8px; }
+    .tactical-object { grid-column: 4; grid-row: 2; align-self: center; }
+    .updates li { flex-wrap: wrap; gap: 2px 7px; }
+    .updates li a { flex-basis: 100%; }
+  }
   @media (min-width: 1280px) {
     .scene-heading-sala { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 30px; }
     .scene-heading-sala .room-title { font-size: clamp(100px, 10vw, 176px); }
@@ -231,6 +251,9 @@
   }
   @media (max-width: 760px) {
     .wall > * { width: auto; max-width: none; justify-self: stretch; }
+    .tactical-object { grid-column: 1 / -1; grid-row: 7; width: min(100%, 350px); justify-self: center; }
+    .shelf-area { grid-row: 8; }
+    .illustration-note { grid-row: 9; }
     .preview-mode { position: static; margin: 10px 20px 0; width: fit-content; font-size: 11px; }
     .home-character { display: none; }
     .house:not(.house-home) .room-navigation { top: 0; }

@@ -1,0 +1,13 @@
+---
+import { workHref, type Work } from '../lib/content';
+interface Props { work: Work; works: Work[]; }
+const { work, works } = Astro.props;
+const siblings = works.filter((item) => item.data.room === work.data.room);
+const index = siblings.findIndex((item) => item.id === work.id);
+const previous = index >= 0 ? siblings[index + 1] : undefined;
+const next = index > 0 ? siblings[index - 1] : undefined;
+---
+{(previous || next) && <nav class="work-navigation" aria-label="Outros trabalhos deste cômodo">
+  {previous && <a class="paper work-neighbor" href={workHref(previous)} rel="prev"><span class="handwriting">← anterior</span><b>{previous.data.title}</b></a>}
+  {next && <a class="paper work-neighbor work-neighbor-next" href={workHref(next)} rel="next"><span class="handwriting">próximo →</span><b>{next.data.title}</b></a>}
+</nav>}

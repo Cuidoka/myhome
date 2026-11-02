@@ -1,0 +1,27 @@
+---
+import WorkVisual from './WorkVisual.astro';
+import TavernGenerator from './TavernGenerator.astro';
+import CharacterCard from './CharacterCard.astro';
+import { duration, type Work } from '../lib/content';
+interface Props { work: Work; }
+const { work } = Astro.props;
+const { room, image, artwork, interactive, audio, campaign } = work.data;
+const visual = Boolean(image || artwork);
+const visible = room === 'oficina' ? visual || interactive
+  : room === 'galeria' ? visual
+  : room === 'estudio' ? visual || audio
+  : room === 'sotao' ? visual || campaign?.characters.length
+  : false;
+---
+{visible && <section class:list={['detail-object', `detail-object-${room}`]} aria-label="Objeto principal do trabalho">
+  {room === 'oficina' && (interactive === 'tavern-name' ? <TavernGenerator preview={work.data.previewOnly} /> : visual && <div class="paper browser-window"><div class="browser-title"><span aria-hidden="true">○ ○ ○</span><span>{work.data.title}</span></div><WorkVisual work={work} eager /></div>)}
+  {room === 'galeria' && visual && <figure class="detail-art"><div class="art-frame"><WorkVisual work={work} eager /></div>{work.data.medium && <figcaption class="handwriting">{work.data.medium}</figcaption>}</figure>}
+  {room === 'estudio' && <div class:list={['detail-track', { 'detail-track-with-cover': visual }]}>
+    {visual && <div class="record-cover"><span class="tape" aria-hidden="true"></span><WorkVisual work={work} eager /></div>}
+    <div class="paper detail-track-player"><span class="eyebrow handwriting">{work.data.collection ?? 'no estúdio'}</span><p class="detail-track-name">{work.data.title}</p>{audio ? <><label for="track-audio" class="handwriting">Ouvir a faixa</label><audio id="track-audio" controls preload="metadata" src={audio}><a href={audio}>Baixar a faixa</a></audio></> : <p class="audio-missing handwriting">{work.data.durationSeconds && <span>{duration(work.data.durationSeconds)} · </span>}Áudio ainda não anexado.</p>}</div>
+  </div>}
+  {room === 'sotao' && <div class="detail-campaign">
+    {visual && <div class="campaign-map"><span class="pin" aria-hidden="true"></span><WorkVisual work={work} eager /></div>}
+    {campaign && campaign.characters.length > 0 && <section class="detail-characters" aria-label="Personagens desta campanha"><span class="scene-caption handwriting">personagens na mesa</span><div class="detail-character-cards">{campaign.characters.map((character) => <CharacterCard character={character} />)}</div></section>}
+  </div>}
+</section>}

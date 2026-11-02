@@ -7,6 +7,10 @@ previewOnly: true
 publishedAt: "2026-10-12"
 technologies: ["Python"]
 status: "experimento"
+image: "/illustrations/map.svg"
+imageAlt: "Mapa ilustrativo da referência usado somente nesta amostra de projeto."
+imageWidth: 680
+imageHeight: 430
 tags: ["código"]
 ---
 

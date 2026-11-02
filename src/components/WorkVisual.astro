@@ -1,0 +1,11 @@
+---
+import Art from './Art.astro';
+import type { Work } from '../lib/content';
+import type { ArtworkName } from '../data/art';
+interface Props { work: Work; class?: string; eager?: boolean; fallback?: ArtworkName; }
+const { work, class: className, eager = false, fallback } = Astro.props;
+const art = work.data.artwork ?? fallback;
+---
+{work.data.image ? (
+  <img class={className} src={work.data.image} alt={work.data.imageAlt} width={work.data.imageWidth} height={work.data.imageHeight} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+) : art && <Art name={art} class={className} alt={`Ilustração: ${work.data.title}`} eager={eager} />}

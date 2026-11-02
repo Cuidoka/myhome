@@ -2,7 +2,7 @@
 
 Procedimento da aplicação inicial em Astro. O ambiente foi liberado após os bloqueios iniciais: dependências instaladas, check/build e testes de navegador passaram localmente. A integração remota usa Git local; o CI executa as mesmas verificações no GitHub. Publicação do site ainda não realizada. O acompanhamento guarda o histórico e os resultados do envio/CI.
 
-Na etapa de movimento R-011, passaram 14 testes de produção e 77 de desenvolvimento. O build público segue com sete páginas e 110 destinos locais conferidos, incluindo os novos módulos de movimento. As 28 amostras são visíveis apenas em astro dev; não confundir esse modo com astro preview, que serve o build de produção.
+Na retomada R-012, passaram 14 testes de produção e 111 de desenvolvimento. O build público segue com sete páginas e 113 destinos locais conferidos. As 28 amostras são visíveis apenas em astro dev; não confundir esse modo com astro preview, que serve o build de produção. Resultados funcionais não encerram o refinamento visual da auditoria.
 
 ## Estado do ambiente
 
@@ -59,10 +59,10 @@ Comandos da aplicação. A disponibilidade dos scripts não significa que todos 
 | `npm run docs:check` | Links e consistência documental | Verificado localmente via Node diretamente, sem dependências |
 | `npm run check` | Checagem de Astro/TypeScript | Passou localmente: zero erros/avisos/hints |
 | `npm run build` | Gerar versão de produção em dist | Passou localmente: sete páginas |
-| `npm run verify` | Links, âncoras, mídias e exclusão de rascunhos/amostras/referência no build | Passou localmente: 110 destinos conferidos |
+| `npm run verify` | Links, âncoras, mídias e exclusão de rascunhos/amostras/referência no build | Passou localmente: 113 destinos conferidos |
 | `npm run preview` | Inspecionar build localmente | Serviu a entrada com HTTP 200 em localhost |
 | `npm run test:browser` | Produção e exclusão de conteúdo privado/de prévia | 14 testes passaram; servidor de teste próprio em 4322; inclui acesso sem JS |
-| `npm run test:preview` | Cômodos completos com amostras e fluxos editoriais | 77 testes passaram; usa astro dev em 4321 e reutiliza o servidor local quando disponível; inclui movimento e toque emulado |
+| `npm run test:preview` | Cômodos, detalhes e fluxos editoriais com amostras | 111 testes passaram; usa astro dev em 4321, inclui cinco tipos de detalhe em sete larguras e casos sem objeto/notas; não comprova fidelidade final |
 
 Manter somente `package-lock.json` para a aplicação. Ele foi gerado localmente. O CI usa `npm ci` com permissão somente de leitura; o job antigo que criaria commits de lockfile foi removido após a liberação do ambiente.
 
@@ -181,7 +181,7 @@ Na entrega final, acrescentar um exemplo real de inclusão de conteúdo com os c
 | Item | Situação atual |
 | --- | --- |
 | Stack e versões usadas | Astro 7.4.4, TypeScript, CSS nativo, Markdown; Node 24 no CI. Versões resolvidas em package-lock.json |
-| Comandos verificados | Instalação já validada; docs:check, check, build, verify, preview, 14 testes de produção e 77 de desenvolvimento passaram localmente |
+| Comandos verificados | Instalação já validada; docs:check, check, build, verify, preview, 14 testes de produção e 111 de desenvolvimento passaram localmente |
 | URL e repositório | `https://github.com/Cuidoka/myhome`; não há URL pública do site |
 | Provedor e configuração | Propostos, sem configuração |
 | Revisão e data do lançamento | Não há lançamento |

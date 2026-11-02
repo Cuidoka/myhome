@@ -20,6 +20,8 @@ const trabalhos = defineCollection({
     related: z.array(z.string()).default([]),
     image: z.string().startsWith('/').optional(),
     imageAlt: z.string().optional(),
+    imageWidth: z.number().int().positive().optional(),
+    imageHeight: z.number().int().positive().optional(),
     audio: z.string().startsWith('/').optional(),
     technologies: z.array(z.string()).default([]),
     status: z.string().optional(),
@@ -48,6 +50,9 @@ const trabalhos = defineCollection({
     }
     if (entry.updatedAt && entry.publishedAt && entry.updatedAt < entry.publishedAt) {
       context.addIssue({ code: 'custom', message: 'updatedAt não pode anteceder publishedAt.' });
+    }
+    if ((entry.imageWidth === undefined) !== (entry.imageHeight === undefined)) {
+      context.addIssue({ code: 'custom', message: 'Informe imageWidth e imageHeight juntos.' });
     }
   }),
 });

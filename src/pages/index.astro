@@ -4,11 +4,12 @@ import Illustration from '../components/Illustration.astro';
 import Icon from '../components/Icon.astro';
 import Art from '../components/Art.astro';
 import { site } from '../data/site';
-import { getVisibleWorks, workHref } from '../lib/content';
+import { getVisibleWorks, workHref, shortDate } from '../lib/content';
 const works = await getVisibleWorks();
 const featured = works.filter((work) => work.data.featured).slice(0, 3);
 const character = works.find((work) => work.data.room === 'sotao' && work.data.featured)?.data.campaign?.characters[0];
 const shelfWorks = works.filter((work) => work.data.room === 'sala').slice(0, 5);
+const campaign = featured.find((work) => work.data.room === 'sotao') ?? works.find((work) => work.data.room === 'sotao' && work.data.featured);
 ---
 <BaseLayout home>
   <div class="entrance">
@@ -43,7 +44,7 @@ const shelfWorks = works.filter((work) => work.data.room === 'sala').slice(0, 5)
 
       <aside class="updates paper pinned" aria-label="Novidades da casa">
         <h2 class="handwriting">mexi por aqui</h2>
-        {works.length > 0 ? <ul>{works.slice(0, 3).map((work) => <li><span class="update-marker" aria-hidden="true">↳</span><a href={workHref(work)}>{work.data.title}</a></li>)}</ul> : <ul><li><span class="update-marker" aria-hidden="true">↳</span><span>a casa ganhou suas primeiras paredes</span></li><li><span class="update-marker" aria-hidden="true">↳</span><span>cada ideia já tem seu cômodo</span></li><li><span class="update-marker" aria-hidden="true">↳</span><a href="#sobre">um pouco sobre este lugar</a></li></ul>}
+        {works.length > 0 ? <ul>{works.slice(0, 5).map((work) => <li><time class="handwriting" datetime={work.data.publishedAt?.toISOString()}>{shortDate(work.data.publishedAt)}</time><span class="update-marker" aria-hidden="true">↳</span><a href={workHref(work)}>{work.data.title}</a></li>)}</ul> : <ul><li><span class="update-marker" aria-hidden="true">↳</span><span>a casa ganhou suas primeiras paredes</span></li><li><span class="update-marker" aria-hidden="true">↳</span><span>cada ideia já tem seu cômodo</span></li><li><span class="update-marker" aria-hidden="true">↳</span><a href="#sobre">um pouco sobre este lugar</a></li></ul>}
         <span class="small-note handwriting">o começo de alguma coisa.</span>
       </aside>
 
@@ -57,8 +58,12 @@ const shelfWorks = works.filter((work) => work.data.room === 'sala').slice(0, 5)
 
       <a class="wall-object drawing-object" href="/galeria/">
         <span class="frame-hanger" aria-hidden="true"></span>
-        <div class="wood-frame"><Illustration kind="portrait" /></div>
+        <div class="wood-frame"><Art name="profile" /></div>
         <span class="object-caption handwriting">um espaço para a <b>galeria</b></span>
+      </a>
+      <a class="wall-object tactical-object" href={campaign ? workHref(campaign) : '/sotao/'}>
+        <div class="tactical-drawing"><span class="pin" aria-hidden="true"></span><Art name="battlemap" /><span class="tactical-label handwriting">{import.meta.env.DEV ? 'a mesa de sábado' : 'mapas para a mesa'}</span></div>
+        <span class="object-caption handwriting">mapas & mundos para explorar no <b>sótão</b></span>
       </a>
     </section>
 

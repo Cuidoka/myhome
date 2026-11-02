@@ -15,6 +15,7 @@ Além dos campos iniciais, a coleção oferece:
 | previewOnly | Reserva o item à demonstração de desenvolvimento; padrão false |
 | spineTitle | Título curto opcional da lombada, até 45 caracteres; nome completo permanece acessível |
 | artwork | Ilustração do catálogo tipado, para amostras ou composição; nomes inválidos falham na validação |
+| imageWidth / imageHeight | Dimensões naturais opcionais da imagem, inteiros positivos; informar ambos juntos para reservar a proporção correta |
 | collection / durationSeconds | Coleção e duração informada em segundos para música; duração desconhecida não é inventada |
 | category / medium | Categoria da galeria e técnica/legenda |
 | snippet / interactive | Trecho de código opcional e ferramenta interativa suportada; nesta etapa, tavern-name |
@@ -105,6 +106,7 @@ Usar estados simples para cada item: recebido, precisa completar, pronto para re
 - Guardar originais de trabalho separados das versões otimizadas que o site usará.
 - Escolher nomes de arquivo estáveis e descritivos; registrar legenda, texto alternativo e relação com o trabalho.
 - Definir dimensões e compressão conforme o uso real. Uma imagem de galeria e uma miniatura não precisam carregar o mesmo arquivo pesado.
+- Preencher imageWidth/imageHeight com as dimensões naturais quando conhecidas. WorkVisual usa esses valores e não força o arquivo real a uma proporção fictícia. Imagens da galeria podem ter recorte de miniatura; o detalhe preserva o enquadramento completo. Geração de variantes e srcset ainda não foi implementada.
 - Revisar SVGs que entrarem em produção e reutilizar componentes decorativos em vez de duplicar páginas inteiras.
 - Para áudio, confirmar formato aceito nos navegadores escolhidos e registrar duração/controles com base no arquivo real.
 - Não importar PNGs de página inteira para simular o site nem apontar arquivos de produção para dentro de `reference/`.

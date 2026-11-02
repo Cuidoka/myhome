@@ -2,7 +2,7 @@
 
 Casa pessoal na internet para apresentar trabalhos, compartilhar processos e falar sobre quem mora aqui. A referência organiza o conteúdo em Entrada, Estúdio, Oficina, Sótão, Sala e Galeria.
 
-**Estado atual:** estrutura em Astro, TypeScript, CSS nativo e Markdown. Entrada e cinco cômodos com composições próprias, filtros, páginas individuais, sumário, notas e relações. Traços, papéis, lettering e objetos seguem a referência. Os primeiros trabalhos reais e a apresentação final ainda precisam ser fornecidos. Não há site publicado.
+**Estado atual:** base funcional inicial em Astro, TypeScript, CSS nativo e Markdown. Entrada e cinco cômodos têm estrutura própria, filtros, detalhes e relações; a fidelidade visual e editorial ainda exige vários lotes de refinamento. A [auditoria por tela](docs/auditoria-do-projeto.md) registra o que funciona, as lacunas e a fila de continuidade. Conteúdo real e publicação também estão pendentes.
 
 Código enviado para [Cuidoka/myhome](https://github.com/Cuidoka/myhome), branch `main`. A [verificação da etapa de movimento no GitHub Actions](https://github.com/Cuidoka/myhome/actions/runs/41379953708) passou. Hospedagem recomendada: Vercel, com build estático; conta e domínio ainda não configurados. Envio de código não equivale a deploy do site.
 
@@ -25,7 +25,7 @@ npm run verify
 npm run preview
 ```
 
-Os testes de navegador passaram localmente em Chromium: 14 para produção e 77 para a prévia. Instalar o navegador com `npx playwright install chromium`, executar `npm run test:browser` após o build e `npm run test:preview` para o desenvolvimento. As duas suítes usam portas distintas; o CI executa ambas. O [guia de operação](docs/operacao.md) registra resultados reais e limitações.
+Os testes de navegador passaram localmente em Chromium: 14 para produção e 111 para a prévia. Instalar o navegador com `npx playwright install chromium`, executar `npm run test:browser` após o build e `npm run test:preview` para o desenvolvimento. As duas suítes usam portas distintas; o CI executa ambas. O [guia de operação](docs/operacao.md) registra resultados reais e limitações.
 
 Em `npm run dev`, 28 amostras identificadas permitem revisar a composição completa. Elas usam `previewOnly: true` e **não geram páginas no build público**. O modelo privado continua sem rota. Os SVGs decorativos adaptados são ativos próprios do site; `reference/` não é dependência de execução ou build.
 
@@ -55,4 +55,4 @@ A pasta `reference/` é material local e está excluída pelo `.gitignore`. Ela 
 
 `docs/acompanhamento.md` é a fonte principal dos estados das tarefas. `docs/decisoes.md` guarda o histórico de aprovações e propostas. O guia explica a sequência, sem duplicar o controle de estados.
 
-Página com largura total, sem margens externas nem proporção obrigatória; navegação e elementos se adaptam à janela. R-011 acrescenta entradas discretas e microinterações, com pesquisa e critérios em [movimento.md](docs/movimento.md). Check de Astro/TypeScript, build, links e 91 testes de navegador passaram localmente, com dez tamanhos de janela entre 320 e 3440 px. Capturas representativas revisadas; conteúdo/mídia reais e publicação continuam no acompanhamento.
+Página com largura total, menu aprovado e movimento documentado em [movimento.md](docs/movimento.md). R-012 reabriu C-02 e criou V-05 para corrigir diferenças além da base funcional; o primeiro lote melhorou detalhes por tipo, leitura, mídia e Entrada. Check, build, links e 125 testes de navegador passaram localmente, mas não representam aprovação visual final. A próxima prioridade é a Galeria, conforme a auditoria.
